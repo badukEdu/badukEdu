@@ -13,8 +13,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableJpaAuditing
+@EnableConfigurationProperties(FileProperties.class)
 public class MvcConfig implements WebMvcConfigurer {
 
+    @Autowired
+    private FileProperties fileProperties;
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler(fileProperties.getUrl() + "**")
+                .addResourceLocations("file:///" + fileProperties.getPath());
+
+        registry.addResourceHandler("/**")
+                .addResourceLocations("classpath:/static/");
+    }
 
     @Bean
     public MessageSource messageSource() {
