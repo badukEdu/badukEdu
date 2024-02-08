@@ -2,6 +2,10 @@ server:
   port: 3000
 
 spring:
+  profiles:
+    active: dev
+
+  #메일 인증
   mail:
     host: smtp.gmail.com # SMTP 서버 호스트
     port: 587 # SMTP 서버 포트
@@ -65,9 +69,6 @@ file:
   upload:
     path: C:/uploads/
     url: /uploads/
-
-profiles:
-  active: dev
 
 # 로거 설정
 logging:
