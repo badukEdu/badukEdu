@@ -2,11 +2,13 @@ package org.choongang.member.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.stGrooup.StudyGroup;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -47,5 +49,10 @@ public class Member {
   private boolean agree; //수신동의(이메일 E , SMS 수신 S, 모두 수신 ES, 수신 X)
   @Column
   private boolean use;  // 계정 상태 (정상 1 / 정지,탈퇴 0)
+
+  ////////////////////////////////////////////////
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<StudyGroup> StudyGroups;
 
 }
