@@ -9,14 +9,14 @@ import lombok.Data;
 public class Comment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long seq; // 댓글 번호
 
     @ManyToOne
     @JoinColumn(name = "notice_seq") // 공지사항 번호 (FK)
     private Notice noticeNum; // 댓글이 속한 공지사항
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String content; // 댓글 내용
 
     /*

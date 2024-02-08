@@ -11,8 +11,7 @@ import java.time.LocalDateTime;
 public class Notice {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notice_seq") // 공지사항 시퀀스 생성
-    @SequenceGenerator(name = "notice_seq", sequenceName = "notice_seq", allocationSize = 1) // 1부터 순차적으로 생성
+    @GeneratedValue
     private Long seq; // 공지사항(게시물) 번호
 
     @Column(nullable = false)
@@ -33,7 +32,8 @@ public class Notice {
     @Column(nullable = false)
     private boolean useReservation; // 예약게시 여부
 
-    @Column(nullable = false, columnDefinition = "TEXT") // 가변 길이의 문자열을 저장, 길이 제한 X
+    @Lob
+    @Column(nullable = false) // 가변 길이의 문자열을 저장, 길이 제한 X
     private String content; // 내용
 
     @Column(nullable = false)
