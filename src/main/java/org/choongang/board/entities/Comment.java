@@ -2,11 +2,12 @@ package org.choongang.board.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.stGrooup.Base;
 
 @Entity
 @Data
 @Table(name = "NOTICE_COMMENT")
-public class Comment {
+public class Comment extends Base {
 
     @Id
     @GeneratedValue
@@ -16,7 +17,7 @@ public class Comment {
     @JoinColumn(name = "notice_seq") // 공지사항 번호 (FK)
     private Notice noticeNum; // 댓글이 속한 공지사항
 
-    @Column(nullable = false)
+    @Lob
     private String content; // 댓글 내용
 
     /*

@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import java.time.LocalDateTime;
 
 @Entity
-public class StudyGroup {
+public class StudyGroup extends Base {
 
 
     @Id
