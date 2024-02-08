@@ -15,7 +15,7 @@ public class TrainingData {
   @Column(updatable = false)
   private LocalDateTime SDate; // 숙제 생성일 (선생님이 숙제를 내 준 날)
   @Column
-  private String homeWorkAnswer; // 숙제 정답 (학생이 제출한 정답)
+  private String homeworkAnswer; // 숙제 정답 (학생이 제출한 정답)
   @Column
   private String question; // 질의내용
   @CreatedDate

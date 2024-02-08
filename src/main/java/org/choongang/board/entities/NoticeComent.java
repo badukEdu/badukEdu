@@ -2,6 +2,7 @@ package org.choongang.board.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.commons.entities.Base;
 import org.choongang.member.entities.Member;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-public class NoticeComent {
+public class NoticeComent extends Base {
 
     @Id
     @GeneratedValue
@@ -22,13 +23,6 @@ public class NoticeComent {
 
     @Lob
     private String content; // 댓글 내용
-
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime SDate; // 작성일 (자동생성)
-    @LastModifiedDate
-    @Column(insertable = false)
-    private LocalDateTime mDate; // 수정일 (자동생성)
 
     ///////////////////////////
 

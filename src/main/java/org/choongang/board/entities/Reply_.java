@@ -2,11 +2,12 @@ package org.choongang.board.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.commons.entities.Base;
 import org.choongang.member.entities.Member;
 
 @Entity
 @Data
-public class Reply_ {
+public class Reply_ extends Base {
 
     @Id
     @GeneratedValue
