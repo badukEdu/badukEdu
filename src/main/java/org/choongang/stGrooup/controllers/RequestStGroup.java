@@ -1,0 +1,25 @@
+package org.choongang.stGrooup.controllers;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.Data;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+@Data
+public class RequestStGroup {
+
+    private Long num;    //기본키
+    private String name;     //스터디그룹명
+    private LocalDate startDate; //시작일
+    private LocalDate endDate; //종료일
+    private Long maxSubscriber;    //최대인원
+    private Long maxLevel;   //달성 레벨
+    private String text;     //비고
+    private String mode = "add";    //수정 , 생성
+    private long gameContentNum;    //게임 컨텐츠 번호
+
+
+}

@@ -1,15 +1,17 @@
-package org.choongang.stGrooup;
+package org.choongang.stGrooup.entities;
 
 import jakarta.persistence.*;
-import org.choongang.edu.entities.EduData;
+import lombok.Data;
 import org.choongang.gameContent.entities.GameContent;
 import org.choongang.homework.entities.Homework;
 import org.choongang.member.entities.Member;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Data
 public class StudyGroup {
 
     @Id
@@ -20,10 +22,10 @@ public class StudyGroup {
     private String name;     //스터디그룹명
 
     @Column
-    private LocalDateTime startDate; //시작일
+    private LocalDate startDate; //시작일
 
     @Column
-    private LocalDateTime endDate; //종료일
+    private LocalDate endDate; //종료일
 
     @Column(length = 80 , nullable = false)
     private Long maxSubscriber;    //최대인원
@@ -48,5 +50,7 @@ public class StudyGroup {
     @OneToMany(mappedBy = "studyGroup", fetch = FetchType.LAZY)
     private List<Homework> homeworks;
 
+    @OneToMany(mappedBy = "studyGroup", fetch = FetchType.LAZY)
+    private List<JoinStudyGroup> joinStudyGroups;
 
 }

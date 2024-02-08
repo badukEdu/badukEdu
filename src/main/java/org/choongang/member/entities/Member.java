@@ -6,8 +6,10 @@ import org.choongang.board.entities.Notice_;
 import org.choongang.edu.entities.EduData;
 import org.choongang.gameContent.entities.GameContent;
 import org.choongang.homework.entities.Homework;
-import org.choongang.stGrooup.StudyGroup;
-import org.choongang.stGrooup.TrainingData;
+
+import org.choongang.stGrooup.entities.JoinStudyGroup;
+import org.choongang.stGrooup.entities.StudyGroup;
+import org.choongang.stGrooup.entities.TrainingData;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -74,5 +76,6 @@ public class Member {
   @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
   private List<TrainingData> trainingDatas;
 
-
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<JoinStudyGroup> joinStudyGroups;
 }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:div th:fragment="form">
+    <input type="hidden" name="gameContentNum" value="10"> <!--th:value="${gameContent.num}"-->
+    <table>
+        <tr>
+            <th>컨텐츠명</th>
+            <th>구독 기간</th>
+            <th>개월</th>
+            <th>학습가능인원</th>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <a>game1</a>
+            </td>
+            <td>
+                <input type="radio" value="1">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <a>game1</a>
+            </td>
+            <td>
+                <input type="radio" value="2">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <a>game1</a>
+            </td>
+            <td>
+                <input type="radio" value="3">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <a>game1</a>
+            </td>
+            <td>
+                <input type="radio" value="4">
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <table>
+        <h1>학습 그룹 입력</h1>
+        <tr>
+            <td>교육자명</td>
+            <td>
+                <!--<p th:text="${session.member.name}"></p>-->
+                <p>${session.member.name} [로그인 회원명 띄울 예정]</p>
+            </td>
+        </tr>
+        <tr>
+            <td>학습그룹명</td>
+            <td>
+                <input type="text" name="name">
+            </td>
+        </tr>
+        <tr>
+            <td>그룹제한인원</td>
+            <td>
+                <input type="number" name="maxSubscriber">
+            </td>
+        </tr>
+        <tr>
+            <td>학습개월</td>
+            <td>
+                <input type="number" name="month">
+            </td>
+        </tr>
+        <tr>
+            <td>학습기간</td>
+            <td>
+                <input type="date" name="startDate">
+                <input type="date" name="endDate">
+            </td>
+        </tr>
+        <tr>
+            <td>달성 레벨</td>
+            <td>
+                <input type="number" name="maxLevel">
+            </td>
+        </tr>
+        <tr>
+            <td>비고</td>
+            <td>
+                <input type="text" name="text">
+            </td>
+        </tr>
+    </table>
+</th:div>
+</html>

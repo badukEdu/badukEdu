@@ -36,9 +36,13 @@ public class EduData {
     @Column
     private String fileAddress; // 자료file주소
     @Column
+    private String filePath; // 자료file경로
+    @Column
     private String thumbnail; // 썸네일 (파일명)
     @Column
     private String thumbnailAddress; // 썸네일 (파일명 경로)
+    @Column
+    private String thumbnailPath; // 썸네일 (파일명 경로)
 
     //////////////////////
 

@@ -3,8 +3,9 @@ package org.choongang.homework.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.choongang.member.entities.Member;
-import org.choongang.stGrooup.StudyGroup;
-import org.choongang.stGrooup.TrainingData;
+
+import org.choongang.stGrooup.entities.StudyGroup;
+import org.choongang.stGrooup.entities.TrainingData;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
