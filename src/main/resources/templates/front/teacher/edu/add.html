@@ -1,1 +1,14 @@
-11
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <h2>학습 자료 등록</h2>
+    <form method="post" th:action="@{/teacher/edu/add}">
+        학습자료명 : <input type="text"> <br>
+        자료구분 : <input type="text"> <br>
+        자료유형 : <input type="text"> <br>
+        자료file주소: <input type="text"> <br>
+        서비스구분 : <input type="text"> <br>
+        자료내용 : <textarea name="content"></textarea> <br>
+        썸네일 : <br>
+        <button type="submit">등록하기</button>
+    </form>
+</html>
