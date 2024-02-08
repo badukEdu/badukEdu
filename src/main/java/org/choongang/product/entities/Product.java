@@ -1,4 +1,4 @@
-package org.choongang.product.entity;
+package org.choongang.product.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

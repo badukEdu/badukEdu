@@ -1,4 +1,4 @@
-package org.choongang.edu.entity;
+package org.choongang.edu.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

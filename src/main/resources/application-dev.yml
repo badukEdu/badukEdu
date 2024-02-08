@@ -15,22 +15,17 @@ spring:
           starttls:
             enable: true # StartTLS 활성화 여부 - 기본값 false
 
-  #파일 업로드 용량 설정
+  # 파일 업로드 용량 설정
   servlet:
     multipart:
       maxFileSize: 20MB
       maxRequestSize: 60MB
 
-  #정적 자원 설정(CSS, JS, 이미지)
-  web:
-    resources:
-      staticLocations: file:src/main/resources/static/
-
-  #데이터베이스 설정
+  # 데이터베이스 설정
   datasource:
-    driver-class-name: oracle.jdbc.driver.OracleDriver
+    driverClassName: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521:orcl
-    username: BADUK
+    username: PROJECT
     password: _aA123456
 
   # JPA 설정
@@ -43,31 +38,26 @@ spring:
         dialect: org.hibernate.dialect.OracleDialect
         default_batch_fetch_size: 1000
     hibernate:
-      ddlAuto: create
+      ddlAuto: update
 
-  #라이브 리로드 설정
-  devtools:
-    livereload:
-      enabled: true
-
-  #타임리프 설정
+  # 타임리프 설정
   thymeleaf:
     cache: false
     prefix: file:src/main/resources/templates/
 
-  #파일 설정
-  file:
-    url: /upload/
-    path: C:/uploads/
+  # 정적 자원 설정(CSS, JS, 이미지)
+  web:
+    resources:
+      staticLocations: file:src/main/resources/static/
 
-# 파일 업로드 경로 설정
-file:
-  upload:
-    path: C:/uploads/
-    url: /uploads/
+  # 라이브 리로드 설정
+  devtools:
+    livereload:
+      enabled: true
 
-profiles:
-  active: dev
+  jackson:
+    serialization:
+      failOnEmptyBeans: false
 
 # 로거 설정
 logging:
@@ -77,3 +67,10 @@ logging:
         type:
           descriptor:
             sql: trace
+
+
+# 파일 업로드 경로 설정
+file:
+  upload:
+    path: C:/uploads/
+    url: /uploads/
