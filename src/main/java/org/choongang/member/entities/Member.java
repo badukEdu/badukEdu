@@ -12,7 +12,7 @@ public class Member {
   @Id //PK
   @GeneratedValue //자동 키 생성
   @Column(name = "USER_NUM")
-  private Long seq; //회원 번호
+  private Long num; //회원 번호
   @Column(length = 30, nullable = false, unique = true)
   private String userId; //사용자 아이디
   @Column(length = 30, nullable = false)
@@ -29,10 +29,10 @@ public class Member {
   private String confirmPassword; //비밀번호 확인
   @Column(nullable = false)
   private String birth; //생년월일
+  @Column
   private String gender; //성별
   private boolean agree; //수신동의(이메일 수신 , SMS 수신 , 모두 수신 , 수신X)
   private Long subscriptionCnt; //구독 횟수
-
   private Date SDate; //가입일자
   private String authorities; //자격(유료, 무료)
   private String type;// 회원 구분(관리자 , 교육자 , 학생 학습자 , 일반 학습자)
