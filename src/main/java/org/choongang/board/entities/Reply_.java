@@ -2,25 +2,26 @@ package org.choongang.board.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.member.entities.Member;
 
 @Entity
 @Data
-@Table(name = "reply_table")
-public class Reply {
+public class Reply_ {
 
     @Id
     @GeneratedValue
     private Long num; // 답변 번호
 
-    /*
+
     @ManyToOne
     @JoinColumn(name = "seq", nullable = false)
     private Member member; // 답변자 (사용자 엔티티와 관계)
-    */
+
 
     @ManyToOne
     @JoinColumn(name = "noticeSeq", nullable = false) // notice 엔티티의 seq를 사용하여 조인
-    private Notice notice; // 문의 번호 (공지사항 엔티티와 관계)
+    private Notice_ notice; // 문의 번호 (공지사항 엔티티와 관계)
+
 
     @Column(nullable = false)
     private String content; // 답변 내용

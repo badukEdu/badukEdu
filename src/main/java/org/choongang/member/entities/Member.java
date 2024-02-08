@@ -2,9 +2,10 @@ package org.choongang.member.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.choongang.board.entities.Notice;
+import org.choongang.board.entities.Notice_;
 import org.choongang.edu.entities.EduData;
 import org.choongang.gameContent.entities.GameContent;
+import org.choongang.homework.entities.Homework;
 import org.choongang.stGrooup.StudyGroup;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -18,7 +19,6 @@ import java.util.List;
 public class Member {
   @Id //PK
   @GeneratedValue //자동 키 생성
-  @Column
   private Long num; //회원 번호
   @Column(length = 30, nullable = false, unique = true)
   private String userId; //사용자 아이디
@@ -27,11 +27,11 @@ public class Member {
   @Column
   private String authorities; //사용자 구분2(유료회원 / 무료회원)
   @Column(length = 30, nullable = false)
-  private String userName; //사용자 성명
+  private String name; //사용자 성명
   @Column(length=30, nullable = false)
   private String password; //비밀번호
   @Column(length=30, nullable = false)
-  private Long level; //레벨 (??)
+  private Long levels; //레벨 (??)
   @Column(nullable = false)
   private String tel; //전화번호
   @Column
@@ -65,6 +65,9 @@ public class Member {
   private List<EduData> eduDatas;
 
   @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-  private List<Notice> notices;
+  private List<Notice_> notices;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<Homework> homeworks;
 
 }

@@ -50,6 +50,8 @@ public class GameContent {
     private float discountRate; // 할인율
 
 ///////////////////////
+
+
 @ManyToOne(fetch = FetchType.LAZY)
 @JoinColumn(name = "memberNum")
 private Member member; //작성자 회원번호

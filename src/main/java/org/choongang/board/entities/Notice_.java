@@ -7,11 +7,11 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data // getter, setter, NoArgsConstructor 등 필요한 것만 구성 가능
-
-public class Notice {
+public class Notice_ {
 
     @Id
     @GeneratedValue
@@ -54,6 +54,11 @@ public class Notice {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberNum")
     private Member member; //작성자 회원번호
+
+    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
+    private List<NoticeComent> noticeComments;
+
+
 
 
 }
