@@ -37,7 +37,7 @@ public class GameContent {
     @Column
     private String thumbnail; // 썸네일 (파일명)
     @Column
-    private String path; // 썸네일 (파일명 경로)
+    private String fileAddress; // 썸네일 (파일명 경로)
     @Column
     private boolean use;  // 삭제여부 (사용중 1 / 삭제 0)
     @CreatedDate
