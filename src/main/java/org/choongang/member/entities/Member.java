@@ -3,6 +3,7 @@ package org.choongang.member.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.choongang.board.entities.Notice_;
+import org.choongang.commons.entities.Base;
 import org.choongang.edu.entities.EduData;
 import org.choongang.gameContent.entities.GameContent;
 import org.choongang.homework.entities.Homework;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @Data
 @Entity
-public class Member {
+public class Member extends Base {
   @Id //PK
   @GeneratedValue //자동 키 생성
   private Long num; //회원 번호
@@ -43,12 +44,7 @@ public class Member {
   private String gender; //성별 (M / F)
   @Column(length=40, unique = true)
   private String email; //이메일
-  @CreatedDate
-  @Column(updatable = false)
-  private LocalDateTime SDate; // 가입일 (자동생성)
-  @LastModifiedDate
-  @Column(insertable = false)
-  private LocalDateTime mDate; // 수정일 (자동생성)
+
   @Column
   private boolean agree; //수신동의(이메일 E , SMS 수신 S, 모두 수신 ES, 수신 X)
   @Column

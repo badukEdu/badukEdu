@@ -1,4 +1,4 @@
-package org.choongang.stGrooup;
+package org.choongang.commons.entities;
 
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedBy;
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class BaseMember {
+public class BaseMember extends Base {
 
     @CreatedBy
     @Column(updatable = false)

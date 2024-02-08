@@ -1,6 +1,7 @@
 package org.choongang.stGrooup;
 
 import jakarta.persistence.*;
+import org.choongang.commons.entities.Base;
 import org.choongang.edu.entities.EduData;
 import org.choongang.gameContent.entities.GameContent;
 import org.choongang.homework.entities.Homework;
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-public class StudyGroup {
+public class StudyGroup extends Base {
 
     @Id
     @GeneratedValue

@@ -1,4 +1,4 @@
-package org.choongang.stGrooup;
+package org.choongang.commons.entities;
 
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;

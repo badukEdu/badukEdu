@@ -2,6 +2,7 @@ package org.choongang.edu.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.commons.entities.Base;
 import org.choongang.member.entities.Member;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-public class EduData {
+public class EduData extends Base {
     @Id
     @GeneratedValue
     private Long num; // 자료 식별자, 자동 생성되는 고유한 번호 //pk
@@ -25,12 +26,7 @@ public class EduData {
     private boolean serviceType; // 서비스구분 (무료 0 / 유료 1)
     @Column
     private String content; // 자료내용
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime cDate; // 등록일 (자동생성)
-    @LastModifiedDate
-    @Column(insertable = false)
-    private LocalDateTime mDate; // 수정일 (자동생성)
+
     @Column
     private String fileName; // 자료file명
     @Column

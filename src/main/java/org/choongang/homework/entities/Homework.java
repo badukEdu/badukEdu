@@ -2,6 +2,7 @@ package org.choongang.homework.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.commons.entities.Base;
 import org.choongang.member.entities.Member;
 import org.choongang.stGrooup.StudyGroup;
 import org.choongang.stGrooup.TrainingData;
@@ -16,7 +17,7 @@ import java.util.List;
 @Data
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Homework {
+public class Homework extends Base {
     @Id @GeneratedValue
     private Long num; // 숙제번호
 
@@ -32,13 +33,6 @@ public class Homework {
     @Column
     private LocalDate deadLine; // 제출기한
 
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime SDate; // 등록일 (자동생성)
-    @LastModifiedDate
-    @Column(insertable = false)
-    private LocalDateTime mDate; // 수정일 (자동생성)
-    ////////////////
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "studyGroupNum")

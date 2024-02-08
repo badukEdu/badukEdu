@@ -2,6 +2,7 @@ package org.choongang.board.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.commons.entities.Base;
 import org.choongang.member.entities.Member;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Data // getter, setter, NoArgsConstructor 등 필요한 것만 구성 가능
-public class Notice_ {
+public class Notice_ extends Base {
 
     @Id
     @GeneratedValue
@@ -30,12 +31,7 @@ public class Notice_ {
     private String title; // 게시글 제목
     @Lob // 가변 길이의 문자열을 저장, 길이 제한 X
     private String content; // 내용
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime SDate; // 작성일 (자동생성)
-    @LastModifiedDate
-    @Column(insertable = false)
-    private LocalDateTime mDate; // 수정일 (자동생성)
+
     @Column
     private Long visit; //조회수
     @Column

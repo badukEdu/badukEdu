@@ -3,6 +3,7 @@ package org.choongang.gameContent.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.commons.entities.Base;
 import org.choongang.member.entities.Member;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -12,7 +13,7 @@ import java.util.Date;
 
 @Entity
 @Data
-public class GameContent {
+public class GameContent extends Base {
     @Id
     @GeneratedValue
     private Long num; // 게임 식별자, 자동 생성되는 고유한 번호 // pk
@@ -40,12 +41,7 @@ public class GameContent {
     private String fileAddress; // 썸네일 (파일명 경로)
     @Column
     private boolean use;  // 삭제여부 (사용중 1 / 삭제 0)
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime cDate; // 등록일 (자동생성)
-    @LastModifiedDate
-    @Column(insertable = false)
-    private LocalDateTime mDate; // 수정일 (자동생성)
+
     @Column
     private float discountRate; // 할인율
 
