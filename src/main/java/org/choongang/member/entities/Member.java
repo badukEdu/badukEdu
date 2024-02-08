@@ -7,11 +7,12 @@ import org.choongang.edu.entities.EduData;
 import org.choongang.gameContent.entities.GameContent;
 import org.choongang.homework.entities.Homework;
 import org.choongang.stGrooup.StudyGroup;
+import org.choongang.stGrooup.TrainingData;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+
 import java.util.List;
 
 @Data
@@ -69,5 +70,9 @@ public class Member {
 
   @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
   private List<Homework> homeworks;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<TrainingData> trainingDatas;
+
 
 }

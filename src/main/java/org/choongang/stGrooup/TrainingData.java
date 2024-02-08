@@ -1,27 +1,39 @@
 package org.choongang.stGrooup;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.choongang.homework.entities.Homework;
+import org.choongang.member.entities.Member;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.time.LocalDateTime;
 
 @Entity
 public class TrainingData {
   @Id
   @GeneratedValue
   private Long num; // 자료 식별자, 자동 생성되는 고유한 번호 //pk
+  @Column(updatable = false)
+  private LocalDateTime SDate; // 숙제 생성일 (선생님이 숙제를 내 준 날)
   @Column
-  private String trainingDataName; // 학습자료명
+  private String homeWorkAnswer; // 숙제 정답 (학생이 제출한 정답)
   @Column
-  private String dataType; // 자료구분
+  private String question; // 질의내용
+  @CreatedDate
+  @Column(updatable = false)
+  private LocalDateTime sendDate; // 제출일 (제출시 자동 저장)
   @Column
-  private String contentType; // 자료유형
+  private String questionAnswer; // 질의 답변내용
   @Column
-  private String fileAddress; // 자료file주소
-  @Column
-  private String serviceType; // 서비스구분
-  @Column
-  private String content; // 자료내용
-  @Column
-  private String thumbnail; // 썸네일
+  private Long score; // 체점 점수
+
+  @Column(updatable = false)
+  private LocalDateTime aDate; // 숙제 평가일
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "memberNum")
+  private Member member; //작성자 회원번호
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "homeworkNum")
+  private Homework homework; //작성자 회원번호
 }

@@ -4,10 +4,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.choongang.member.entities.Member;
 import org.choongang.stGrooup.StudyGroup;
+import org.choongang.stGrooup.TrainingData;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -46,6 +48,8 @@ public class Homework {
     @JoinColumn(name = "memberNum")
     private Member member; //교육자 회원번호
 
+    @OneToMany(mappedBy = "homework", fetch = FetchType.LAZY)
+    private List<TrainingData> trainingDatas;
 
 
 
