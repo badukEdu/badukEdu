@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Entity
 public class StudyGroup extends Base {
 
-
     @Id
     @GeneratedValue
     private Long num;    //기본키
