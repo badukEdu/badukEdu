@@ -2,39 +2,77 @@ package org.choongang.member.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.board.entities.Notice_;
+import org.choongang.edu.entities.EduData;
+import org.choongang.gameContent.entities.GameContent;
+import org.choongang.homework.entities.Homework;
+import org.choongang.stGrooup.StudyGroup;
+import org.choongang.stGrooup.TrainingData;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
+import java.util.List;
 
 @Data
 @Entity
-@Table(name = "USER_MEMBER")
 public class Member {
   @Id //PK
   @GeneratedValue //자동 키 생성
-  @Column(name = "USER_NUM")
   private Long num; //회원 번호
   @Column(length = 30, nullable = false, unique = true)
   private String userId; //사용자 아이디
+  @Column(length = 30, nullable = false, unique = true)
+  private String type; //사용자 구분1(운영자 / 교육자 / 일반학습자 / 학생학습자)
+  @Column
+  private String authorities; //사용자 구분2(유료회원 / 무료회원)
   @Column(length = 30, nullable = false)
-  private String userName; //사용자 성명
+  private String name; //사용자 성명
+  @Column(length=30, nullable = false)
+  private String password; //비밀번호
+  @Column(length=30, nullable = false)
+  private Long levels; //레벨 (??)
   @Column(nullable = false)
   private String tel; //전화번호
   @Column
   private String phonNum; //집전화
-  @Column(length=40, unique = true)
-  private String email; //이메일
-  @Column(length=30, nullable = false)
-  private String password; //비밀번호
-  @Column(length=30, nullable = false)
-  private String confirmPassword; //비밀번호 확인
   @Column(nullable = false)
   private String birth; //생년월일
   @Column
-  private String gender; //성별
-  private boolean agree; //수신동의(이메일 수신 , SMS 수신 , 모두 수신 , 수신X)
-  private Long subscriptionCnt; //구독 횟수
-  private Date SDate; //가입일자
-  private String authorities; //자격(유료, 무료)
-  private String type;// 회원 구분(관리자 , 교육자 , 학생 학습자 , 일반 학습자)
+  private String gender; //성별 (M / F)
+  @Column(length=40, unique = true)
+  private String email; //이메일
+  @CreatedDate
+  @Column(updatable = false)
+  private LocalDateTime SDate; // 가입일 (자동생성)
+  @LastModifiedDate
+  @Column(insertable = false)
+  private LocalDateTime mDate; // 수정일 (자동생성)
+  @Column
+  private boolean agree; //수신동의(이메일 E , SMS 수신 S, 모두 수신 ES, 수신 X)
+  @Column
+  private boolean use;  // 계정 상태 (정상 1 / 정지,탈퇴 0)
+
+  ////////////////////////////////////////////////
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<StudyGroup> StudyGroups;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<GameContent> gameContents;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<EduData> eduDatas;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<Notice_> notices;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<Homework> homeworks;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<TrainingData> trainingDatas;
+
 
 }
