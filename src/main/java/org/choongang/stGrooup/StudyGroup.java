@@ -1,6 +1,7 @@
 package org.choongang.stGrooup;
 
 import jakarta.persistence.*;
+import org.choongang.gameContent.entities.GameContent;
 import org.choongang.member.entities.Member;
 
 import java.time.LocalDateTime;
@@ -35,8 +36,12 @@ public class StudyGroup {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberNum")
     private Member member; //작성자 회원번호
+/*
 
-
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gameContentNum")
+    private GameContent gameContent; //게임 번호
+*/
 
 
 

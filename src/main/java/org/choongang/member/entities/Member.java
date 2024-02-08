@@ -2,6 +2,7 @@ package org.choongang.member.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.gameContent.entities.GameContent;
 import org.choongang.stGrooup.StudyGroup;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -54,5 +55,8 @@ public class Member {
 
   @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
   private List<StudyGroup> StudyGroups;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<GameContent> gameContents;
 
 }

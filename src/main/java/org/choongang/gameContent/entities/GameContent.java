@@ -1,11 +1,9 @@
 package org.choongang.gameContent.entities;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.member.entities.Member;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -51,7 +49,10 @@ public class GameContent {
     @Column
     private float discountRate; // 할인율
 
-
+///////////////////////
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "memberNum")
+private Member member; //작성자 회원번호
 
 
 
