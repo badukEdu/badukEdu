@@ -17,12 +17,12 @@ public class EduData {
     @Column
     private String name; // 학습자료명
     @Column
-    private String dataType; // 자료구분
+    private boolean dataType; // 자료구분 (튜토리얼 0 / 교육영상 1)
 
     @Column
-    private String contentType; // 자료유형
+    private String contentType; // 자료유형 (동영상 / 교재 / 웹사이트)
     @Column
-    private String serviceType; // 서비스구분
+    private boolean serviceType; // 서비스구분 (무료 0 / 유료 1)
     @Column
     private String content; // 자료내용
     @CreatedDate

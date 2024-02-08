@@ -2,55 +2,58 @@ package org.choongang.board.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.member.entities.Member;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Data // getter, setter, NoArgsConstructor 등 필요한 것만 구성 가능
-@Table(name = "notice_table")
+
 public class Notice {
 
     @Id
     @GeneratedValue
-    private Long seq; // 공지사항(게시물) 번호
+    private Long num; // 공지사항(게시물) 번호
 
     @Column(nullable = false)
-    private String type; // 공지사항 분류(공지사항, FAQ -> ENUM 클래스 사용?)
+    private String type; // 공지사항 분류(공지사항, FAQ , QnA-> ENUM 클래스 사용?)
+
+    @Column(nullable = false)
+    private String cate; // 카테고리 분류( 공통, 상품안내, 이용안내, 상품결제, 숙제관리, 학습그룹, 기타 )
 
     @Column
     private boolean onTop; // 중요글 상단 노출(공지사항일때만 적용)
 
     @Column(nullable = false)
     private String title; // 게시글 제목
-
-    @Column(nullable = false)
-    private String cate; // 카테고리 분류( 공통, 상품안내, 이용안내, 상품결제, 숙제관리, 학습그룹, 기타 )
-
-    @Column(nullable = false)
-    private LocalDateTime reservationDate; // 게시일자(등록 즉시 or 개시 예정일 지정)
+    @Lob // 가변 길이의 문자열을 저장, 길이 제한 X
+    private String content; // 내용
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime SDate; // 작성일 (자동생성)
+    @LastModifiedDate
+    @Column(insertable = false)
+    private LocalDateTime mDate; // 수정일 (자동생성)
+    @Column
+    private Long visit; //조회수
+    @Column
+    private String fileName; // 파일명 (파일명)
+    @Column
+    private String fileAddress; // 파일경로 (파일 경로)
 
     @Column(nullable = false)
     private boolean useReservation; // 예약게시 여부
 
-    @Lob
-    @Column(nullable = false) // 가변 길이의 문자열을 저장, 길이 제한 X
-    private String content; // 내용
-
-    @Column(nullable = false)
-    private String question; // 질의
-
     @Column
-    private String answer; // 답변
+    private String answer; // 답변(FaQ일 경우에만 사용)
 
-    /*
-    @Column
-    private String attachment; // 첨부 파일
-    */
+////////////////////////////
 
-    /*
-    @ManyToOne
-    @JoinColumn(name = "gid")
-    private FileGroup fileGroup; // 파일 그룹 아이디 (FK)
-    */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "memberNum")
+    private Member member; //작성자 회원번호
+
 
 }

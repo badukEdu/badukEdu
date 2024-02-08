@@ -2,6 +2,7 @@ package org.choongang.member.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.board.entities.Notice;
 import org.choongang.edu.entities.EduData;
 import org.choongang.gameContent.entities.GameContent;
 import org.choongang.stGrooup.StudyGroup;
@@ -62,5 +63,8 @@ public class Member {
 
   @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
   private List<EduData> eduDatas;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<Notice> notices;
 
 }
