@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <h2>학습 자료 등록</h2>
-    <form method="post" th:action="@{/teacher/edu/add}" autocomplete="off" th:object="${requestEduData}">
+    <form method="post" th:action="@{/teacher/edu/add}" autocomplete="off" th:object="${requestEduData}" enctype="multipart/form-data">
+<!--        <input type="hidden" name="gid" th:field="*{gid}">-->
         <dl>
             <dt th:text="#{학습자료명}"></dt>
             <dd>
@@ -50,12 +51,12 @@
             </dd>
         </dl>
 
-        <dl>
-            <dt th:text="#{썸네일}"></dt>
-            <dd>
-                <input type="file" name="thumbnail" th:field="*{thumbnail}">
-            </dd>
-        </dl>
+<!--        <dl>-->
+<!--            <dt th:text="#{썸네일}"></dt>-->
+<!--            <dd>-->
+<!--                <input type="file" name="thumbnail" th:field="*{thumbnail}">-->
+<!--            </dd>-->
+<!--        </dl>-->
         <button type="submit">등록하기</button>
     </form>
 </html>
