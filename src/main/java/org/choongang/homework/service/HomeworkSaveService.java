@@ -14,8 +14,15 @@ public class HomeworkSaveService {
 
     private final HomeworkRepository homeworkRepository;
     public void save(RequestHomework form) {
+        String mode = form.getMode();
+        Long num = form.getNum();
 
-        Homework homework = new Homework();
+        Homework homework = null;
+        if ("edit".equals(mode)) {
+            homework = homeworkRepository.findById(num).orElseThrow();
+        } else {
+            homework = new Homework();
+        }
 
         homework.setName(form.getName());
         homework.setContent(form.getContent());

@@ -43,6 +43,25 @@ public class HomeworkController {
 
         homeworkSaveService.save(form);
 
-        return "front/teacher/homework/list";
+
+        return "redirect:/homework";
+    }
+
+    @GetMapping("/edit/{num}")
+    public String edit(@PathVariable("num") Long num, Model model) {
+
+        RequestHomework form = homeworkInfoService.getForm(num);
+        model.addAttribute("requestForm", form);
+
+        return "front/teacher/homework/edit";
+    }
+
+    @PostMapping("/edit/{num}")
+    public String editPs(@Valid RequestHomework form, @PathVariable("num") Long num, Model model) {
+        form.setMode("edit");
+        form.setNum(num);
+        homeworkSaveService.save(form);
+
+        return "redirect:/homework";
     }
 }
