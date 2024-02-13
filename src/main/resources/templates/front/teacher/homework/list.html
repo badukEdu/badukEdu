@@ -4,4 +4,9 @@
 <a th:href="@{/homework}">숙제 조회(현재페이지)</a>
 <a th:href="@{/homework/add}">숙제 등록</a>
 리스트 출력...
+<table>
+    <tr th:each="item : ${items}" th:object="${items}">
+        <td th:text="${item}"></td>
+    </tr>
+</table>
 </html>

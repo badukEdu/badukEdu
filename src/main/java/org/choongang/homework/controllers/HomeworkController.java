@@ -2,11 +2,15 @@ package org.choongang.homework.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.choongang.homework.entities.Homework;
 import org.choongang.homework.repositories.HomeworkRepository;
+import org.choongang.homework.service.HomeworkInfoService;
 import org.choongang.homework.service.HomeworkSaveService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/homework")
@@ -14,9 +18,14 @@ import org.springframework.web.bind.annotation.*;
 public class HomeworkController {
 
     private final HomeworkSaveService homeworkSaveService;
+    private final HomeworkInfoService homeworkInfoService;
     @GetMapping
-    public String homework() {
+    public String homework(@ModelAttribute Homework form, Model model) {
         // List 뽑아서 model에 담아서 이동하는 코드...
+        // getList 설정추가필요
+        List<Homework> items = homeworkInfoService.getList();
+        model.addAttribute("items", items);
+
 
         return "front/teacher/homework/list";
     }
