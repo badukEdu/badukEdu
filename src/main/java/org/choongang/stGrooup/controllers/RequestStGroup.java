@@ -20,6 +20,7 @@ public class RequestStGroup {
     private String text;     //비고
     private String mode = "add";    //수정 , 생성
     private long gameContentNum;    //게임 컨텐츠 번호
+    private long month;
 
 
 }

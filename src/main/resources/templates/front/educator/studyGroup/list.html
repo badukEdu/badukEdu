@@ -2,5 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <h1>스터디그룹 목록</h1>
+<hr>
+
+<table border="1">
+    <tr>
+        <th>num / 번호</th>
+        <th>name / 스터디그룹명</th>
+        <th>startDate / 시작일</th>
+        <th>endDate / 종료일</th>
+        <th>maxSubscriber / 최대인원</th>
+        <th>maxLevel /달성레벨</th>
+        <th>text / 비고</th>
+        <th>수정 / 삭제</th>
+    </tr>
+    <tr th:each="item : ${list}" th:object="${item}">
+        <td th:text="*{num}"></td>
+        <td > <a th:href="@{/studyGroup/detail/{num}(num=*{num})}" th:text="*{name}"></a></td>
+        <td th:text="*{startDate}"></td>
+        <td th:text="*{endDate}"></td>
+        <td th:text="*{maxSubscriber}"></td>
+        <td th:text="*{maxLevel}"></td>
+        <td th:text="*{text}"></td>
+        <th>
+            <a th:href="@{/studyGroup/edit/{num}(num=*{num})}">수정</a>
+            /
+            <a th:href="@{/studyGroup/delete/{num}(num=*{num})}">삭제</a>
+        <th>
+    </tr>
+    <tr>
+        <a th:href="@{/studyGroup/add}">생성</a>
+    </tr>
+</table>
+
+
+
 
 </html>

@@ -18,6 +18,9 @@ public class StudyGroup {
     @GeneratedValue
     private Long num;    //기본키
 
+    @Column
+    private Long month;
+
     @Column(length = 80 , unique = true , nullable = false)
     private String name;     //스터디그룹명
 

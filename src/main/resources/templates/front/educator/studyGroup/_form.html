@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<th:div th:fragment="form">
+<th:div th:fragment="form" th:if="${item != null}" th:object="${item}">
+    <div th:if="${mode == 'edit'}">
+        <input type="hidden" name="num" th:value="*{num}">
+    </div>
     <input type="hidden" name="gameContentNum" value="10"> <!--th:value="${gameContent.num}"-->
     <table>
         <tr>
@@ -15,7 +18,7 @@
                 <a>game1</a>
             </td>
             <td>
-                <input type="radio" value="1">
+                <input type="radio" name="gameContentNum" value="1"><!--th:value"${~~.num}"-->
             </td>
         </tr>
         <tr>
@@ -23,7 +26,7 @@
                 <a>game1</a>
             </td>
             <td>
-                <input type="radio" value="2">
+                <input type="radio" name="gameContentNum" value="2">
             </td>
         </tr>
         <tr>
@@ -31,7 +34,7 @@
                 <a>game1</a>
             </td>
             <td>
-                <input type="radio" value="3">
+                <input type="radio" name="gameContentNum" value="3">
             </td>
         </tr>
         <tr>
@@ -39,7 +42,7 @@
                 <a>game1</a>
             </td>
             <td>
-                <input type="radio" value="4">
+                <input type="radio" name="gameContentNum" value="4">
             </td>
         </tr>
     </table>
@@ -56,38 +59,38 @@
         <tr>
             <td>학습그룹명</td>
             <td>
-                <input type="text" name="name">
+                <input type="text" name="name" th:field="*{name}">
             </td>
         </tr>
         <tr>
             <td>그룹제한인원</td>
             <td>
-                <input type="number" name="maxSubscriber">
+                <input type="number" name="maxSubscriber" th:field="*{maxSubscriber}">
             </td>
         </tr>
         <tr>
             <td>학습개월</td>
             <td>
-                <input type="number" name="month">
+                <input type="number" name="month" th:field="*{month}">
             </td>
         </tr>
         <tr>
             <td>학습기간</td>
             <td>
-                <input type="date" name="startDate">
-                <input type="date" name="endDate">
+                <input type="date" name="startDate" th:field="*{startDate}">
+                <input type="date" name="endDate" th:field="*{endDate}">
             </td>
         </tr>
         <tr>
             <td>달성 레벨</td>
             <td>
-                <input type="number" name="maxLevel">
+                <input type="number" name="maxLevel" th:field="*{maxLevel}">
             </td>
         </tr>
         <tr>
             <td>비고</td>
             <td>
-                <input type="text" name="text">
+                <input type="text" name="text" th:field="*{text}">
             </td>
         </tr>
     </table>

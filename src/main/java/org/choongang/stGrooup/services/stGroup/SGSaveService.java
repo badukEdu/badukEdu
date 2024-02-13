@@ -16,19 +16,34 @@ public class SGSaveService {
 
     private final StGroupRepository stGroupRepository;
     private final HttpSession session;
+    private final SGInfoService sgInfoService;
 
     public void save(RequestStGroup form){
-        StudyGroup s = new StudyGroup();
+        StudyGroup s = null;
+        if(form.getMode().equals("add")){
+             s = new StudyGroup();
 
-        s.setName(form.getName());
-        s.setStartDate(form.getStartDate());
-        s.setEndDate(form.getEndDate());
-        s.setMaxSubscriber(form.getMaxSubscriber());
-        s.setMaxLevel(form.getMaxLevel());
-        s.setText(form.getText());
+            s.setName(form.getName());
+            s.setStartDate(form.getStartDate());
+            s.setEndDate(form.getEndDate());
+            s.setMaxSubscriber(form.getMaxSubscriber());
+            s.setMaxLevel(form.getMaxLevel());
+            s.setText(form.getText());
+            s.setMonth(form.getMonth());
+        }else{
+            s = sgInfoService.getById(form.getNum());
+            s.setNum(form.getNum());
+            s.setName(form.getName());
+            s.setStartDate(form.getStartDate());
+            s.setEndDate(form.getEndDate());
+            s.setMaxSubscriber(form.getMaxSubscriber());
+            s.setMaxLevel(form.getMaxLevel());
+            s.setText(form.getText());
+            s.setMonth(form.getMonth());
+        }
         /*
         s.setMember(session.member);
-        s.setGameContent(gameRepository.findbyId());
+        s.setGameContent(gameRepository.findbyId(form.getGameContentNum()));
         */
         stGroupRepository.saveAndFlush(s);
 
