@@ -5,7 +5,6 @@
     <div th:if="${mode == 'edit'}">
         <input type="hidden" name="num" th:value="*{num}">
     </div>
-    <input type="hidden" name="gameContentNum" value="10"> <!--th:value="${gameContent.num}"-->
     <table border="1">
         <tr>
             <th>선택</th>
@@ -18,7 +17,7 @@
         </tr>
         <tr th:each="game : ${gameList}" th:object="${game}">
             <td>
-                <input type="radio" name="gameTitle" th:value="*{gameTitle}">
+                <input type="radio" name="num" th:value="*{num}">
             </td>
             <th th:text="*{gameTitle}"></th>
             <th th:text="*{startDate+ '~' +endDate}"></th>
@@ -29,52 +28,5 @@
         </tr>
     </table>
     <hr>
-    <table>
-        <h1>학습 그룹 입력</h1>
-        <tr>
-            <td>교육자명</td>
-            <td>
-                <!--<p th:text="${session.member.name}"></p>-->
-                <p>${session.member.name} [로그인 회원명 띄울 예정]</p>
-            </td>
-        </tr>
-        <tr>
-            <td>학습그룹명</td>
-            <td>
-                <input type="text" name="name" th:field="*{name}">
-            </td>
-        </tr>
-        <tr>
-            <td>그룹제한인원</td>
-            <td>
-                <input type="number" name="maxSubscriber" th:field="*{maxSubscriber}">
-            </td>
-        </tr>
-        <tr>
-            <td>학습개월</td>
-            <td>
-                <input type="number" name="month" th:field="*{month}" >
-            </td>
-        </tr>
-        <tr>
-            <td>학습기간</td>
-            <td>
-                <input type="date" name="startDate" th:field="*{startDate}">
-                <input type="date" name="endDate" th:field="*{endDate}">
-            </td>
-        </tr>
-        <tr>
-            <td>달성 레벨</td>
-            <td>
-                <input type="number" name="maxLevel" th:field="*{maxLevel}">
-            </td>
-        </tr>
-        <tr>
-            <td>비고</td>
-            <td>
-                <input type="text" name="text" th:field="*{text}">
-            </td>
-        </tr>
-    </table>
 </th:div>
 </html>

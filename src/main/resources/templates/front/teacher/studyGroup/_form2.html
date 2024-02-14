@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:div th:fragment="form" th:if="${requestStGroup != null}" th:object="${requestStGroup}">
+    <div th:if="${mode == 'edit'}">
+        <input type="hidden" name="num" th:value="*{num}">
+    </div>
+
+    <fieldset>
+        <legend>게임</legend>
+        <table th:object="${game}">
+            <tr>
+                <td>게임 컨텐츠 :</td>
+                <td th:text="*{gameTitle}">
+
+                </td>
+            </tr>
+            <tr>
+                <td>최대 인원 :</td>
+                <td th:text="*{maxSubscriber}"></td>
+            </tr>
+            <tr>
+                <td>기간 : </td>
+                <td th:text="*{startDate + ' ~'  +endDate}"></td>
+            </tr>
+            <tr>
+                <td>달성 레벨 : </td>
+                <td th:text="*{totalGameLevels}"></td>
+            </tr>
+
+        </table>
+
+    </fieldset>
+
+    <hr>
+    <table>
+        <h1>상세</h1>
+        <tr>
+            <td>교육자명</td>
+            <td>
+                <!--<p th:text="${session.member.name}"></p>-->
+                <p>${session.member.name} [로그인 회원명 띄울 예정]</p>
+            </td>
+        </tr>
+        <tr>
+            <td>학습그룹명</td>
+            <td>
+                <input type="text" name="name" th:field="*{name}">
+            </td>
+        </tr>
+        <tr>
+            <td>그룹제한인원</td>
+            <td>
+                <input type="number" name="maxSubscriber" th:field="*{maxSubscriber}">
+            </td>
+        </tr>
+        <tr>
+            <td>학습개월</td>
+            <td>
+                <input type="number" name="month" th:field="*{month}" >
+            </td>
+        </tr>
+        <tr>
+            <td>학습기간</td>
+            <td>
+                <input type="date" name="startDate" th:field="*{startDate}">
+                <input type="date" name="endDate" th:field="*{endDate}">
+            </td>
+        </tr>
+        <tr>
+            <td>달성 레벨</td>
+            <td>
+                <input type="number" name="maxLevel" th:field="*{maxLevel}">
+            </td>
+        </tr>
+        <tr>
+            <td>비고</td>
+            <td>
+                <input type="text" name="text" th:field="*{text}">
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" name="gameContentNum" th:value="${game.num}">
+    <input type="hidden" name="gameTitle" th:value="${game.gameTitle}">
+</th:div>
+</html>

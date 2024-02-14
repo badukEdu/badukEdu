@@ -29,8 +29,6 @@ public class StGroupController {
         List<StudyGroup> list = sgInfoService.getList(search);
         model.addAttribute("list" , list);
 
-        System.out.println(list);
-
 
         return "front/teacher/studyGroup/list";
     }
@@ -47,11 +45,20 @@ public class StGroupController {
 
 
     @GetMapping("/add")
-    public String add(Model model , @ModelAttribute RequestStGroup form){
-        model.addAttribute("mode" , "add");
+    public String add1(Model model , @ModelAttribute RequestStGroup form){
+        model.addAttribute("mode" , "add1");
         model.addAttribute("gameList" , gameContentSaveService.getList());
         return "front/teacher/studyGroup/add";
     }
+    @PostMapping("/add2")
+    public String add2(Model model , @ModelAttribute RequestStGroup form , @RequestParam(name = "num") Long num){
+
+        model.addAttribute("mode" , "add2");
+        model.addAttribute("game" , gameContentSaveService.getById(num));
+        model.addAttribute("gameList" , gameContentSaveService.getList());
+        return "front/teacher/studyGroup/add";
+    }
+
 
     @GetMapping("/edit/{num}")
     public String edit(@PathVariable("num") Long num, Model model){
@@ -62,8 +69,7 @@ public class StGroupController {
     }
 
     @PostMapping("/save")
-    public String save(RequestStGroup form){
-
+    public String save(@ModelAttribute RequestStGroup form){
         sgSaveService.save(form);
         return "redirect:/studyGroup";
     }

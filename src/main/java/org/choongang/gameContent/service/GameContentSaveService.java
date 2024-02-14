@@ -36,5 +36,8 @@ public class GameContentSaveService {
     public List<GameContent> getList(){
         return gameContentRepository.findAll();
     }
+    public GameContent getById(Long num){
+        return gameContentRepository.findById(num).orElse(new GameContent());
+    }
     //////////////////////////////
 }
