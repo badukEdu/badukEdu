@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BoardAdd</title>
+</head>
+<body>
+<h2>공지 등록</h2>
+<form th:action="@{board/add}" method="post" autocomplete="off">
+    <select>공지 분류
+        <option>공지사항</option>
+        <option>FAQ</option>
+    </select>
+    <br>
+    <br>
+    <label for="checkbox">
+        <input type="checkbox" id="checkbox" name="checkbox">
+        공지글로 상단 노출
+    </label>
+
+    <table>
+        <tr>
+            <th>제목</th>
+            <td>
+                <input type="text">
+            </td>
+        </tr>
+        <tr>
+            <th>게시일자</th>
+            <td>
+                <input type="radio" id="immediatly">
+                <label for="immediatly">등록 즉시 게시</label>
+                <input type="radio" id="expectedPostingDate">
+                <label for="expectedPostingDate">게시 예정일</label>
+            </td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <input type="text">
+        </tr>
+        <tr>
+            <th>첨부파일 파일 1개당 최대 첨부용량 30MB</th>
+        </tr>
+        <tr>
+            <td colspan="2"> <!-- colspan="2"를 사용하여 테이블의 두 열을 합친다. -->
+            <input type="file" accept=".doc, .docx, .jpg, .png, .pdf">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
