@@ -8,6 +8,7 @@ import org.choongang.member.entities.Member;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -22,9 +23,9 @@ public class GameContent extends Base {
     @Column
     private Long totalGameLevels; // 총게임레벨
     @Column
-    private LocalDateTime startDate; //구독 시작일 (구독가능기간)
+    private LocalDate startDate; //구독 시작일 (구독가능기간)
     @Column
-    private LocalDateTime endDate; //구독 종료일 (구독가능기간)
+    private LocalDate endDate; //구독 종료일 (구독가능기간)
     @Column
     private int subscriptionMonths; // 구독개월
     @Column

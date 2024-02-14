@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BoardAdd</title>
+    <script src="/board/js/boardAdd.js"></script>
+    <link rel="stylesheet" type="text/css" href="/board/css/boardAdd.css">
+</head>
+<body>
+<h2>공지 등록</h2>
+<form th:action="@{/board/add}" method="post" autocomplete="off">
+    <div class="tableContainer">
+    <table>
+        <tr>
+            <th>공지 분류</th>
+            <td>
+                <select id="category" name="category">
+                    <option value="notice">공지사항</option>
+                    <option value="faq">FAQ</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>노출 여부</th>
+            <td>
+                <label for="checkbox">
+                    <input type="checkbox" id="checkbox" name="checkbox">
+                    공지글로 상단 노출
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td>
+                <input type="text">
+            </td>
+        </tr>
+        <tr>
+            <th>게시일자</th>
+            <td>
+                <input type="radio" id="immediatly" name="postingType">
+                <label for="immediatly">등록 즉시 게시</label>
+                <input type="radio" id="expectedPostingDate" name="postingType">
+                <label for="expectedPostingDate">게시 예정일</label>
+            </td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td>
+                <textarea id="content" name="content" rows="10" cols="50"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>첨부파일 파일 1개당 최대 첨부용량 30MB</th>
+        </tr>
+        <tr>
+            <td colspan="2"> <!-- colspan="2"를 사용하여 테이블의 두 열을 합친다. -->
+                <input type="file" id="uploadFile" accept=".doc, .docx, .jpg, .png, .pdf">
+                <input type="button" id="uploadButton" value="파일 선택">
+            <td colspan="2" id="fileInfo">선택된 파일 없음</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" id="addNoticeFaq" value="공지 등록">
+            </td>
+        </tr>
+    </table>
+    </div>
+</form>
+</body>
+</html>
