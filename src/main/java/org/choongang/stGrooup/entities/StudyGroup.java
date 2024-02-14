@@ -1,30 +1,34 @@
-package org.choongang.stGrooup;
+package org.choongang.stGrooup.entities;
 
 import jakarta.persistence.*;
-import org.choongang.commons.entities.Base;
-import org.choongang.edu.entities.EduData;
+import lombok.Data;
 import org.choongang.gameContent.entities.GameContent;
 import org.choongang.homework.entities.Homework;
 import org.choongang.member.entities.Member;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-public class StudyGroup extends Base {
+@Data
+public class StudyGroup {
 
     @Id
     @GeneratedValue
     private Long num;    //기본키
 
+    @Column
+    private Long month;
+
     @Column(length = 80 , unique = true , nullable = false)
     private String name;     //스터디그룹명
 
     @Column
-    private LocalDateTime startDate; //시작일
+    private LocalDate startDate; //시작일
 
     @Column
-    private LocalDateTime endDate; //종료일
+    private LocalDate endDate; //종료일
 
     @Column(length = 80 , nullable = false)
     private Long maxSubscriber;    //최대인원
@@ -34,6 +38,9 @@ public class StudyGroup extends Base {
 
     @Column(length = 80 , nullable = false)
     private String text;     //비고
+
+    @Column
+    private String gameTitle;   //게임컨텐츠명
 
     ////////////////////////////////
 
@@ -49,5 +56,7 @@ public class StudyGroup extends Base {
     @OneToMany(mappedBy = "studyGroup", fetch = FetchType.LAZY)
     private List<Homework> homeworks;
 
+    @OneToMany(mappedBy = "studyGroup", fetch = FetchType.LAZY)
+    private List<JoinStudyGroup> joinStudyGroups;
 
 }
