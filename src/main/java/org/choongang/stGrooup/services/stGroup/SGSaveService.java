@@ -30,6 +30,7 @@ public class SGSaveService {
             s.setMaxLevel(form.getMaxLevel());
             s.setText(form.getText());
             s.setMonth(form.getMonth());
+            s.setGameTitle(form.getGameTitle());
         }else{
             s = sgInfoService.getById(form.getNum());
             s.setNum(form.getNum());
@@ -40,6 +41,7 @@ public class SGSaveService {
             s.setMaxLevel(form.getMaxLevel());
             s.setText(form.getText());
             s.setMonth(form.getMonth());
+            s.setGameTitle(form.getGameTitle());
         }
         /*
         s.setMember(session.member);

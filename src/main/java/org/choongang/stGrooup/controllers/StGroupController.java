@@ -22,9 +22,9 @@ public class StGroupController {
     private final SGDeleteService sgDeleteService;
 
     @GetMapping
-    public String list(Model model){
+    public String list(Model model , @ModelAttribute StGroupSearch search){
 
-        List<StudyGroup> list = sgInfoService.getList();
+        List<StudyGroup> list = sgInfoService.getList(search);
         model.addAttribute("list" , list);
 
         System.out.println(list);

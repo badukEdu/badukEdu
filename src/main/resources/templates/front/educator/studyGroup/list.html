@@ -3,7 +3,25 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <h1>스터디그룹 목록</h1>
 <hr>
-
+<form method="get" th:action="@{/studyGroup}" th:object="${stGroupSearch}" >
+    <table >
+        <tr>
+            <th>키워드</th>
+            <td>
+                    <select name="sopt">
+                        <option value="ALL" th:field="*{sopt}">통합검색</option>
+                        <option value="groupName" th:field="*{sopt}">스터디그룹명</option>
+                        <option value="gameName" th:field="*{sopt}">게임컨텐츠명</option>
+                    </select>
+                    <input type="text" name="skey" th:field="*{skey}">
+            </td>
+            <td>
+                <button type="submit">검색하기</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<hr>
 <table border="1">
     <tr>
         <th>선택</th>

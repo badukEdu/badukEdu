@@ -39,6 +39,9 @@ public class StudyGroup {
     @Column(length = 80 , nullable = false)
     private String text;     //비고
 
+    @Column
+    private String gameTitle;   //게임컨텐츠명
+
     ////////////////////////////////
 
     @ManyToOne(fetch = FetchType.LAZY)
