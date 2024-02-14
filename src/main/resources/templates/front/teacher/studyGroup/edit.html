@@ -3,9 +3,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <form method="post" th:action="@{/studyGroup/save}">
-    <input type="hidden" name="mode" value="add" >
+    <input type="hidden" name="mode" value="edit" >
 
-  <div th:replace="~{front/educator/studyGroup/_form::form}"></div>
+    <div th:replace="~{front/teacher/studyGroup/_form::form}"></div>
     <button type="submit">저장</button>
 </form>
 
