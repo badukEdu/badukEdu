@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
 import org.choongang.commons.entities.Base;
-import org.choongang.member.Authority;
+import org.choongang.member.constants.Authority;
 
 @Data
 @Entity

@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import org.choongang.member.Authority;
+import org.choongang.member.constants.Authority;
 
 @Data
 public class RequestJoin {

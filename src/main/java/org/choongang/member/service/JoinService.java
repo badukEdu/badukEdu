@@ -1,7 +1,7 @@
 package org.choongang.member.service;
 
 import lombok.RequiredArgsConstructor;
-import org.choongang.member.Authority;
+import org.choongang.member.constants.Authority;
 import org.choongang.member.controllers.JoinValidator;
 import org.choongang.member.controllers.RequestJoin;
 import org.choongang.member.entities.Authorities;

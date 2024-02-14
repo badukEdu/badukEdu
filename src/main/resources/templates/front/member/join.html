@@ -19,6 +19,10 @@
       </dd>
     </dl>
 
+  </form>
+
+  <form name="frmJoin" method="post" th:action="@{/member/join}" autocomplete="off" th:object="${requestJoin}">
+
     <dl>
       <dt th:text="#{아이디}"></dt>
       <dd>
@@ -48,18 +52,12 @@
     </dl>
 
     <dl>
-      <dt th:text="#{성별}"></dt>
-      <dd>
-        <input type="text" name="gender" th:field="*{gender}">
-      </dd>
-    </dl>
-
-    <dl>
       <dt th:text="#{휴대전화}"></dt>
       <dd>
         <input type="text" name="tel" th:field="*{tel}" placeholder="( - ) 빼고 숫자만 입력">
       </dd>
     </dl>
+
     <dl>
       <dt th:text="#{회원종류}"></dt>
       <dd>
@@ -72,6 +70,15 @@
       </dd>
     </dl>
 
+    <dl>
+      <dt th:text="#{성별}"></dt>
+      <dd>
+        <input type="radio" name="gender" id="gender_M" th:field="*{gender}" th:value="M">
+        <label for="gender_M">남자</label>
+        <input type="radio" name="gender" id="gender_F" th:field="*{gender}" th:value="F">
+        <label for="gender_F">여자</label>
+      </dd>
+    </dl>
 
     <div th:text="#{수신동의}"></div>
     <div class="terms_agree">

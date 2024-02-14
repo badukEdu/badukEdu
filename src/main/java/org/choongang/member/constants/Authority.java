@@ -1,4 +1,4 @@
-package org.choongang.member;
+package org.choongang.member.constants;
 
 public enum Authority {
     TEACHER,

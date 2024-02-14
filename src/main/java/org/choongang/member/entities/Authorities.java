@@ -3,7 +3,7 @@ package org.choongang.member.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.choongang.member.Authority;
+import org.choongang.member.constants.Authority;
 
 @Data
 @Entity
