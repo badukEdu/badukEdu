@@ -29,7 +29,7 @@ public class GameContent extends Base {
     @Column
     private int subscriptionMonths; // 구독개월
     @Column
-    private Long maxSubscriber;    //최대인원
+    private Long maxSubscriber; //최대인원(구독가능인원)
     @Column
     private Long originalPrice; // 정가
     @Column
