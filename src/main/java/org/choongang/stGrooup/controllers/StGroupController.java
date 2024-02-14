@@ -34,11 +34,13 @@ public class StGroupController {
     }
 
     @GetMapping("/detail/{num}")
-    public String detail(@PathVariable("num") Long num, Model model){
+    public String detail(@PathVariable("num") Long num, Model model, @ModelAttribute StGroupSearch search){
 
-        model.addAttribute("item" , sgInfoService.getById(num));
+        List<StudyGroup> list = sgInfoService.getList(search);
+        model.addAttribute("list" , list);
+        model.addAttribute("item" , sgInfoService.getForm(num));
 
-        return "front/teacher/studyGroup/detail";
+        return "front/teacher/studyGroup/list";
     }
 
 
