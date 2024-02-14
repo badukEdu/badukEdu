@@ -1,9 +1,13 @@
 package org.choongang.member.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Data;
-import org.choongang.board.entities.Notice_;
 import org.choongang.commons.entities.Base;
+import org.choongang.member.constants.Authority;
+
 import org.choongang.edu.entities.EduData;
 import org.choongang.gameContent.entities.GameContent;
 import org.choongang.homework.entities.Homework;
@@ -18,6 +22,7 @@ import java.time.LocalDateTime;
 
 import java.util.List;
 
+
 @Data
 @Entity
 public class Member extends Base {
@@ -26,20 +31,20 @@ public class Member extends Base {
   private Long num; //회원 번호
   @Column(length = 30, nullable = false, unique = true)
   private String userId; //사용자 아이디
-  @Column(length = 30, nullable = false, unique = true)
-  private String type; //사용자 구분1(운영자 / 교육자 / 일반학습자 / 학생학습자)
-  @Column
-  private String authorities; //사용자 구분2(유료회원 / 무료회원)
+//  @Column(length = 30, nullable = false, unique = true)
+  private Authority authority; //사용자 구분1(운영자 / 교육자 / 일반학습자 / 학생학습자)
+//  @Column
+//  private String type; //사용자 구분2(유료회원 / 무료회원)
   @Column(length = 30, nullable = false)
   private String name; //사용자 성명
-  @Column(length=30, nullable = false)
+  @Column(length=200, nullable = false)
   private String password; //비밀번호
-  @Column(length=30, nullable = false)
-  private Long levels; //레벨 (??)
+//  @Column(length=30, nullable = false)
+//  private Long levels; //레벨 (??)
   @Column(nullable = false)
   private String tel; //전화번호
-  @Column
-  private String phonNum; //집전화
+//  @Column
+//  private String phonNum; //집전화
   @Column(nullable = false)
   private String birth; //생년월일
   @Column
@@ -49,8 +54,8 @@ public class Member extends Base {
 
   @Column
   private boolean agree; //수신동의(이메일 E , SMS 수신 S, 모두 수신 ES, 수신 X)
-  @Column
-  private boolean use;  // 계정 상태 (정상 1 / 정지,탈퇴 0)
+//  @Column
+//  private boolean use;  // 계정 상태 (정상 1 / 정지,탈퇴 0)
 
   ////////////////////////////////////////////////
 
@@ -74,4 +79,5 @@ public class Member extends Base {
 
   @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
   private List<JoinStudyGroup> joinStudyGroups;
+
 }
