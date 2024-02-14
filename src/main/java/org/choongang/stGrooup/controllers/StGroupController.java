@@ -1,13 +1,11 @@
 package org.choongang.stGrooup.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.choongang.gameContent.service.GameContentSaveService;
 import org.choongang.stGrooup.entities.StudyGroup;
 import org.choongang.stGrooup.services.stGroup.SGDeleteService;
 import org.choongang.stGrooup.services.stGroup.SGInfoService;
 import org.choongang.stGrooup.services.stGroup.SGSaveService;
 import org.choongang.stGrooup.services.stGroup.vetaGameInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

@@ -1,8 +1,8 @@
 package org.choongang.stGrooup.services.stGroup;
 
 import lombok.RequiredArgsConstructor;
-import org.choongang.gameContent.entities.GameContent;
-import org.choongang.gameContent.repositories.GameContentRepository;
+import org.choongang.admin.gameContent.entities.GameContent;
+import org.choongang.admin.gameContent.repositories.GameContentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
