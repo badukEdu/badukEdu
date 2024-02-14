@@ -22,6 +22,7 @@ public class GameContentSaveService {
         gameContent.setStartDate(form.getStartDate()); //구독 시작일
         gameContent.setEndDate(form.getEndDate()); //구독 종료일
         gameContent.setMaxSubscriber(form.getMaxSubscriber()); //최대인원
+        gameContent.setOriginalPrice(form.getOriginalPrice());
         gameContent.setDiscountRate(form.getDiscountRate()); // 할인율
         gameContent.setSalePrice(form.getSalePrice()); // 판매가
         gameContent.setPackageContents(form.getPackageContents()); // 패키지내용
