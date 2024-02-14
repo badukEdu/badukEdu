@@ -1,11 +1,10 @@
-package org.choongang.edu.service;
+package org.choongang.admin.edu.service;
 
 import lombok.RequiredArgsConstructor;
-import org.choongang.edu.controllers.RequestEduData;
-import org.choongang.edu.entities.EduData;
-import org.choongang.edu.repositories.EduDataRepository;
+import org.choongang.admin.edu.controllers.RequestEduData;
+import org.choongang.admin.edu.entities.EduData;
+import org.choongang.admin.edu.repositories.EduDataRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 @Service
 @RequiredArgsConstructor
@@ -13,6 +12,10 @@ public class EduDataSaveService {
 
     private final EduDataRepository eduDataRepository;
 
+    /**
+     * 교육 자료 등록
+     * @param form
+     */
     public void save(RequestEduData form) {
 
         EduData eduData = new EduData();

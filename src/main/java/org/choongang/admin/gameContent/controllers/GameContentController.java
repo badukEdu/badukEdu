@@ -1,10 +1,10 @@
-package org.choongang.gameContent.controllers;
+package org.choongang.admin.gameContent.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.choongang.gameContent.entities.GameContent;
-import org.choongang.gameContent.service.GameContentInfoService;
-import org.choongang.gameContent.service.GameContentSaveService;
+import org.choongang.admin.gameContent.entities.GameContent;
+import org.choongang.admin.gameContent.service.GameContentInfoService;
+import org.choongang.admin.gameContent.service.GameContentSaveService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/teacher/gamecontent")
+@RequestMapping("/admin/gamecontent")
 @RequiredArgsConstructor
 public class GameContentController {
 
@@ -31,7 +31,7 @@ public class GameContentController {
     @GetMapping("/add")
     public String add(@ModelAttribute GameContent form, Model model) {
 
-        return "front/teacher/gamecontent/add";
+        return "admin/gamecontent/add";
     }
 
     @PostMapping("/add")
@@ -39,7 +39,7 @@ public class GameContentController {
 
         gameContentSaveService.save(form);
 
-        return "redirect:/teacher/gamecontent/list";
+        return "redirect:/admin/gamecontent/list";
     }
 
     /**
@@ -54,7 +54,7 @@ public class GameContentController {
         List<GameContent> dataList = gameContentInfoService.getList();
         model.addAttribute("dataList", dataList);
 
-        return "front/teacher/gamecontent/list";
+        return "admin/gamecontent/list";
 
     }
 

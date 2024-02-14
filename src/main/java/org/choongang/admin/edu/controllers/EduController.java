@@ -1,19 +1,21 @@
-package org.choongang.edu.controllers;
+package org.choongang.admin.edu.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.choongang.edu.entities.EduData;
-import org.choongang.edu.service.EduDataInfoService;
-import org.choongang.edu.service.EduDataSaveService;
+import org.choongang.admin.edu.entities.EduData;
+import org.choongang.admin.edu.service.EduDataInfoService;
+import org.choongang.admin.edu.service.EduDataSaveService;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/teacher/edu")
+@RequestMapping("/admin/edu")
 @RequiredArgsConstructor
 public class EduController {
 
@@ -29,7 +31,7 @@ public class EduController {
     @GetMapping("/add")
     public String add(@ModelAttribute RequestEduData form, Model model) {
 
-        return "front/teacher/edu/add";
+        return "admin/edu/add";
     }
 
     @PostMapping("/add")
@@ -37,7 +39,7 @@ public class EduController {
 
         eduDataSaveService.save(form);
 
-        return "redirect:/teacher/edu/list";
+        return "redirect:/admin/edu/list";
     }
 
     /**
@@ -52,7 +54,7 @@ public class EduController {
         List<EduData> dataList = eduDataInfoService.getList();
         model.addAttribute("dataList", dataList);
 
-        return "front/teacher/edu/list";
+        return "admin/edu/list";
     }
 
 }

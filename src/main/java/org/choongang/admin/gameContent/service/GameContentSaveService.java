@@ -1,9 +1,9 @@
-package org.choongang.gameContent.service;
+package org.choongang.admin.gameContent.service;
 
 import lombok.RequiredArgsConstructor;
-import org.choongang.gameContent.controllers.RequestGameContentData;
-import org.choongang.gameContent.entities.GameContent;
-import org.choongang.gameContent.repositories.GameContentRepository;
+import org.choongang.admin.gameContent.controllers.RequestGameContentData;
+import org.choongang.admin.gameContent.entities.GameContent;
+import org.choongang.admin.gameContent.repositories.GameContentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +14,10 @@ public class GameContentSaveService {
 
     private final GameContentRepository gameContentRepository;
 
+    /**
+     * 게임 콘텐츠 등록
+     * @param form
+     */
     public void save(RequestGameContentData form) {
 
         GameContent gameContent = new GameContent();

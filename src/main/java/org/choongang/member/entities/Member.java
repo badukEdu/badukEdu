@@ -1,12 +1,18 @@
 package org.choongang.member.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.admin.edu.entities.EduData;
+import org.choongang.admin.gameContent.entities.GameContent;
+import org.choongang.board.entities.Notice_;
 import org.choongang.commons.entities.Base;
+import org.choongang.homework.entities.Homework;
 import org.choongang.member.constants.Authority;
+import org.choongang.stGrooup.entities.JoinStudyGroup;
+import org.choongang.stGrooup.entities.StudyGroup;
+import org.choongang.stGrooup.entities.TrainingData;
+
+import java.util.List;
 
 
 @Data
@@ -44,26 +50,26 @@ public class Member extends Base {
 //  private boolean use;  // 계정 상태 (정상 1 / 정지,탈퇴 0)
 
   ////////////////////////////////////////////////
-//
-//  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-//  private List<StudyGroup> StudyGroups;
-//
-//  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-//  private List<GameContent> gameContents;
-//
-//  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-//  private List<EduData> eduDatas;
-//
-//  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-//  private List<Notice_> notices;
-//
-//  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-//  private List<Homework> homeworks;
-//
-//  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-//  private List<TrainingData> trainingDatas;
-//
-//  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-//  private List<JoinStudyGroup> joinStudyGroups;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<StudyGroup> StudyGroups;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<GameContent> gameContents;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<EduData> eduDatas;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<Notice_> notices;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<Homework> homeworks;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<TrainingData> trainingDatas;
+
+  @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+  private List<JoinStudyGroup> joinStudyGroups;
 
 }
