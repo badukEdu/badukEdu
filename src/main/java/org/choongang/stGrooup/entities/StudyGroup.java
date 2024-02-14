@@ -2,12 +2,11 @@ package org.choongang.stGrooup.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.choongang.gameContent.entities.GameContent;
+import org.choongang.admin.gameContent.entities.GameContent;
 import org.choongang.homework.entities.Homework;
 import org.choongang.member.entities.Member;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity

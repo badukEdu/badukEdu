@@ -1,14 +1,11 @@
 package org.choongang.stGrooup.services.stGroup;
 
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Order;
-import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
-import org.choongang.gameContent.entities.QGameContent;
 import org.choongang.stGrooup.controllers.RequestStGroup;
 import org.choongang.stGrooup.controllers.StGroupSearch;
 import org.choongang.stGrooup.entities.QStudyGroup;

@@ -1,9 +1,7 @@
 package org.choongang.stGrooup.services.stGroup;
 
-import jakarta.persistence.*;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.choongang.gameContent.service.GameContentSaveService;
 import org.choongang.stGrooup.controllers.RequestStGroup;
 import org.choongang.stGrooup.entities.StudyGroup;
 import org.choongang.stGrooup.repositories.StGroupRepository;
@@ -53,7 +51,4 @@ public class SGSaveService {
         stGroupRepository.saveAndFlush(s);
 
     }
-
-
-
 }

@@ -2,10 +2,10 @@ package org.choongang.member.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.admin.edu.entities.EduData;
+import org.choongang.admin.gameContent.entities.GameContent;
 import org.choongang.board.entities.Notice_;
 import org.choongang.commons.entities.Base;
-import org.choongang.edu.entities.EduData;
-import org.choongang.gameContent.entities.GameContent;
 import org.choongang.homework.entities.Homework;
 import org.choongang.member.constants.Authority;
 import org.choongang.stGrooup.entities.JoinStudyGroup;
