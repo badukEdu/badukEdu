@@ -25,13 +25,16 @@ public class Notice_ extends Base {
     private boolean onTop; // 중요글 상단 노출(공지사항일때만 적용)
     @Column(nullable = false)
     private String title; // 게시글 제목
+
     @Lob // 가변 길이의 문자열을 저장, 길이 제한 X
     private String content; // 내용
 
     @Column
     private Long visit; //조회수
+
     @Column
     private String fileName; // 파일명 (파일명)
+
     @Column
     private String fileAddress; // 파일경로 (파일 경로)
 
@@ -53,8 +56,5 @@ public class Notice_ extends Base {
 
     @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
     private List<NoticeComent> noticeComments;
-
-
-
 
 }

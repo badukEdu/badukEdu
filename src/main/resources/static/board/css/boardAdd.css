@@ -1,0 +1,10 @@
+/* boardAdd.css */
+
+#uploadFile {
+    display: none;
+}
+
+#fileInfo {
+    display: inline-block;
+    margin-left: 10px;
+}
