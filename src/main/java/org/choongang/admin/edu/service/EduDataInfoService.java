@@ -1,9 +1,8 @@
-package org.choongang.edu.service;
+package org.choongang.admin.edu.service;
 
 import lombok.RequiredArgsConstructor;
-import org.choongang.edu.entities.EduData;
-import org.choongang.edu.repositories.EduDataRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.choongang.admin.edu.entities.EduData;
+import org.choongang.admin.edu.repositories.EduDataRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +12,11 @@ import java.util.List;
 public class EduDataInfoService {
 
     private final EduDataRepository eduDataRepository;
-    
-    /* 교육 자료 조회 */
+
+    /**
+     * 교육 자료 조회
+     * @return
+     */
     public List<EduData> getList() {
         List<EduData> eduInfo = eduDataRepository.findAll();
 
