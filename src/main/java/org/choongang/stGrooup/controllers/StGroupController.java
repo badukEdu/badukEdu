@@ -6,6 +6,7 @@ import org.choongang.stGrooup.entities.StudyGroup;
 import org.choongang.stGrooup.services.stGroup.SGDeleteService;
 import org.choongang.stGrooup.services.stGroup.SGInfoService;
 import org.choongang.stGrooup.services.stGroup.SGSaveService;
+import org.choongang.stGrooup.services.stGroup.vetaGameInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +22,7 @@ public class StGroupController {
     private final SGSaveService sgSaveService;
     private final SGInfoService sgInfoService;
     private final SGDeleteService sgDeleteService;
-    private final GameContentSaveService gameContentSaveService; //게임 인포서비스 만들어지면 이거 지워야함
+    private final vetaGameInfo vetaGameInfo; //게임 인포서비스 만들어지면 이거 지워야함
 
     @GetMapping
     public String list(Model model , @ModelAttribute StGroupSearch search){
@@ -47,15 +48,15 @@ public class StGroupController {
     @GetMapping("/add")
     public String add1(Model model , @ModelAttribute RequestStGroup form){
         model.addAttribute("mode" , "add1");
-        model.addAttribute("gameList" , gameContentSaveService.getList());
+        model.addAttribute("gameList" , vetaGameInfo.getList());
         return "front/teacher/studyGroup/add";
     }
     @PostMapping("/add2")
     public String add2(Model model , @ModelAttribute RequestStGroup form , @RequestParam(name = "num") Long num){
 
         model.addAttribute("mode" , "add2");
-        model.addAttribute("game" , gameContentSaveService.getById(num));
-        model.addAttribute("gameList" , gameContentSaveService.getList());
+        model.addAttribute("game" , vetaGameInfo.getById(num));
+        model.addAttribute("gameList" , vetaGameInfo.getList());
         return "front/teacher/studyGroup/add";
     }
 

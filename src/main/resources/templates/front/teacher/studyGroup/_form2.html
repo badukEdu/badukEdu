@@ -5,10 +5,12 @@
     <div th:if="${mode == 'edit'}">
         <input type="hidden" name="num" th:value="*{num}">
     </div>
-
+<div th:if="${game != null}" th:object="${game}">
+    <input type="hidden" name="gameContentNum" th:value="${game.num}">
+    <input type="hidden" name="gameTitle" th:value="${game.gameTitle}">
     <fieldset>
         <legend>게임</legend>
-        <table th:object="${game}">
+        <table >
             <tr>
                 <td>게임 컨텐츠 :</td>
                 <td th:text="*{gameTitle}">
@@ -27,11 +29,10 @@
                 <td>달성 레벨 : </td>
                 <td th:text="*{totalGameLevels}"></td>
             </tr>
-
         </table>
 
     </fieldset>
-
+    </div>
     <hr>
     <table>
         <h1>상세</h1>
@@ -80,7 +81,6 @@
             </td>
         </tr>
     </table>
-    <input type="hidden" name="gameContentNum" th:value="${game.num}">
-    <input type="hidden" name="gameTitle" th:value="${game.gameTitle}">
+
 </th:div>
 </html>
