@@ -5,29 +5,37 @@ import org.choongang.board.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller("/board")
+@Controller
+@RequestMapping("/board")
 @RequiredArgsConstructor // final 필드 생성자 생성
 public class BoardController {
 
     private final BoardService boardService;
 
     @GetMapping("/add")
-    public String boardAdd() {
+    public String add() {
 
-        return "board/add";
+        return "front/board/add";
     }
 
     @PostMapping("/add")
-    public String addToBoard() {
+    public String BoardAdd() {
 
-        return "board/add";
+        return "front/board/list";
     }
 
-    @GetMapping
+    @GetMapping("/list")
+    public String list() {
+
+        return "front/board/list";
+    }
+
+    @PostMapping("/list")
     public String boardList() {
 
-        return "board/list";
+        return "front/board/list";
     }
 
 }
