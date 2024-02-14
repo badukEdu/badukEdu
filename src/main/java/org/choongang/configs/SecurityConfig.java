@@ -11,6 +11,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfig { // spring security 무력화?
+
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 

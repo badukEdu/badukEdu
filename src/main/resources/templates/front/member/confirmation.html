@@ -30,7 +30,7 @@
   </div>
 </form>
 
-<form name="confirmation" method="post" th:action="@{/member/confirmation}" autocomplete="off" th:object="${requestJoin}">
+<form name="frmJoin" method="post" th:action="@{/member/confirmation}" autocomplete="off" th:object="${requestJoin}">
   <h1 th:text="#{본인인증}"></h1>
 
   <dl>
@@ -43,13 +43,13 @@
   <dl>
     <dt th:text="#{이메일}"></dt>
     <dd>
-      <div class="email">
-        <input type="text" name="email" th:field="*{email}" th:readonly="${session.EmailAuthVerified != null && session.EmailAuthVerified}" placeholder="이메일 주소 입력">
+      <div>
+        <input type="text" name="email" th:field="*{email}" th:readonly="${session.EmailAuthVerified != null && session.EmailAuthVerified}">
         <button th:if="${session.EmailAuthVerified == null || !session.EmailAuthVerified}" type="button" id="email_verify" th:text="#{인증코드전송}"></button>
       </div>
       <div class="auth_box">
         <th:block th:if="${session.EmailAuthVerified == null || !session.EmailAuthVerified}">
-          <input type="text" id="auth_num" placeholder="인증코드 입력">
+          <input type="text" id="auth_num" th:placeholder="#{인증코드_입력}">
           <span id="auth_count">03:00</span>
           <button type="button" id="email_confirm" th:text="#{확인}" disabled></button>
           <button type="button" id="email_re_verify" th:text="#{재전송}" disabled></button>
