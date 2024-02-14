@@ -9,10 +9,12 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.choongang.gameContent.entities.QGameContent;
+import org.choongang.stGrooup.controllers.RequestStGroup;
 import org.choongang.stGrooup.controllers.StGroupSearch;
 import org.choongang.stGrooup.entities.QStudyGroup;
 import org.choongang.stGrooup.entities.StudyGroup;
 import org.choongang.stGrooup.repositories.StGroupRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -66,6 +68,13 @@ public class SGInfoService {
     public StudyGroup getById(Long num){
 
         return stGroupRepository.getById(num);
+    }
+
+    public RequestStGroup getForm(Long num) {
+        StudyGroup data = getById(num);
+        RequestStGroup form = new ModelMapper().map(data, RequestStGroup.class);
+        form.setNum(data.getNum());
+        return form;
     }
 
 }

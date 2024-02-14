@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<h1>스터디그룹 목록</h1>
+<h1>스터디그룹 목록 / UI-W-012</h1>
 <hr>
 <form method="get" th:action="@{/studyGroup}" th:object="${stGroupSearch}" >
     <table >
@@ -22,6 +22,9 @@
     </table>
 </form>
 <hr>
+
+<div th:replace="~{front/teacher/studyGroup/_detail::detail}"></div>
+
 <table border="1">
     <tr>
         <th>선택</th>
@@ -38,11 +41,11 @@
     <tr th:each="item : ${list}" th:object="${item}">
         <td><input type="checkbox" name="chk" th:value="*{num}"></td>
         <td > <a th:href="@{/studyGroup/detail/{num}(num=*{num})}" th:text="*{name}"></a></td>
-        <td >*{gameContent.gameTitle}</td>
+        <td th:text="*{gameTitle}"></td>
         <td th:text="*{maxSubscriber}"></td>
         <td th:text="*{startDate+' ~ '+endDate}"></td>
         <td th:text="*{maxLevel}"></td>
-        <td >JoinStudyGroup / fidbyId로 count값</td>
+        <td >member 완성되면</td>
         <th>
             <a th:href="@{/studyGroup/edit/{num}(num=*{num})}">수정</a>
             /

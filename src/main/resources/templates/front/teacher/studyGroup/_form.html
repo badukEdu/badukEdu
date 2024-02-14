@@ -1,99 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<th:div th:fragment="form" th:if="${item != null}" th:object="${item}">
+<th:div th:fragment="form" th:if="${requestStGroup != null}" th:object="${requestStGroup}">
+    <h1>UI-W-010</h1>
     <div th:if="${mode == 'edit'}">
         <input type="hidden" name="num" th:value="*{num}">
     </div>
-    <input type="hidden" name="gameContentNum" value="10"> <!--th:value="${gameContent.num}"-->
-    <table>
+    <table border="1">
         <tr>
+            <th>선택</th>
             <th>컨텐츠명</th>
             <th>구독 기간</th>
             <th>개월</th>
-            <th>학습가능인원</th>
+            <th>(게임)학습가능인원</th>
+            <th>(스터디그룹)그룹 배정 인원 ???</th>
+            <th>잔여분M/M ???</th>
         </tr>
-        <tr>
-            <td colspan="3">
-                <a>game1</a>
-            </td>
+        <tr th:each="game : ${gameList}" th:object="${game}">
             <td>
-                <input type="radio" name="gameContentNum" value="1"><!--th:value"${~~.num}"-->
-                <!--<input type="hidden" name="gameTitle" th:value="${~~.name}">-->
+                <input type="radio" name="num" th:value="*{num}">
             </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <a>game2</a>
-            </td>
-            <td>
-                <input type="radio" name="gameContentNum" value="2">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3">
-                <a>game3</a>
-            </td>
-            <td>
-                <input type="radio" name="gameContentNum" value="3">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="4">
-                <a>game4</a>
-            </td>
-            <td>
-                <input type="radio" name="gameContentNum" value="4">
-            </td>
+            <th th:text="*{gameTitle}"></th>
+            <th th:text="*{startDate+ '~' +endDate}"></th>
+            <th th:text="*{subscriptionMonths}"></th>
+            <th th:text="*{maxSubscriber}"></th>
+            <th >???</th>
+            <th >???</th>
         </tr>
     </table>
     <hr>
-    <table>
-        <h1>학습 그룹 입력</h1>
-        <tr>
-            <td>교육자명</td>
-            <td>
-                <!--<p th:text="${session.member.name}"></p>-->
-                <p>${session.member.name} [로그인 회원명 띄울 예정]</p>
-            </td>
-        </tr>
-        <tr>
-            <td>학습그룹명</td>
-            <td>
-                <input type="text" name="name" th:field="*{name}">
-            </td>
-        </tr>
-        <tr>
-            <td>그룹제한인원</td>
-            <td>
-                <input type="number" name="maxSubscriber" th:field="*{maxSubscriber}">
-            </td>
-        </tr>
-        <tr>
-            <td>학습개월</td>
-            <td>
-                <input type="number" name="month" th:field="*{month}">
-            </td>
-        </tr>
-        <tr>
-            <td>학습기간</td>
-            <td>
-                <input type="date" name="startDate" th:field="*{startDate}">
-                <input type="date" name="endDate" th:field="*{endDate}">
-            </td>
-        </tr>
-        <tr>
-            <td>달성 레벨</td>
-            <td>
-                <input type="number" name="maxLevel" th:field="*{maxLevel}">
-            </td>
-        </tr>
-        <tr>
-            <td>비고</td>
-            <td>
-                <input type="text" name="text" th:field="*{text}">
-            </td>
-        </tr>
-    </table>
 </th:div>
 </html>
