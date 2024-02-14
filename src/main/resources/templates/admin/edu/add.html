@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <h2>학습 자료 등록</h2>
-    <form method="post" th:action="@{/teacher/edu/add}" autocomplete="off" th:object="${requestEduData}" enctype="multipart/form-data">
+    <form method="post" th:action="@{/admin/edu/add}" autocomplete="off" th:object="${requestEduData}" enctype="multipart/form-data">
 <!--        <input type="hidden" name="gid" th:field="*{gid}">-->
         <dl>
             <dt th:text="#{학습자료명}"></dt>

@@ -1,8 +1,6 @@
-package org.choongang.edu.controllers;
+package org.choongang.admin.edu.controllers;
 
 import lombok.Data;
-
-import java.util.UUID;
 
 @Data
 public class RequestEduData {
