@@ -29,13 +29,13 @@ public class StudyGroup {
     @Column
     private LocalDate endDate; //종료일
 
-    @Column(length = 80 , nullable = false)
+    @Column(length = 80 )
     private Long maxSubscriber;    //최대인원
 
     @Column
     private Long maxLevel;   //달성 레벨
 
-    @Column(length = 80 , nullable = false)
+    @Column(length = 80 )
     private String text;     //비고
 
     @Column
@@ -48,7 +48,7 @@ public class StudyGroup {
     private Member member; //작성자 회원번호
 
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gameContentNum")
     private GameContent gameContent; //게임 번호
 
