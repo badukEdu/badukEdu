@@ -50,7 +50,16 @@ public class StGroupController {
         return "front/teacher/studyGroup/add";
     }
     @PostMapping("/add2")
-    public String add2(Model model , @ModelAttribute RequestStGroup form , @RequestParam(name = "num") Long num){
+    public String add2(Model model , @ModelAttribute RequestStGroup form
+            , @RequestParam(name = "num" , required = false) Long num){
+
+        if(num == null){
+            model.addAttribute("mode" , "add1");
+            model.addAttribute("gameList" , vetaGameInfo.getList());
+            model.addAttribute("emsg" , "게임 컨텐츠를 선택하세요");
+            return "front/teacher/studyGroup/add";
+        }
+
 
         model.addAttribute("mode" , "add2");
         model.addAttribute("game" , vetaGameInfo.getById(num));
