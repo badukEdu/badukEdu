@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<form method="post" th:action="@{/studyGroup/save}">
+    <input type="hidden" name="mode" value="edit" >
+
+    <div th:replace="~{front/educator/studyGroup/_form::form}"></div>
+    <button type="submit">저장</button>
+</form>
+
+
+
+</html>

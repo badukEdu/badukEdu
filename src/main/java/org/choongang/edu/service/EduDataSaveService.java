@@ -19,7 +19,7 @@ public class EduDataSaveService {
 
         eduData.setName(form.getName());
         eduData.setDataType(form.getDataType());
-        eduData.setContent(form.getContent());
+        eduData.setContentType(form.getContentType());
         eduData.setServiceType(form.getServiceType());
         eduData.setContent(form.getContent());
         eduData.setFileAddress(form.getFileAddress());
