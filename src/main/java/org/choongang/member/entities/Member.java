@@ -1,10 +1,8 @@
 package org.choongang.member.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.board.entities.Notice_;
 import org.choongang.commons.entities.Base;
 import org.choongang.member.constants.Authority;
 
