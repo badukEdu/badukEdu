@@ -11,57 +11,119 @@
 <form th:action="@{/board/add}" method="post" autocomplete="off">
     <div class="tableContainer">
     <table>
-        <tr>
+        <!-- Notice 공지 분류 -->
+        <tr class="noticeRow">
             <th>공지 분류</th>
             <td>
-                <select id="category" name="category">
+                <select id="noticeCategory" name="noticeCategory">
                     <option value="notice">공지사항</option>
                     <option value="faq">FAQ</option>
                 </select>
             </td>
         </tr>
-        <tr>
+
+        <!-- FAQ 공지 분류 -->
+        <tr class="faqRow">
+            <th>공지 분류</th>
+            <td>
+                <select id="faqCategory" name="faqCategory">
+                    <option value="notice">공지사항</option>
+                    <option value="faq">FAQ</option>
+                </select>
+            </td>
+        </tr>
+
+        <!-- Notice 노출 여부 -->
+        <tr class="noticeRow">
             <th>노출 여부</th>
             <td>
                 <label for="checkbox">
                     <input type="checkbox" id="checkbox" name="checkbox">
-                    공지글로 상단 노출
+                    중요글로 상단 노출
                 </label>
             </td>
         </tr>
-        <tr>
+
+        <!-- notice 제목 -->
+        <tr class="noticeRow">
             <th>제목</th>
             <td>
-                <input type="text">
+                <input type="text" id="noticeTitle" name="noticeTitle" placeholder="제목을 입력하세요">
             </td>
         </tr>
-        <tr>
+
+        <!-- faq 제목 -->
+        <tr class="faqRow">
+            <th>제목</th>
+            <td>
+                <input type="text" id="faqtTitle" name="faqTitle" placeholder="제목을 입력하세요">
+            </td>
+        </tr>
+
+        <!-- notice 게시일자 -->
+        <tr class="noticeRow">
             <th>게시일자</th>
             <td>
                 <input type="radio" id="immediatly" name="postingType">
                 <label for="immediatly">등록 즉시 게시</label>
                 <input type="radio" id="expectedPostingDate" name="postingType">
                 <label for="expectedPostingDate">게시 예정일</label>
+                <input type="date" id="calendar" class="calendar">
             </td>
         </tr>
-        <tr>
+
+        <!-- faq 질의 -->
+        <tr class="faqRow">
+            <th>질의</th>
+                <td>
+                    <textarea id="question" name="question" rows="3" cols="30"></textarea>
+                </td>
+        </tr>
+
+        <!-- faq 답변 -->
+        <tr class="faqRow">
+            <th>답변</th>
+            <td>
+                <textarea id="answer" name="answer" rows="10" cols="30"></textarea>
+            </td>
+        </tr>
+
+        <!-- notice 내용 -->
+        <tr class="noticeRow">
             <th>내용</th>
             <td>
-                <textarea id="content" name="content" rows="10" cols="50"></textarea>
+                <textarea id="content" name="content" rows="20" cols="30"></textarea>
             </td>
         </tr>
+
+
         <tr>
-            <th>첨부파일 파일 1개당 최대 첨부용량 30MB</th>
+            <th>첨부파일(첨부 가능한 최대 용량 30MB)</th>
         </tr>
         <tr>
-            <td colspan="2"> <!-- colspan="2"를 사용하여 테이블의 두 열을 합친다. -->
-                <input type="file" id="uploadFile" accept=".doc, .docx, .jpg, .png, .pdf">
-                <input type="button" id="uploadButton" value="파일 선택">
-            <td colspan="2" id="fileInfo">선택된 파일 없음</td>
+            <td colspan="2">
+                <div id="dropArea" class="dropArea">
+                    <p>마우스로 파일을 끌어 놓으세요.</p>
+                    <input type="file" id="uploadFile" accept=".doc,.docx, .jpg, .png, .pdf" multiple>
+                </div>
+                <div id="fileInfo">선택된 파일 없음</div>
+                <button id="clearButton">비우기</button>
+            </td>
         </tr>
+
+
+<!--        <tr>-->
+<!--            <td colspan="2"> &lt;!&ndash; colspan="2"를 사용하여 테이블의 두 열을 합친다. &ndash;&gt;-->
+
+<!--                <input type="file" id="uploadFile" accept=".doc, .docx, .jpg, .png, .pdf">-->
+<!--                <input type="button" id="uploadButton" value="파일 선택">-->
+<!--            <td colspan="2" id="fileInfo">선택된 파일 없음</td>-->
+<!--        </tr>-->
+
+
         <tr>
             <td>
-                <input type="submit" id="addNoticeFaq" value="공지 등록">
+                <input type="submit" id="addNoticeFaq" value="등록하기">
             </td>
         </tr>
     </table>

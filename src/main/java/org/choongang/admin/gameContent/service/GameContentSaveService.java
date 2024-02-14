@@ -6,6 +6,8 @@ import org.choongang.admin.gameContent.entities.GameContent;
 import org.choongang.admin.gameContent.repositories.GameContentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class GameContentSaveService {
@@ -35,4 +37,5 @@ public class GameContentSaveService {
         gameContentRepository.saveAndFlush(gameContent);
 
     }
+
 }

@@ -2,12 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<form method="post" th:action="@{/studyGroup/save}">
-    <input type="hidden" name="mode" value="add" >
+<div th:if="${mode.equals('add1')}">
+    <form method="post" th:action="@{/studyGroup/add2}">
+        <input type="hidden" name="mode" value="add" >
 
-  <div th:replace="~{front/teacher/studyGroup/_form::form}"></div>
-    <button type="submit">저장</button>
-</form>
+        <div th:replace="~{front/teacher/studyGroup/_form::form}"></div>
+        <button type="submit">다음</button>
+    </form>
+</div>
+<div th:if="${mode.equals('add2')}">
+    <form method="post" th:action="@{/studyGroup/save}">
+        <input type="hidden" name="mode" value="add" >
+
+        <div th:replace="~{front/teacher/studyGroup/_form2::form}"></div>
+        <button type="submit">다음</button>
+    </form>
+</div>
 
 
 
