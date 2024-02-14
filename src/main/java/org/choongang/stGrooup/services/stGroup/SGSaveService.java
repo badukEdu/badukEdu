@@ -31,7 +31,7 @@ public class SGSaveService {
             s.setText(form.getText());
             s.setMonth(form.getMonth());
             s.setGameTitle(form.getGameTitle());
-            //s.setGameContent(vetaGameInfo.getById(form.getGameContentNum()));
+            s.setGameContent(vetaGameInfo.getById(form.getGameContentNum()));
         }else{
             s = sgInfoService.getById(form.getNum());
 

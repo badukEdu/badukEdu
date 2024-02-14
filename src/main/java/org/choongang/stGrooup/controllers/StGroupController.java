@@ -53,7 +53,7 @@ public class StGroupController {
     public String add2(Model model , @ModelAttribute RequestStGroup form , @RequestParam(name = "num") Long num){
 
         model.addAttribute("mode" , "add2");
-       // model.addAttribute("game" , vetaGameInfo.getById(num));
+        model.addAttribute("game" , vetaGameInfo.getById(num));
         model.addAttribute("gameList" , vetaGameInfo.getList());
         return "front/teacher/studyGroup/add";
     }
