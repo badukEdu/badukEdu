@@ -1,4 +1,4 @@
-package org.choongang.admin.gameContent.entities;
+package org.choongang.admin.gamecontent.entities;
 
 
 import jakarta.persistence.*;

@@ -2,7 +2,7 @@ package org.choongang.stGrooup.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.choongang.admin.gameContent.entities.GameContent;
+import org.choongang.admin.gamecontent.entities.GameContent;
 import org.choongang.homework.entities.Homework;
 import org.choongang.member.entities.Member;
 

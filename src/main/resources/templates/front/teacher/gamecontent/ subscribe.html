@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<form method="post" autocomplete="off">
+    <table border="1">
+        <tr>
+            <th>선택</th>
+            <th>게임콘텐츠명</th>
+            <th>구독가능기간</th>
+            <th>정가</th>
+            <th>패키지내용</th>
+        </tr>
+
+        <tr th:each="dataList : ${dataList}" th:object="${dataList}">
+            <td><input type="checkbox" name="selectedItems" th:value="${dataList}" /></td>
+            <td th:text="*{gameTitle}"></td>
+            <td th:text="*{startDate + '~' + endDate}"></td>
+            <td th:text="*{originalPrice}"></td>
+            <td th:text="*{packageContents}"></td>
+        </tr>
+    </table>
+</form>
