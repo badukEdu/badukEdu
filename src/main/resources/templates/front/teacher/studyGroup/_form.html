@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:div th:fragment="form" th:if="${requestStGroup != null}" th:object="${requestStGroup}">
+    <h1>UI-W-010</h1>
     <div th:if="${mode == 'edit'}">
         <input type="hidden" name="num" th:value="*{num}">
     </div>
