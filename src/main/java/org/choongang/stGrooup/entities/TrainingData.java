@@ -1,4 +1,4 @@
-package org.choongang.stGrooup;
+package org.choongang.stGrooup.entities;
 
 import jakarta.persistence.*;
 import org.choongang.homework.entities.Homework;

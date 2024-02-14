@@ -13,17 +13,19 @@ public class EduDataSaveService {
 
     private final EduDataRepository eduDataRepository;
 
-    public void save(RequestEduData form, Model model) {
+    public void save(RequestEduData form) {
 
         EduData eduData = new EduData();
 
         eduData.setName(form.getName());
         eduData.setDataType(form.getDataType());
-        eduData.setContent(form.getContent());
+        eduData.setContentType(form.getContentType());
         eduData.setServiceType(form.getServiceType());
         eduData.setContent(form.getContent());
         eduData.setFileAddress(form.getFileAddress());
-        eduData.setThumbnail(form.getThumbnail());
+//        eduData.setThumbnail(form.getThumbnail());
+
+        eduDataRepository.saveAndFlush(eduData);
 
     }
 }
