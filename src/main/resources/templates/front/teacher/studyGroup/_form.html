@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<th:div th:fragment="form" th:if="${item != null}" th:object="${item}">
+<th:div th:fragment="form" th:if="${requestStGroup != null}" th:object="${requestStGroup}">
     <div th:if="${mode == 'edit'}">
         <input type="hidden" name="num" th:value="*{num}">
     </div>

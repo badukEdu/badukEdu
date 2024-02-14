@@ -43,17 +43,15 @@ public class StGroupController {
 
 
     @GetMapping("/add")
-    public String add(Model model){
+    public String add(Model model , @ModelAttribute RequestStGroup form){
         model.addAttribute("mode" , "add");
-        model.addAttribute("item" , new RequestStGroup());
         return "front/teacher/studyGroup/add";
     }
 
     @GetMapping("/edit/{num}")
     public String edit(@PathVariable("num") Long num, Model model){
         model.addAttribute("mode" , "edit");
-        model.addAttribute("item" , sgInfoService.getById(num));
-
+        model.addAttribute("requestStGroup" , sgInfoService.getForm(num));
 
         return "front/teacher/studyGroup/edit";
     }
