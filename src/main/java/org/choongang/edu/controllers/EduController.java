@@ -38,9 +38,8 @@ public class EduController {
     /* 학습 자료 조회 */
     @GetMapping("/list")
     public String list(@ModelAttribute EduData form, Model model) {
-        System.out.println("///////111");
+
         List<EduData> dataList = eduDataInfoService.getList();
-        System.out.println("//////" + dataList);
         model.addAttribute("dataList", dataList);
 
         return "front/teacher/edu/list";
