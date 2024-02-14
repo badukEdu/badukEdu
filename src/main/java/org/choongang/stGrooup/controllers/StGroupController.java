@@ -1,6 +1,7 @@
 package org.choongang.stGrooup.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.choongang.gameContent.service.GameContentSaveService;
 import org.choongang.stGrooup.entities.StudyGroup;
 import org.choongang.stGrooup.services.stGroup.SGDeleteService;
 import org.choongang.stGrooup.services.stGroup.SGInfoService;
@@ -20,6 +21,7 @@ public class StGroupController {
     private final SGSaveService sgSaveService;
     private final SGInfoService sgInfoService;
     private final SGDeleteService sgDeleteService;
+    private final GameContentSaveService gameContentSaveService; //게임 인포서비스 만들어지면 이거 지워야함
 
     @GetMapping
     public String list(Model model , @ModelAttribute StGroupSearch search){
@@ -47,6 +49,7 @@ public class StGroupController {
     @GetMapping("/add")
     public String add(Model model , @ModelAttribute RequestStGroup form){
         model.addAttribute("mode" , "add");
+        model.addAttribute("gameList" , gameContentSaveService.getList());
         return "front/teacher/studyGroup/add";
     }
 

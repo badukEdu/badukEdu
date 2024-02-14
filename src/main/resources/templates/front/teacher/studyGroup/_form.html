@@ -6,45 +6,26 @@
         <input type="hidden" name="num" th:value="*{num}">
     </div>
     <input type="hidden" name="gameContentNum" value="10"> <!--th:value="${gameContent.num}"-->
-    <table>
+    <table border="1">
         <tr>
+            <th>선택</th>
             <th>컨텐츠명</th>
             <th>구독 기간</th>
             <th>개월</th>
-            <th>학습가능인원</th>
+            <th>(게임)학습가능인원</th>
+            <th>(스터디그룹)그룹 배정 인원 ???</th>
+            <th>잔여분M/M ???</th>
         </tr>
-        <tr>
-            <td colspan="3">
-                <a>game1</a>
-            </td>
+        <tr th:each="game : ${gameList}" th:object="${game}">
             <td>
-                <input type="radio" name="gameContentNum" value="1"><!--th:value"${~~.num}"-->
-                <!--<input type="hidden" name="gameTitle" th:value="${~~.name}">-->
+                <input type="radio" name="gameTitle" th:value="*{gameTitle}">
             </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <a>game2</a>
-            </td>
-            <td>
-                <input type="radio" name="gameContentNum" value="2">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3">
-                <a>game3</a>
-            </td>
-            <td>
-                <input type="radio" name="gameContentNum" value="3">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="4">
-                <a>game4</a>
-            </td>
-            <td>
-                <input type="radio" name="gameContentNum" value="4">
-            </td>
+            <th th:text="*{gameTitle}"></th>
+            <th th:text="*{startDate+ '~' +endDate}"></th>
+            <th th:text="*{subscriptionMonths}"></th>
+            <th th:text="*{maxSubscriber}"></th>
+            <th >???</th>
+            <th >???</th>
         </tr>
     </table>
     <hr>
@@ -72,7 +53,7 @@
         <tr>
             <td>학습개월</td>
             <td>
-                <input type="number" name="month" th:field="*{month}">
+                <input type="number" name="month" th:field="*{month}" >
             </td>
         </tr>
         <tr>
