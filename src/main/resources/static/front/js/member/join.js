@@ -24,17 +24,17 @@ window.addEventListener("DOMContentLoaded", function() {
                         sendEmailVerify(email); // 이메일 인증 코드 전송
                         this.disabled = frmJoin.email.readonly = true;
 
-                         /* 인증코드 재전송 처리 S */
-                         if (emailReVerifyEl) {
+                        /* 인증코드 재전송 처리 S */
+                        if (emailReVerifyEl) {
                             emailReVerifyEl.addEventListener("click", function() {
                                 sendEmailVerify(email);
                             });
-                         }
+                        }
 
-                          /* 인증코드 재전송 처리 E */
+                        /* 인증코드 재전송 처리 E */
 
-                          /* 인증번호 확인 처리 S */
-                          if (emailConfirmEl && authNumEl) {
+                        /* 인증번호 확인 처리 S */
+                        if (emailConfirmEl && authNumEl) {
                             emailConfirmEl.addEventListener("click", function() {
                                 const authNum = authNumEl.value.trim();
                                 if (!authNum) {
@@ -47,8 +47,8 @@ window.addEventListener("DOMContentLoaded", function() {
                                 const { sendEmailVerifyCheck } = commonLib;
                                 sendEmailVerifyCheck(authNum);
                             });
-                          }
-                          /* 인증번호 확인 처리 E */
+                        }
+                        /* 인증번호 확인 처리 E */
                     }
                 });
 
@@ -60,10 +60,10 @@ window.addEventListener("DOMContentLoaded", function() {
 
 
 /**
-* 이메일 인증 메일 전송 후 콜백 처리
-*
-* @param data : 전송 상태 값
-*/
+ * 이메일 인증 메일 전송 후 콜백 처리
+ *
+ * @param data : 전송 상태 값
+ */
 function callbackEmailVerify(data) {
     if (data && data.success) { // 전송 성공
         alert("인증코드가 이메일로 전송되었습니다. 확인후 인증코드를 입력하세요.");
@@ -77,20 +77,20 @@ function callbackEmailVerify(data) {
 }
 
 /**
-* 인증메일 코드 검증 요청 후 콜백 처리
-*
-* @param data : 인증 상태 값
-*/
+ * 인증메일 코드 검증 요청 후 콜백 처리
+ *
+ * @param data : 인증 상태 값
+ */
 function callbackEmailVerifyCheck(data) {
     if (data && data.success) { // 인증 성공
         /**
-        * 인증 성공시
-        * 1. 인증 카운트 멈추기
-        * 2. 인증코드 전송 버튼 제거
-        * 3. 이메일 입력 항목 readonly 속성으로 변경
-        * 4. 인증 성공시 인증코드 입력 영역 제거
-        * 5. 인증 코드 입력 영역에 "확인된 이메일 입니다."라고 출력 처리
-        */
+         * 인증 성공시
+         * 1. 인증 카운트 멈추기
+         * 2. 인증코드 전송 버튼 제거
+         * 3. 이메일 입력 항목 readonly 속성으로 변경
+         * 4. 인증 성공시 인증코드 입력 영역 제거
+         * 5. 인증 코드 입력 영역에 "확인된 이메일 입니다."라고 출력 처리
+         */
 
         // 1. 인증 카운트 멈추기
         if (authCount.intervalId) clearInterval(authCount.intervalId);
@@ -112,16 +112,16 @@ function callbackEmailVerifyCheck(data) {
 }
 
 /**
-* 유효시간 카운트
-*
-*/
+ * 유효시간 카운트
+ *
+ */
 const authCount = {
     intervalId : null,
     count : 60 * 3, // 유효시간 3분
     /**
-    * 인증 코드 유효시간 시작
-    *
-    */
+     * 인증 코드 유효시간 시작
+     *
+     */
     start() {
         const countEl = document.getElementById("auth_count");
         if (!countEl) return;
@@ -151,9 +151,9 @@ const authCount = {
     },
 
     /**
-    * 인증 코드 유효시간 초기화
-    *
-    */
+     * 인증 코드 유효시간 초기화
+     *
+     */
     initialize() {
         const countEl = document.getElementById("auth_count");
         const emailVerifyEl = document.getElementById("email_verify"); // 인증코드 전송

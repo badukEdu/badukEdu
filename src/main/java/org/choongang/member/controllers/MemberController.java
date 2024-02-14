@@ -36,14 +36,14 @@ public class MemberController implements ExceptionProcessor {
    */
   @GetMapping("/confirmation")
   public String confirmation(@ModelAttribute RequestJoin form, Model model) {
-    commonProcess("join", model);
+    commonProcess("confirmation", model);
 
     return "front/member/confirmation";
   }
 
   @PostMapping("/confirmation")
   public String confirmationPs(@Valid RequestJoin form, Errors errors,Model model) {
-    commonProcess("join", model);
+    commonProcess("confirmation", model);
 
     joinService.process(form, errors);
 
@@ -151,6 +151,10 @@ public class MemberController implements ExceptionProcessor {
 
     if (mode.equals("login")) { // 로그인
       pageTitle = Utils.getMessage("로그인", "commons");
+
+    } else if (mode.equals("confirmation")) { // 회원인증
+      addCss.add("member/confirmation");
+      addScript.add("member/confirmation");
 
     } else if (mode.equals("join")) { // 회원가입
       addCss.add("member/join");

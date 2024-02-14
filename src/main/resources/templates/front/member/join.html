@@ -3,7 +3,7 @@
 
   <h1 th:text="#{인증정보}"></h1>
 
-  <form name="frmJoin" method="post" th:action="@{/member/join}" autocomplete="off" th:object="${requestJoin}">
+  <form name="join" method="post" th:action="@{/member/join}" autocomplete="off" th:object="${requestJoin}">
 
     <dl>
       <dt th:text="#{회원명}"></dt>
@@ -18,10 +18,6 @@
         <input type="text" name="email" th:field="*{email}">
       </dd>
     </dl>
-
-  </form>
-
-  <form name="frmJoin" method="post" th:action="@{/member/join}" autocomplete="off" th:object="${requestJoin}">
 
     <dl>
       <dt th:text="#{아이디}"></dt>
@@ -61,13 +57,12 @@
     <dl>
       <dt th:text="#{회원종류}"></dt>
       <dd>
-        <input type="radio" name="authority" id="authority_USER" th:field="*{authority}" th:value="USER">
-        <label for="authority_USER">일반회원</label>
-        <input type="radio" name="authority" id="authority_TEACHER" th:field="*{authority}" th:value="TEACHER">
-        <label for="authority_TEACHER">교육자</label>
-        <input type="radio" name="authority" id="authority_STUDENT" th:field="*{authority}" th:value="STUDENT">
-        <label for="authority_STUDENT">학습자</label>
-      </dd>
+        <select name="authority" th:field="*{authority}">
+        <option name="authority" id="authority_USER" th:field="*{authority}" th:value="USER">일반회원</option>
+        <option name="authority" id="authority_TEACHER" th:field="*{authority}" th:value="TEACHER">교육자</option>
+        <option name="authority" id="authority_STUDENT" th:field="*{authority}" th:value="STUDENT">학습자</option>
+        </select>
+
     </dl>
 
     <dl>
