@@ -8,10 +8,8 @@ import org.choongang.stGrooup.services.stGroup.SGSaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 @Controller
 @RequestMapping("/studyGroup")
@@ -68,12 +66,17 @@ public class StGroupController {
     }
 
     @GetMapping("/delete/{num}")
-    public String delete(@PathVariable("num") Long num, Model model){
-
-
-        sgDeleteService.delete(num);
+    public String delete(@PathVariable("num") Long num , Model model){
+            sgDeleteService.delete(num);
         return "redirect:/studyGroup";
     }
 
+    @DeleteMapping
+    public String deletes(@RequestParam(name = "chk" ) List<Long> chks ,Model model){
+            for(Long n : chks){
+                sgDeleteService.delete(n);
+            }
+        return "redirect:/studyGroup";
+    }
 
 }
