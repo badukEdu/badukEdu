@@ -30,7 +30,7 @@ public class StGroupController {
         System.out.println(list);
 
 
-        return "front/educator/studyGroup/list";
+        return "front/teacher/studyGroup/list";
     }
 
     @GetMapping("/detail/{num}")
@@ -38,7 +38,7 @@ public class StGroupController {
 
         model.addAttribute("item" , sgInfoService.getById(num));
 
-        return "front/educator/studyGroup/detail";
+        return "front/teacher/studyGroup/detail";
     }
 
 
@@ -46,7 +46,7 @@ public class StGroupController {
     public String add(Model model){
         model.addAttribute("mode" , "add");
         model.addAttribute("item" , new RequestStGroup());
-        return "front/educator/studyGroup/add";
+        return "front/teacher/studyGroup/add";
     }
 
     @GetMapping("/edit/{num}")
@@ -55,7 +55,7 @@ public class StGroupController {
         model.addAttribute("item" , sgInfoService.getById(num));
 
 
-        return "front/educator/studyGroup/edit";
+        return "front/teacher/studyGroup/edit";
     }
 
     @PostMapping("/save")
