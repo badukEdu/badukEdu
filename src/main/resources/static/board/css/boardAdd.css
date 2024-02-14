@@ -1,9 +1,5 @@
 /* boardAdd.css */
 
-
-
-/* 파일 첨부 버튼까지 사용 시 uploadFile에 적용된 스타일 주석 처리 필요 */
-
 #uploadFile {
     display: none;
 }

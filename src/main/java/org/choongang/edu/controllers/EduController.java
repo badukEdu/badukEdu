@@ -20,7 +20,12 @@ public class EduController {
     private final EduDataSaveService eduDataSaveService;
     private final EduDataInfoService eduDataInfoService;
 
-    /* 학습 자료 등록 */
+    /**
+     * 학습 자료 등록
+     * @param form
+     * @param model
+     * @return
+     */
     @GetMapping("/add")
     public String add(@ModelAttribute RequestEduData form, Model model) {
 
@@ -35,12 +40,16 @@ public class EduController {
         return "redirect:/teacher/edu/list";
     }
 
-    /* 학습 자료 조회 */
+    /**
+     * 학습 자료 조회
+     * @param form
+     * @param model
+     * @return
+     */
     @GetMapping("/list")
     public String list(@ModelAttribute EduData form, Model model) {
-        System.out.println("///////111");
+
         List<EduData> dataList = eduDataInfoService.getList();
-        System.out.println("//////" + dataList);
         model.addAttribute("dataList", dataList);
 
         return "front/teacher/edu/list";
