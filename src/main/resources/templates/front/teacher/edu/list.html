@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <h2>학습 자료 조회</h2>
+    <table border="1">
+        <tr>
+            <th>학습자료명</th>
+            <th>자료구분</th>
+            <th>자료유형</th>
+            <th>자료file주소</th>
+            <th>서비스구분</th>
+            <th>자료내용</th>
+        </tr>
+
+        <tr th:each="dataList : ${dataList}">
+            <td th:text="${dataList.name}"></td>
+            <td th:text="${dataList.dataType}"></td>
+            <td th:text="${dataList.contentType}"></td>
+            <td th:text="${dataList.fileAddress}"></td>
+            <td th:text="${dataList.serviceType}"></td>
+            <td th:text="${dataList.content}"></td>
+        </tr>
+    </table>
