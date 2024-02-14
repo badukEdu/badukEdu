@@ -26,11 +26,8 @@ public class NoticeComent extends Base {
 
     ///////////////////////////
 
-
     @ManyToOne
     @JoinColumn(name = "memberNum") // 작성자 (FK)
     private Member member;
-
-
 
 }
