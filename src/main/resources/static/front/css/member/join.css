@@ -1,0 +1,41 @@
+.email {
+    display: flex;
+    margin: 5px 0;
+}
+
+.email input {
+    margin-right: 5px;
+}
+
+.email button {
+    border: none;
+    background: #A7CFF1;
+    border-radius: 5px;
+}
+
+.auth_box {
+    display: flex;
+    align-items: center;
+}
+
+.auth_box input {
+    width: 150px;
+}
+
+.auth_box span {
+    margin: 0 5px;
+}
+
+.auth_box button {
+    width: 70px;
+    padding: 10px 15px;
+    border: none;
+    background: #A7CFF1;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.auth_box button:last-child {
+    background: #ddd;
+    margin-left: 5px;
+}
