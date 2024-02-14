@@ -1,10 +1,10 @@
-package org.choongang.admin.gameContent.controllers;
+package org.choongang.admin.gamecontent.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.choongang.admin.gameContent.entities.GameContent;
-import org.choongang.admin.gameContent.service.GameContentInfoService;
-import org.choongang.admin.gameContent.service.GameContentSaveService;
+import org.choongang.admin.gamecontent.entities.GameContent;
+import org.choongang.admin.gamecontent.service.GameContentInfoService;
+import org.choongang.admin.gamecontent.service.GameContentSaveService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@Controller
+@Controller("AdminGameContentController")
 @RequestMapping("/admin/gamecontent")
 @RequiredArgsConstructor
 public class GameContentController {

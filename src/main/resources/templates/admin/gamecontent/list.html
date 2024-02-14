@@ -4,6 +4,7 @@
     <form method="post" autocomplete="off">
         <table border="1">
             <tr>
+                <th>선택</th>
                 <th>게임콘텐츠명</th>
                 <th>총게임레벨</th>
                 <th>구독 개월</th>
@@ -16,6 +17,7 @@
             </tr>
 
             <tr th:each="dataList : ${dataList}" th:object="${dataList}">
+                <td><input type="checkbox" name="selectedItems" th:value="${dataList}" /></td>
                 <td th:text="*{gameTitle}"></td>
                 <td th:text="*{totalGameLevels}"></td>
                 <td th:text="*{subscriptionMonths}"></td>

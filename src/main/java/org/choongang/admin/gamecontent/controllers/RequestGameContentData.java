@@ -1,4 +1,4 @@
-package org.choongang.admin.gameContent.controllers;
+package org.choongang.admin.gamecontent.controllers;
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
