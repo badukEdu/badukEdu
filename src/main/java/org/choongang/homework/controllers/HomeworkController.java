@@ -64,4 +64,11 @@ public class HomeworkController {
 
         return "redirect:/homework";
     }
+
+    @GetMapping("/submitList/{num}")
+    public String submitList() {
+        // 그룹 학습자들이 제출한 내용을 가져갈 수 있도록.
+
+        return "front/teacher/homework/submitList";
+    }
 }
