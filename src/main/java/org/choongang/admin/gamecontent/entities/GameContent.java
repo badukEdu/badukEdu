@@ -50,7 +50,7 @@ public class GameContent extends Base {
 private Member member; //작성자 회원번호
 
 
-
+//private List<StudyGroup> studyGroups;
 
 
 }

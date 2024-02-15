@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <h2>게임콘텐츠 검색 및 구독 신청</h2>
+    <form method="get" th:action="@{/gamecontent/payment}" autocomplete="off">
+        <table border="1">
+            <tr>
+                <th>선택</th>
+                <th>게임콘텐츠명(콘텐츠 이미지 대체, 이미지 기능구현 완료되면 변경)</th>
+                <th>가격 / 구독가능기간</th>
+                <th>상품소개</th>
+            </tr>
+
+            <tr th:each="dataList : ${dataList}" th:object="${dataList}">
+                <td>
+                    <input type="radio" name="selectedItems" th:value="${dataList}" />
+                </td>
+                <td th:text="*{gameTitle}"></td>
+                <td th:text="*{originalPrice + '원' + startDate + '~' + endDate + '(' + subscriptionMonths + '개월)'}"></td>
+                <td th:text="*{packageContents}"></td>
+            </tr>
+        </table>
+        <button type="submit">구독하기</button>
+    </form>
