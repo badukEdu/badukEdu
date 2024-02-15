@@ -3,7 +3,6 @@ package org.choongang.homework.controllers;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.choongang.homework.entities.Homework;
-import org.choongang.homework.repositories.HomeworkRepository;
 import org.choongang.homework.service.HomeworkInfoService;
 import org.choongang.homework.service.HomeworkSaveService;
 import org.springframework.stereotype.Controller;
@@ -70,5 +69,21 @@ public class HomeworkController {
         // 그룹 학습자들이 제출한 내용을 가져갈 수 있도록.
 
         return "front/teacher/homework/submitList";
+    }
+
+    @GetMapping("/list")
+    public String homeworkList() {
+        return "/front/user/homework/list";
+    }
+    @GetMapping("/submit")
+    public String submit() {
+
+        return "front/user/homework/";
+    }
+
+    @PostMapping("/submit")
+    public String submitPs() {
+
+        return "redirect:/";
     }
 }

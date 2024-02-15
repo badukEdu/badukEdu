@@ -3,10 +3,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content" class="layout_width">
-사용자 메인페이지
-<a th:href="@{/admin}">관리자 메인</a>
-<a th:href="@{/homework}">교육자 숙제</a>
-<a th:href="@{/homework/list}">학습자 숙제</a>
-<a th:href="@{/studyGroup}">스터디 그룹</a>
+    <h1>user 숙제리스트</h1>
+    <a th:href="@{/homework/submit}">숙제..</a>
+
 </main>
 </html>
