@@ -2,21 +2,15 @@ package org.choongang.member.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.admin.edu.entities.EduData;
+import org.choongang.admin.gamecontent.entities.GameContent;
 import org.choongang.board.entities.Notice_;
 import org.choongang.commons.entities.Base;
-import org.choongang.member.constants.Authority;
-
-import org.choongang.edu.entities.EduData;
-import org.choongang.gameContent.entities.GameContent;
 import org.choongang.homework.entities.Homework;
-
+import org.choongang.member.constants.Authority;
 import org.choongang.stGrooup.entities.JoinStudyGroup;
 import org.choongang.stGrooup.entities.StudyGroup;
 import org.choongang.stGrooup.entities.TrainingData;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-
-import java.time.LocalDateTime;
 
 import java.util.List;
 

@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -13,7 +14,9 @@ public class RequestStGroup {
 
     private Long num;    //기본키
     private String name;     //스터디그룹명
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate; //시작일
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate; //종료일
     private Long maxSubscriber;    //최대인원
     private Long maxLevel;   //달성 레벨
