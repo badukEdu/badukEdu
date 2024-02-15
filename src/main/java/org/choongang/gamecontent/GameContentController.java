@@ -26,4 +26,23 @@ public class GameContentController {
 
         return "front/teacher/gamecontent/subscribe";
     }
+
+    @GetMapping("/payment")
+    public String payment(@ModelAttribute GameContent form , Model model) {
+
+        List<GameContent> dataList = gameContentInfoService.getList();
+        model.addAttribute("dataList", dataList);
+
+        return "front/teacher/gamecontent/payment";
+    }
+
+    @GetMapping("/list")
+    public String list(@ModelAttribute GameContent form, Model model) {
+
+        List<GameContent> dataList = gameContentInfoService.getList();
+        model.addAttribute("dataList", dataList);
+
+        return "front/teacher/gamecontent/list";
+    }
+
 }

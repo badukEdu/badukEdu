@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <h3>결제 방법 선택</h3>
+    <form method="post">
+        <table>
+            <tr>
+                <td colspan="2"><h3>주문하실 상품 정보</h3></td>
+            </tr>
+            <tr th:each="dataList : ${dataList}" th:object="${dataList}">
+                <td>구매상품명</td>
+                <td>
+                    <input th:text="*{gameTitle}">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><h3>구매자 정보</h3></td>
+            </tr>
+            <tr>
+                <td>구매자명</td>
+                <td>
+                    <input type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>연락처</td>
+                <td>
+                    <input type="text">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <h3>주문 합계</h3>
+                    <td>원</td>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><h3>결제 방법 선택</h3></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="radio" name="paymentMethod" value="bankTransfer">
+                    <label for="bankTransfer">무통장 입금</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="radio" id="bankTransfer" name="paymentMethod" value="bankTransfer">
+                    <label for="bankTransfer">계좌이체</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="radio" id="kakaoPay" name="paymentMethod" value="kakaoPay">
+                    <label for="kakaoPay">카카오페이</label>
+                </td>
+            </tr>
+            <tr>
+                <td>입금자명</td>
+                <td>
+                    <input type="text">
+                </td>
+            </tr>
+        </table>
+        <a th:href="@{/gamecontent/list}">결제하기</a>
+    </form>
