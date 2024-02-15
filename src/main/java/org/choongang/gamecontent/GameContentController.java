@@ -23,7 +23,7 @@ public class GameContentController {
 
         List<GameContent> dataList = gameContentInfoService.getList();
         model.addAttribute("dataList", dataList);
-        System.out.println("///////");
+
         return "front/teacher/gamecontent/subscribe";
     }
 }
