@@ -3,6 +3,14 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 
+
+<form th:action="@{/studyGroup/detail}">
+    <select name="num" >
+        <option th:each="stGroup : ${list}" th:value="${stGroup.num}" th:text="${stGroup.name}" th:field="${item.num}"></option>
+    </select>
+    <button type="submit">상세 조회</button>
+</form>
+
 <div th:replace="~{front/teacher/studyGroup/_detail::detail}"></div>
 <hr>
 <table border="1">
