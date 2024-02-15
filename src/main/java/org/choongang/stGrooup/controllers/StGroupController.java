@@ -105,7 +105,7 @@ public class StGroupController {
         }
 
         model.addAttribute("mode" , "add2");
-        session.setAttribute("game" , vetaGameInfo.getById(num));
+        session.setAttribute("game" , vetaGameInfo.getById(num));  //폼을 두 번 이동해야해서 session에 저장
         return "front/teacher/studyGroup/add";
     }
 
@@ -141,7 +141,7 @@ public class StGroupController {
             return "front/teacher/studyGroup/add";
         }
         sgSaveService.save(form);
-        session.removeAttribute("game");
+        session.removeAttribute("game");    //session 비워주기
         return "redirect:/studyGroup";
     }
 
