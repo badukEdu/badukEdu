@@ -6,7 +6,7 @@
             <tr>
                 <td colspan="2"><h3>주문하실 상품 정보</h3></td>
             </tr>
-            <tr th:each="dataList : ${dataList}" th:object="${dataList}">
+            <tr th:each="item : ${items}" th:object="${item}">
                 <td>구매상품명</td>
                 <td>
                     <input th:text="*{gameTitle}">
@@ -62,4 +62,5 @@
             </tr>
         </table>
         <a th:href="@{/gamecontent/list}">결제하기</a>
+        <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
     </form>
