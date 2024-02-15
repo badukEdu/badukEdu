@@ -37,15 +37,15 @@ public class SGInfoService {
         if(StringUtils.hasText(skey)){
 
             BooleanExpression groupNameCond = studyGroup.name.contains(skey);
-           // BooleanExpression gameNameCond = studyGroup.gameTitle.contains(skey);
+            BooleanExpression gameNameCond = studyGroup.gameTitle.contains(skey);
             if(sopt.equals("groupName")){
                 andBuilder.and(groupNameCond);
-            } /*else if (sopt.equals("gameName")) {
-                andBuilder.and(gameName);
-            }*/ else if (sopt.equals("ALL")) {
+            } else if (sopt.equals("gameName")) {
+                andBuilder.and(gameNameCond);
+            } else if (sopt.equals("ALL")) {
                 BooleanBuilder orBuilder = new BooleanBuilder();
-                orBuilder.or(groupNameCond);
-                        //.or(gameName);
+                orBuilder.or(groupNameCond)
+                        .or(gameNameCond);
 
                 andBuilder.and(orBuilder);
             }
