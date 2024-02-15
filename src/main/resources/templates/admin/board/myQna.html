@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My QnA</title>
+</head>
+<body>
+<h2>나의 문의 내역</h2>
+<div>
+    구분
+    <select>
+        <option value="" hidden></option>
+        <option value="qnaAll">전체 문의</option>
+        <option value="completeAnswer">답변 완료</option>
+        <option value="watingAnswer">답변 대기</option>
+    </select>
+    <input type="submit" value="검색">
+</div>
+
+<form method="post" autocomplete="off">
+    <table border="1">
+        <tr>
+            <th>No</th>
+            <th>문의 구분</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>등록일시</th>
+            <th>상태</th>
+        </tr>
+
+        <tr th:each="" th:object="${}">
+            <td th:text="*{}"></td>
+            <td th:text="*{}"></td>
+            <td th:text="*{}"></td>
+            <td th:text="*{}"></td>
+            <td th:text="*{}"></td>
+            <td th:text="*{}"></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
