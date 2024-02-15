@@ -2,12 +2,51 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>BoardList</title>
+    <title>Board List</title>
 </head>
 <body>
 <h2>공지사항 조회</h2>
 <form th:action="@{/board/list}" method="post" autocomplete="off">
+<table border="1">
+    <tr>
+        <th>선택</th>
+        <th>게시글 번호</th>
+        <th>공지 분류</th>
+        <th>공지사항 분류</th>
+        <th>FAQ 분류</th>
+        <th>노출 여부</th>
+        <th>공지사항 제목</th>
+        <th>FAQ 제목</th>
+        <th>내용</th>
+        <th>조회수</th>
+        <th>첨부파일명</th>
+        <th>첨부파일경로</th>
+        <th>게시 타입</th>
+        <th>질의</th>
+        <th>답변</th>
+    </tr>
 
+    <tr th:each="noticeList : ${noticeList}" th:object="${noticeList}">
+        <td><input type="checkbox" name="selectNotice" th:value="${noticeList}" /></td>
+        <td th:text="*{num}"></td>
+        <td th:text="*{type}"></td>
+        <td th:text="*{noticeCategory}"></td>
+        <td th:text="*{faqCategory}"></td>
+        <td>
+            <span th:if="${onTop}"></span>
+            <span th:unless="${onTop}"></span>
+        </td>
+        <td th:text="*{noticeTitle}"></td>
+        <td th:text="*{faqTitle}"></td>
+        <td th:text="*{content}"></td>
+        <td th:text="*{visit}"></td>
+        <td th:text="*{fileName}"></td>
+        <td th:text="*{fileAddress}"></td>
+        <td th:text="*{postingType}"></td>
+        <td th:text="*{question}"></td>
+        <td th:text="*{answer}"></td>
+    </tr>
+</table>
 </form>
 </body>
 </html>

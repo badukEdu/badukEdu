@@ -2,20 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>BoardAdd</title>
+    <title>Board Add</title>
     <script src="/board/js/boardAdd.js"></script>
     <link rel="stylesheet" type="text/css" href="/board/css/boardAdd.css">
 </head>
 <body>
 <h2>공지 등록</h2>
-<form th:action="@{/board/add}" method="post" autocomplete="off">
+<form th:action="@{/board/add}" method="post" th:object="${RequestBoardAdd}" autocomplete="off">
     <div class="tableContainer">
     <table>
         <!-- Notice 공지 분류 -->
         <tr class="noticeRow">
-            <th>공지 분류</th>
+            <th th:text="#{공지 분류}"></th>
             <td>
-                <select id="noticeCategory" name="noticeCategory">
+                <select id="noticeCategory" th:field="*{noticeCategory}" name="noticeCategory">
                     <option value="notice">공지사항</option>
                     <option value="faq">FAQ</option>
                 </select>
@@ -24,9 +24,9 @@
 
         <!-- FAQ 공지 분류 -->
         <tr class="faqRow">
-            <th>공지 분류</th>
+            <th th:text="#{공지 분류}"></th>
             <td>
-                <select id="faqCategory" name="faqCategory">
+                <select id="faqCategory" th:field="*{faqCategory}" name="faqCategory">
                     <option value="notice">공지사항</option>
                     <option value="faq">FAQ</option>
                 </select>
@@ -35,10 +35,10 @@
 
         <!-- Notice 노출 여부 -->
         <tr class="noticeRow">
-            <th>노출 여부</th>
+            <th th:text="#{노출 여부}"></th>
             <td>
-                <label for="checkbox">
-                    <input type="checkbox" id="checkbox" name="checkbox">
+                <label for="onTop">
+                    <input type="checkbox" id="onTop" th:field="*{onTop}" name="onTop">
                     중요글로 상단 노출
                 </label>
             </td>
@@ -46,59 +46,59 @@
 
         <!-- notice 제목 -->
         <tr class="noticeRow">
-            <th>제목</th>
+            <th th:text="#{제목}"></th>
             <td>
-                <input type="text" id="noticeTitle" name="noticeTitle" placeholder="제목을 입력하세요">
+                <input type="text" id="noticeTitle" th:field="*{noticeTitle}" name="noticeTitle" placeholder="제목을 입력하세요">
             </td>
         </tr>
 
         <!-- faq 제목 -->
         <tr class="faqRow">
-            <th>제목</th>
+            <th th:text="#{제목}"></th>
             <td>
-                <input type="text" id="faqtTitle" name="faqTitle" placeholder="제목을 입력하세요">
+                <input type="text" id="faqTitle" th:field="*{faqTitle}" name="faqTitle" placeholder="제목을 입력하세요">
             </td>
         </tr>
 
         <!-- notice 게시일자 -->
         <tr class="noticeRow">
-            <th>게시일자</th>
+            <th th:text="#{게시일자}"></th>
             <td>
-                <input type="radio" id="immediatly" name="postingType">
+                <input type="radio" id="immediatly" th:field="*{postingType}" name="postingType" value="immediately">
                 <label for="immediatly">등록 즉시 게시</label>
-                <input type="radio" id="expectedPostingDate" name="postingType">
+                <input type="radio" id="expectedPostingDate" th:field="*{postingType}" name="postingType" value="expectedPostingDate">
                 <label for="expectedPostingDate">게시 예정일</label>
-                <input type="date" id="calendar" class="calendar">
+                <input type="date" id="calendar" name="expectedPostingDate" class="calendar">
             </td>
         </tr>
 
         <!-- faq 질의 -->
         <tr class="faqRow">
-            <th>질의</th>
+            <th th:text="#{질의}"></th>
                 <td>
-                    <textarea id="question" name="question" rows="3" cols="30"></textarea>
+                    <textarea id="question" th:field="*{question}" name="question" rows="3" cols="30"></textarea>
                 </td>
         </tr>
 
         <!-- faq 답변 -->
         <tr class="faqRow">
-            <th>답변</th>
+            <th th:text="#{답변}"></th>
             <td>
-                <textarea id="answer" name="answer" rows="10" cols="30"></textarea>
+                <textarea id="answer" th:field="*{answer}" name="answer" rows="10" cols="30"></textarea>
             </td>
         </tr>
 
         <!-- notice 내용 -->
         <tr class="noticeRow">
-            <th>내용</th>
+            <th th:text="#{내용}"></th>
             <td>
-                <textarea id="content" name="content" rows="20" cols="30"></textarea>
+                <textarea id="content" th:field="*{content}" name="content" rows="20" cols="30"></textarea>
             </td>
         </tr>
 
 
         <tr>
-            <th>첨부파일(첨부 가능한 최대 용량 30MB)</th>
+            <th>첨부파일(파일 1개당 최대 첨부용량 5MB)</th>
         </tr>
         <tr>
             <td colspan="2">

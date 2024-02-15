@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>QnA Add</title>
+</head>
+<body>
+
+<!--
+ 운영 관리자가 이용하는 화면
+ 사이트 운영에 관한 안내문 공지 및 자주 문의하는 내용 등록 화면
+
+ 문의 조회 및 답변 등록화면 추가 구성 필요
+-->
+
+<h2>문의 등록</h2>
+<form th:action="@{/board/qna}" method="post">
+<div>
+    문의 유형
+    <select>
+        <option value="" hidden>문의 유형을 선택하세요</option>
+        <option value="memberInfo">회원 정보</option>
+        <option value="purchaseProduct">상품 구매</option>
+        <option value="usingSite">사이트 이용</option>
+        <option value="others">기타</option>
+    </select>
+</div>
+<div>
+    제목
+    <input type="text" id="title" name="title" placeholder="제목을 입력하세요">
+</div>
+<div>
+    답변 알림
+    <input type="radio" id="receive" name="doNotReceive">
+    <label for="receive">받기</label>
+    <input type="radio" id="doNotReceive" name="doNotReceive">
+    <label for="doNotReceive">받지 않기</label>
+</div>
+<div>
+    내용
+    <textarea id="content" name="content" placeholder="내용을 입력하세요." cols="30" rows="20"></textarea>
+</div>
+<div class="dropArea" id="dropArea">
+    <p>첨부파일 파일 1개당 최대 첨부 용량 5MB</p>
+    <p>마우스로 파일을 끌어 놓으세요.</p>
+</div>
+<input type="submit" value="문의 등록">
+</form>
+</body>
+</html>
