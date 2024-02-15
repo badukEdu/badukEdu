@@ -6,9 +6,9 @@
     <div th:if="${mode == 'edit'}">
         <input type="hidden" name="num" th:value="*{num}">
     </div>
-<div th:if="${game != null}" th:object="${game}">
-    <input type="hidden" name="gameContentNum" th:value="${game.num}">
-    <input type="hidden" name="gameTitle" th:value="${game.gameTitle}">
+<div th:if="${session.game != null}" th:object="${session.game}">
+    <input type="hidden" name="gameContentNum" th:value="${session.game.num}">
+    <input type="hidden" name="gameTitle" th:value="${session.game.gameTitle}">
     <fieldset>
         <legend>게임</legend>
         <table >

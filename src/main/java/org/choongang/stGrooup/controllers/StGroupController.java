@@ -1,5 +1,7 @@
 package org.choongang.stGrooup.controllers;
 
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.choongang.stGrooup.entities.StudyGroup;
 import org.choongang.stGrooup.services.stGroup.SGDeleteService;
@@ -8,6 +10,7 @@ import org.choongang.stGrooup.services.stGroup.SGSaveService;
 import org.choongang.stGrooup.services.stGroup.vetaGameInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,13 +24,13 @@ public class StGroupController {
     private final SGInfoService sgInfoService;
     private final SGDeleteService sgDeleteService;
     private final vetaGameInfo vetaGameInfo; //게임 인포서비스 만들어지면 이거 지워야함
+    private final HttpSession session;
 
     @GetMapping
     public String list(Model model , @ModelAttribute StGroupSearch search){
 
         List<StudyGroup> list = sgInfoService.getList(search);
         model.addAttribute("list" , list);
-
 
         return "front/teacher/studyGroup/list";
     }
@@ -68,10 +71,8 @@ public class StGroupController {
             return "front/teacher/studyGroup/add";
         }
 
-
         model.addAttribute("mode" , "add2");
-        model.addAttribute("game" , vetaGameInfo.getById(num));
-        model.addAttribute("gameList" , vetaGameInfo.getList());
+        session.setAttribute("game" , vetaGameInfo.getById(num));
         return "front/teacher/studyGroup/add";
     }
 
@@ -82,13 +83,20 @@ public class StGroupController {
         RequestStGroup stg = sgInfoService.getForm(num);
 
         model.addAttribute("requestStGroup" , stg);
-        model.addAttribute("game" , vetaGameInfo.getById(stg.getGameContentNum()));
+        session.setAttribute("game" , vetaGameInfo.getById(stg.getGameContentNum()));
         return "front/teacher/studyGroup/edit";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute RequestStGroup form){
+    public String save( @Valid RequestStGroup form , Errors errors , Model model){
+
+        if (errors.hasErrors()) {
+            errors.getAllErrors().stream().forEach(System.out::println);
+            model.addAttribute("mode" , "add2");
+            return "front/teacher/studyGroup/add";
+        }
         sgSaveService.save(form);
+        session.removeAttribute("game");
         return "redirect:/studyGroup";
     }
 
