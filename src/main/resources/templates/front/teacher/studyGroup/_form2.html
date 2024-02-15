@@ -6,9 +6,9 @@
     <div th:if="${mode == 'edit'}">
         <input type="hidden" name="num" th:value="*{num}">
     </div>
-<div th:if="${game != null}" th:object="${game}">
-    <input type="hidden" name="gameContentNum" th:value="${game.num}">
-    <input type="hidden" name="gameTitle" th:value="${game.gameTitle}">
+<div th:if="${session.game != null}" th:object="${session.game}">
+    <input type="hidden" name="gameContentNum" th:value="${session.game.num}">
+    <input type="hidden" name="gameTitle" th:value="${session.game.gameTitle}">
     <fieldset>
         <legend>게임</legend>
         <table >
@@ -48,31 +48,37 @@
             <td>학습그룹명</td>
             <td>
                 <input type="text" name="name" th:field="*{name}">
+                <div class="error" th:each="err : ${#fields.errors('name')}" th:text="${err}"></div>
             </td>
         </tr>
         <tr>
             <td>그룹제한인원</td>
             <td>
                 <input type="number" name="maxSubscriber" th:field="*{maxSubscriber}">
+                <div class="error" th:each="err : ${#fields.errors('maxSubscriber')}" th:text="${err}"></div>
             </td>
         </tr>
         <tr>
             <td>학습개월</td>
             <td>
                 <input type="number" name="month" th:field="*{month}" >
+                <div class="error" th:each="err : ${#fields.errors('month')}" th:text="${err}"></div>
             </td>
         </tr>
         <tr>
             <td>학습기간</td>
             <td>
                 <input type="date" name="startDate" th:field="*{startDate}">
+                <div class="error" th:each="err : ${#fields.errors('startDate')}" th:text="${err}"></div>
                 <input type="date" name="endDate" th:field="*{endDate}">
+                <div class="error" th:each="err : ${#fields.errors('endDate')}" th:text="${err}"></div>
             </td>
         </tr>
         <tr>
             <td>달성 레벨</td>
             <td>
                 <input type="number" name="maxLevel" th:field="*{maxLevel}">
+                <div class="error" th:each="err : ${#fields.errors('maxLevel')}" th:text="${err}"></div>
             </td>
         </tr>
         <tr>
