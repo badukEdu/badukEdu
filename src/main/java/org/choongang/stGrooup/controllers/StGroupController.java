@@ -79,8 +79,10 @@ public class StGroupController {
     @GetMapping("/edit/{num}")
     public String edit(@PathVariable("num") Long num, Model model){
         model.addAttribute("mode" , "edit");
-        model.addAttribute("requestStGroup" , sgInfoService.getForm(num));
+        RequestStGroup stg = sgInfoService.getForm(num);
 
+        model.addAttribute("requestStGroup" , stg);
+        model.addAttribute("game" , vetaGameInfo.getById(stg.getGameContentNum()));
         return "front/teacher/studyGroup/edit";
     }
 
