@@ -11,4 +11,5 @@ import java.util.List;
 @AllArgsConstructor
 public class ListData<T> {
     private List<T> items;
+    private Pagination pagination;
 }
