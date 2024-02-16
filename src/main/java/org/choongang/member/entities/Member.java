@@ -25,36 +25,32 @@ public class Member extends Base {
   private Long num; //회원 번호
   @Column(length = 30, nullable = false, unique = true)
   private String userId; //사용자 아이디
-//  @Column(length = 30, nullable = false, unique = true)
   @Enumerated(EnumType.STRING)
   private Authority authority; //사용자 구분1(운영자 / 교육자 / 일반학습자 / 학생학습자)
   @ToString.Exclude
   @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
   private List<Authorities> authorities = new ArrayList<>();
-//  @Column
-//  private String type; //사용자 구분2(유료회원 / 무료회원)
   @Column(length = 30, nullable = false)
   private String name; //사용자 성명
   @Column(length=200, nullable = false)
   private String password; //비밀번호
-//  @Column(length=30, nullable = false)
-//  private Long levels; //레벨 (??)
   @Column(nullable = false)
   private String tel; //전화번호
-//  @Column
-//  private String phonNum; //집전화
   @Column(nullable = false)
-
   private String birth; //생년월일
   @Column
   private String gender; //성별 (M / F)
   @Column(length=40, unique = true)
   private String email; //이메일
   private boolean enable = true;
-
+//  @Column(length=30, nullable = false)
+//  private Long levels; //레벨 (??)
+//  @Column
+//  private String type; //사용자 구분2(유료회원 / 무료회원)
+//  @Column
+//  private String phonNum; //집전화
   //@Column(name="_lock")
   //private boolean lock;
-
   @Column
   private boolean agree; //수신동의(이메일 E , SMS 수신 S, 모두 수신 ES, 수신 X)
 //  @Column

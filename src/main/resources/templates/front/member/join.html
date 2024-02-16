@@ -6,40 +6,42 @@
 
   <h1 th:text="#{인증정보}"></h1>
 
+<!--  <dl>-->
+<!--    <dt th:text="#{회원명}"></dt>-->
+<!--    <dd>-->
+<!--      <input type="text" name="name" th:field="*{session.name}">-->
+<!--    </dd>-->
+<!--  </dl>-->
+
+<!--  <dl>-->
+<!--    <dt th:text="#{이메일}"></dt>-->
+<!--    <dd>-->
+<!--      <input type="text" name="email" th:field="*{session.email}">-->
+<!--    </dd>-->
+<!--  </dl>-->
+
   <form name="frmJoin" method="post" th:action="@{/member/join}" autocomplete="off" th:object="${requestJoin}">
-
-    <dl>
-      <dt th:text="#{회원명}"></dt>
-      <dd>
-        <input type="text" name="name" th:field="*{name}">
-      </dd>
-    </dl>
-
-    <dl>
-      <dt th:text="#{이메일}"></dt>
-      <dd>
-        <input type="text" name="email" th:field="*{email}">
-      </dd>
-    </dl>
 
     <dl>
       <dt th:text="#{아이디}"></dt>
       <dd>
-        <input type="text" name="userId" th:field="*{userId}">
+        <input type="text" class="inputId" name="userId" th:field="*{userId}" placeholder="공백없이 영문/숫자 6자">
+        <button type="button" class="id_btn" id="userId_dup_check" th:text="#{중복_확인}"></button>
+        <div class="id_check_ok"></div>
       </dd>
     </dl>
 
     <dl>
       <dt th:text="#{비밀번호}"></dt>
       <dd>
-        <input type="password" name="password" th:field="*{password}">
+        <input type="password" name="password" th:field="*{password}" placeholder="공백없이 영문(대/소문자) 숫자 및 특수문자 조합 8~10자">
       </dd>
     </dl>
 
     <dl>
       <dt th:text="#{비밀번호_확인}"></dt>
       <dd>
-        <input type="password" name="confirmPassword" th:field="*{confirmPassword}">
+        <input type="password" name="confirmPassword" th:field="*{confirmPassword}" placeholder="비밀번호를 한번 더 입력하세요">
       </dd>
     </dl>
 
@@ -51,9 +53,9 @@
     </dl>
 
     <dl>
-      <dt th:text="#{휴대전화}"></dt>
+      <dt th:text="#{이메일}"></dt>
       <dd>
-        <input type="text" name="tel" th:field="*{tel}" placeholder="( - ) 빼고 숫자만 입력">
+        <input type="text" name="email" th:field="*{email}" placeholder="이메일 주소를 입력하세요.">
       </dd>
     </dl>
 
@@ -61,11 +63,10 @@
       <dt th:text="#{회원종류}"></dt>
       <dd>
         <select name="authority" th:field="*{authority}">
-        <option name="authority" id="authority_USER" th:field="*{authority}" th:value="USER">일반회원</option>
-        <option name="authority" id="authority_TEACHER" th:field="*{authority}" th:value="TEACHER">교육자</option>
-        <option name="authority" id="authority_STUDENT" th:field="*{authority}" th:value="STUDENT">학습자</option>
+          <option name="authority" id="authority_USER" th:field="*{authority}" th:value="USER">일반회원</option>
+          <option name="authority" id="authority_TEACHER" th:field="*{authority}" th:value="TEACHER">교육자</option>
+          <option name="authority" id="authority_STUDENT" th:field="*{authority}" th:value="STUDENT">학습자</option>
         </select>
-
     </dl>
 
     <dl>
@@ -83,6 +84,20 @@
       <input type="checkbox" name="agree" value="true" id="agree" th:field="*{agree}">
       <label for="agree" th:text="#{회원가입_약관에_동의합니다.}"></label>
     </div>
+
+    <dl>
+      <dt th:text="#{회원명}"></dt>
+      <dd>
+        <input type="text" name="name" th:field="*{name}">
+      </dd>
+    </dl>
+
+    <dl>
+      <dt th:text="#{휴대전화}"></dt>
+      <dd>
+        <input type="text" name="tel" th:field="*{tel}" placeholder="( - ) 빼고 숫자만 입력">
+      </dd>
+    </dl>
 
     <button type="submit" th:utext="#{회원가입}"></button>
 
