@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <h2>게임 콘텐츠 조회</h2>
     <form method="post" autocomplete="off">
         <table border="1">
             <tr>
-                <th>선택</th>
                 <th>게임콘텐츠명</th>
                 <th>총게임레벨</th>
                 <th>구독 개월</th>
@@ -14,10 +14,11 @@
                 <th>할인율</th>
                 <th>판매가</th>
                 <th>패키지내용</th>
+                <th>수정</th>
+                <th>삭제</th>
             </tr>
 
             <tr th:each="item : ${items}" th:object="${item}">
-                <td><input type="checkbox" name="selectedItems" th:value="${item}" /></td>
                 <td th:text="*{gameTitle}"></td>
                 <td th:text="*{totalGameLevels}"></td>
                 <td th:text="*{subscriptionMonths}"></td>
@@ -27,6 +28,16 @@
                 <td th:text="*{discountRate}"></td>
                 <td th:text="*{salePrice}"></td>
                 <td th:text="*{packageContents}"></td>
+                <td>
+                    <a>
+                        <i class="xi-pen-o"></i>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{/admin/gamecontent/delete/{num}(num=*{num})}" onclick="return confirm('정말 삭제하시겠습니까?');">
+                        <i class="xi-trash"></i>
+                    </a>
+                </td>
             </tr>
         </table>
         <th:block th:replace="~{commons/_pagination::pagination}"></th:block>

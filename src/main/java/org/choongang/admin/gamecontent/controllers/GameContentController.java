@@ -3,15 +3,13 @@ package org.choongang.admin.gamecontent.controllers;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.choongang.admin.gamecontent.entities.GameContent;
+import org.choongang.admin.gamecontent.service.GameContentDeleteService;
 import org.choongang.admin.gamecontent.service.GameContentInfoService;
 import org.choongang.admin.gamecontent.service.GameContentSaveService;
 import org.choongang.commons.ListData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller("AdminGameContentController")
 @RequestMapping("/admin/gamecontent")
@@ -20,6 +18,7 @@ public class GameContentController {
 
     private final GameContentSaveService gameContentSaveService;
     private final GameContentInfoService gameContentInfoService;
+    private final GameContentDeleteService gameContentDeleteService;
 
     /**
      * 게임 콘텐츠 등록
@@ -55,8 +54,13 @@ public class GameContentController {
         model.addAttribute("pagination", data.getPagination());
 
         return "admin/gamecontent/list";
-
     }
 
+    @GetMapping("/delete/{num}")
+    public String delete(@PathVariable("num") Long num, Model model) {
+        gameContentDeleteService.delete(num);
+
+        return "redirect:/admin/gamecontent/list";
+    }
 
 }
