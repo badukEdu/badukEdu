@@ -56,11 +56,39 @@ public class GameContentController {
         return "admin/gamecontent/list";
     }
 
+    /**
+     * 단일 삭제
+     * @param num
+     * @param model
+     * @return
+     */
     @GetMapping("/delete/{num}")
     public String delete(@PathVariable("num") Long num, Model model) {
         gameContentDeleteService.delete(num);
 
         return "redirect:/admin/gamecontent/list";
     }
+
+    @GetMapping("/edit/{num}")
+    public String edit(@PathVariable("num") Long num, Model model) {
+
+        RequestGameContentData requestGameContentData = gameContentInfoService.getForm(num);
+        model.addAttribute("requestGameContentData", requestGameContentData);
+
+        return "admin/gamecontent/edit";
+    }
+
+    @PostMapping("/edit/{num}")
+    public String editPs(@Valid RequestGameContentData form,
+                         @PathVariable("num") Long num,
+                         Model model) {
+
+        form.setMode("edit");
+        form.setNum(num);
+        gameContentSaveService.save(form);
+
+        return "redirect:/admin/gamecontent/list";
+    }
+
 
 }

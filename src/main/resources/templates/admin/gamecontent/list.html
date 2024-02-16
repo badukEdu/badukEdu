@@ -29,7 +29,7 @@
                 <td th:text="*{salePrice}"></td>
                 <td th:text="*{packageContents}"></td>
                 <td>
-                    <a>
+                    <a th:href="@{/admin/gamecontent/edit/{num}(num=*{num})}">
                         <i class="xi-pen-o"></i>
                     </a>
                 </td>
