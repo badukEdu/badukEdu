@@ -24,6 +24,7 @@ public class Member extends Base {
   @Column(length = 30, nullable = false, unique = true)
   private String userId; //사용자 아이디
 //  @Column(length = 30, nullable = false, unique = true)
+  @Enumerated(EnumType.STRING)
   private Authority authority; //사용자 구분1(운영자 / 교육자 / 일반학습자 / 학생학습자)
 //  @Column
 //  private String type; //사용자 구분2(유료회원 / 무료회원)
@@ -38,6 +39,7 @@ public class Member extends Base {
 //  @Column
 //  private String phonNum; //집전화
   @Column(nullable = false)
+
   private String birth; //생년월일
   @Column
   private String gender; //성별 (M / F)
