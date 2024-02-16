@@ -9,7 +9,7 @@
             <tr th:each="item : ${items}" th:object="${item}">
                 <td>구매상품명</td>
                 <td>
-                    <input th:text="*{gameTitle}">
+                    <input th:value="*{gameTitle}">
                 </td>
             </tr>
             <tr>

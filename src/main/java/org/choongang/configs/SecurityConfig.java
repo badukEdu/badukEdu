@@ -19,6 +19,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
+
         /* 인증 설정 S - 로그인, 로그아웃 */
         http.formLogin(f -> {
             f.loginPage("/member/login")
@@ -58,6 +59,7 @@ public class SecurityConfig {
         });
 
         /* 인가 설정 E - 접근 통제 */
+
 
         http.headers(c -> c.frameOptions(f -> f.sameOrigin()));
 

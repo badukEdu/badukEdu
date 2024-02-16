@@ -1,80 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
     <h2>게임 콘텐츠 등록</h2>
-    <form method="post" th:action="@{/admin/gamecontent/add}" autocomplete="off"
-            th:object="${requestGameContentData}">
+    <form method="post" th:action="@{/admin/gamecontent/save}" autocomplete="off">
 
-        <table>
-            <tr>
-                <td>게임콘텐츠명</td>
-                <td>
-                    <input type="text" name="gameTitle">
-                </td>
-            </tr>
+        <input type="hidden" name="mode" value="add">
+        <th:block th:replace="~{admin/gamecontent/_form::form}"></th:block>
 
-            <tr>
-                <td>총게임레벨</td>
-                <td>
-                    <input type="text" name="totalGameLevels">
-                </td>
-            </tr>
-
-            <tr>
-                <td>구독개월</td>
-                <td>
-                    <input type="text" name="subscriptionMonths">
-                </td>
-            </tr>
-
-            <tr>
-                <td>구독가능기간</td>
-                <td>
-                    <input type="date" name="startDate">
-                    <input type="date" name="endDate">
-                </td>
-            </tr>
-
-            <tr>
-                <td>구독가능인원</td>
-                <td>
-                    <input type="text" name="maxSubscriber">
-                </td>
-            </tr>
-
-            <tr>
-                <td>정가</td>
-                <td>
-                    <input type="text" name="originalPrice">
-                </td>
-            </tr>
-
-            <tr>
-                <td>할인율</td>
-                <td>
-                    <input type="text" name="discountRate">
-                </td>
-            </tr>
-
-            <tr>
-                <td>판매가</td>
-                <td>
-                    <input type="text" name="salePrice">
-                </td>
-            </tr>
-
-            <tr>
-                <td>패키지내용</td>
-                <td>
-                    <input type="text" name="packageContents">
-                </td>
-            </tr>
-
-<!--            <tr>-->
-<!--                <td>썸네일</td>-->
-<!--                <td>-->
-<!--                    <input>-->
-<!--                </td>-->
-<!--            </tr>-->
-        </table>
-        <button type="submit">등록하기</button>
+        <div class="submit_btns">
+            <button type="reset" class="btn">다시입력</button>
+            <button type="submit" class="btn">등록하기</button>
+        </div>
     </form>
+</section>
+</html>
+

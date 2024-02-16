@@ -12,6 +12,8 @@ import org.choongang.admin.gamecontent.repositories.GameContentRepository;
 import org.choongang.commons.ListData;
 import org.choongang.commons.Pagination;
 import org.choongang.commons.Utils;
+import org.choongang.file.entities.FileInfo;
+import org.choongang.file.service.FileInfoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,15 +22,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
+
 import static org.springframework.data.domain.Sort.Order.desc;
 
 @Service
 @RequiredArgsConstructor
 public class GameContentInfoService {
 
+    private final FileInfoService fileInfoService;
     private final GameContentRepository gameContentRepository;
     private final HttpServletRequest request;
-
 
     /**
      * 게임 콘텐츠 검색
@@ -69,6 +73,8 @@ public class GameContentInfoService {
         Page<GameContent> data = gameContentRepository.findAll(andBuilder, pageable);
         int total = (int)gameContentRepository.count(andBuilder);
 
+        data.getContent().forEach(this::addInfo);
+
         Pagination pagination = new Pagination(page, total, limit, 20, request);
 
         return new ListData<>(data.getContent(), pagination);
@@ -76,7 +82,10 @@ public class GameContentInfoService {
 
     public GameContent getById(Long num) {
 
-        return gameContentRepository.getById(num);
+        GameContent data = gameContentRepository.getById(num);
+        addInfo(data);
+
+        return data;
     }
 
     public RequestGameContentData getForm(Long num) {
@@ -86,4 +95,9 @@ public class GameContentInfoService {
         return form;
     }
 
+    private void addInfo(GameContent data) {
+        List<FileInfo> items = fileInfoService.getListDone(data.getGid());
+        if(items != null && !items.isEmpty()) data.setThumbnail(items.get(0));
+
+    }
 }

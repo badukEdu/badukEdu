@@ -31,7 +31,7 @@
 
                 <tr th:each="item : ${items}" th:object="${item}">
                     <td>
-                        <input type="radio" name="selectedItems" th:value="${item}" />
+                        <input type="checkbox" name="chk" th:value="*{num}"/>
                     </td>
                     <td th:text="*{gameTitle}"></td>
                     <td th:text="*{originalPrice + '원' + startDate + '~' + endDate + '(' + subscriptionMonths + '개월)'}"></td>
@@ -41,4 +41,4 @@
             <button type="submit">구독하기</button>
 
             <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
-    </form>
+         </form>

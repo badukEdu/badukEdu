@@ -3,17 +3,23 @@ package org.choongang.admin.gamecontent.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.choongang.commons.entities.Base;
+import org.choongang.commons.entities.BaseMember;
+import org.choongang.file.entities.FileInfo;
 import org.choongang.member.entities.Member;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 @Data
-public class GameContent extends Base {
+public class GameContent extends BaseMember {
     @Id
     @GeneratedValue
     private Long num; // 게임 식별자, 자동 생성되는 고유한 번호 // pk
+
+    @Column(length = 65)
+    private String gid = UUID.randomUUID().toString();
+
     @Column
     private String gameTitle; // 게임콘텐츠명
     @Column
@@ -33,22 +39,19 @@ public class GameContent extends Base {
     @Column
     private String packageContents; // 패키지내용
     @Column
-    private String thumbnail; // 썸네일 (파일명)
-    @Column
-    private String fileAddress; // 썸네일 (파일명 경로)
-    @Column
     private boolean use;  // 삭제여부 (사용중 1 / 삭제 0)
 
     @Column
     private float discountRate; // 할인율
 
-///////////////////////
+    @Transient
+    private FileInfo thumbnail;
 
+///////////////////////
 
 @ManyToOne(fetch = FetchType.LAZY)
 @JoinColumn(name = "memberNum")
 private Member member; //작성자 회원번호
-
 
 //private List<StudyGroup> studyGroups;
 
