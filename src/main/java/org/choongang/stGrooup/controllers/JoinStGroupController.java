@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.choongang.commons.ListData;
 import org.choongang.stGrooup.entities.JoinStudyGroup;
 import org.choongang.stGrooup.entities.StudyGroup;
+import org.choongang.stGrooup.services.joinStG.JoinSTGSaveService;
 import org.choongang.stGrooup.services.stGroup.SGInfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import java.util.List;
 public class JoinStGroupController {
 
     private final SGInfoService sgInfoService;
+    private final JoinSTGSaveService joinSTGSaveService;
 
     /**
      * 스터디그룹 목록
@@ -45,12 +47,12 @@ public class JoinStGroupController {
                        @RequestParam(name = "chk" ) List<Long> chks ,
                        @RequestParam(name = "userNum" ) Long userNum){
 
-
+        joinSTGSaveService.save(chks,userNum);
 
         ListData<StudyGroup> data = sgInfoService.getList(search);
         model.addAttribute("list" , data.getItems());
         model.addAttribute("pagination", data.getPagination());
-        return "front/user/studyGroup/join";
+        return "front/user/studyGroup/test";
 
     }
 

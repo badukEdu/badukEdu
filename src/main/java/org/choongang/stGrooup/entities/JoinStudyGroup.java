@@ -1,6 +1,7 @@
 package org.choongang.stGrooup.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import org.choongang.member.entities.Member;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -8,6 +9,7 @@ import org.springframework.data.annotation.CreatedDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Data
 public class JoinStudyGroup {
 
     @Id
