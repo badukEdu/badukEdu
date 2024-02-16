@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<h1>스터디그룹 목록</h1>
+<h1>스터디그룹 가입신청 / UI-W-006 </h1>
 <hr>
-<form method="get" th:action="@{/studyGroup}" th:object="${stGroupSearch}" >
+<form method="get" th:action="@{/JoinStudyGroup}" th:object="${stGroupSearch}" >
     <table >
         <tr>
-            <th>키워드</th>
+            <th>키워드(user 완성되면 -> 교육자명으로 검색 가능하도록)</th>
             <td>
                 <select name="sopt">
                     <option value="ALL" th:field="*{sopt}">통합검색</option>
                     <option value="groupName" th:field="*{sopt}">스터디그룹명</option>
-                    <option value="gameName" th:field="*{sopt}">게임컨텐츠명</option>
+
                 </select>
                 <input type="text" name="skey" th:field="*{skey}">
             </td>
@@ -20,48 +20,40 @@
             </td>
         </tr>
     </table>
-
-    <div th:replace="~{front/teacher/studyGroup/detail::detail}"></div>
-
 </form>
 <hr>
+
 <table border="1">
     <tr>
         <th>선택</th>
+        <th>게임 컨텐츠 이미지</th>
         <th>스터디그룹명</th>
-        <th>게임컨텐츠명</th>
-        <th>그룹 T/O(등록 가능 인원?)</th>
-        <th>구독기간</th>
-        <th>달성레벨</th>
-        <th>가입학생수</th>
-        <th>수정 / 삭제</th>
+        <th>교육자명</th>
+        <th>기간</th>
+        <th>잔여 T/O</th>
+
     </tr>
-    <form method="post" th:action="@{/studyGroup}" autocomplete="off">
-        <input type="hidden" name="_method" value="delete">
+    <form method="post" th:action="@{/JoinStudyGroup/join}" autocomplete="off">
+    <!--<input type="hidden" name="userNum" th:value="${session.member.num}">-->
+        <input type="hidden" name="userNum" value="0000">
         <tr th:each="item : ${list}" th:object="${item}">
             <td><input type="checkbox" name="chk" th:value="*{num}"></td>
-            <td > <a th:href="@{/studyGroup/detail/{num}(num=*{num})}" th:text="*{name}"></a></td>
-            <td >*{gameContent.gameTitle}</td>
-            <td th:text="*{maxSubscriber}"></td>
+            <td >게임 컨텐츠 이미지 처리 완료되면 -> 이미지 띄우기</td>
+            <td th:text="*{name}"></td>
+            <td >user 완성되면 -> 교육자명</td>
             <td th:text="*{startDate+' ~ '+endDate}"></td>
-            <td th:text="*{maxLevel}"></td>
-            <td >JoinStudyGroup / fidbyId로 count값</td>
-            <th>
-                <a th:href="@{/studyGroup/edit/{num}(num=*{num})}">수정</a>
-                /
-                <a th:href="@{/studyGroup/delete/{num}(num=*{num})}">삭제</a>
-            <th>
+            <td >구독 부분 완료되면 -> 총 인원 - 현재인원 </td>
         </tr>
-        <tr>
-            <td>
-                <a th:href="@{/studyGroup/add}">생성</a>
+        <tr >
+            <td colspan="6">
+                <button type="submit">가입하기</button>
             </td>
-            <td>
-                <button type="submit">선택삭제</button>
-            </td>
+
         </tr>
+
     </form>
 </table>
+<th:block th:replace="~{commons/_pagination::pagination}"></th:block>
 
 
 
