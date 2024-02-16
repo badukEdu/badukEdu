@@ -56,8 +56,10 @@ public class StGroupController {
     @GetMapping("/detail/{num}")
     public String detail(@PathVariable("num") Long num, Model model, @ModelAttribute StGroupSearch search){
 
-        model.addAttribute("list" , sgInfoService.getList(search));
+        model.addAttribute("list" , sgInfoService.getList(search).getItems());
         model.addAttribute("item" , sgInfoService.getForm(num));
+
+
 
         return "front/teacher/studyGroup/detail";
     }
@@ -72,7 +74,7 @@ public class StGroupController {
     @GetMapping("/detail")
     public String detail2(@RequestParam("num") Long num, Model model, @ModelAttribute StGroupSearch search){
 
-        model.addAttribute("list" , sgInfoService.getList(search));
+        model.addAttribute("list" , sgInfoService.getList(search).getItems());
         model.addAttribute("item" , sgInfoService.getForm(num));
 
         return "front/teacher/studyGroup/detail";
