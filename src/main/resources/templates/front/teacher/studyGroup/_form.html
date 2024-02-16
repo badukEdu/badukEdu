@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:div th:fragment="form" th:if="${requestStGroup != null}" th:object="${requestStGroup}">
-    <h1>UI-W-010</h1>
+
+
     <div th:if="${mode == 'edit'}">
         <input type="hidden" name="num" th:value="*{num}">
     </div>
@@ -16,7 +17,7 @@
             <th>(스터디그룹)그룹 배정 인원 ???</th>
             <th>잔여분M/M ???</th>
         </tr>
-        <tr th:each="game : ${gameList}" th:object="${game}">
+        <tr th:each="game : ${items}" th:object="${game}">
             <td>
                 <input type="radio" name="num" th:value="*{num}">
             </td>
@@ -30,6 +31,6 @@
     </table>
     <div th:text="${emsg}"></div>
     <hr>
-
+    <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
 </th:div>
 </html>

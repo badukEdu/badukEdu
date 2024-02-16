@@ -3,6 +3,10 @@ package org.choongang.stGrooup.controllers;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.choongang.admin.gamecontent.controllers.GameContentSearch;
+import org.choongang.admin.gamecontent.entities.GameContent;
+import org.choongang.admin.gamecontent.service.GameContentInfoService;
+import org.choongang.commons.ListData;
 import org.choongang.stGrooup.entities.StudyGroup;
 import org.choongang.stGrooup.services.stGroup.SGDeleteService;
 import org.choongang.stGrooup.services.stGroup.SGInfoService;
@@ -25,6 +29,7 @@ public class StGroupController {
     private final SGDeleteService sgDeleteService;
     private final vetaGameInfo vetaGameInfo; //게임 인포서비스 만들어지면 이거 지워야함
     private final HttpSession session;
+    private final GameContentInfoService gameContentInfoService;
 
     /**
      * 스터디 그룹 목록
@@ -35,9 +40,9 @@ public class StGroupController {
     @GetMapping
     public String list(Model model , @ModelAttribute StGroupSearch search){
 
-        List<StudyGroup> list = sgInfoService.getList(search);
-        model.addAttribute("list" , list);
-
+        ListData<StudyGroup> data = sgInfoService.getList(search);
+        model.addAttribute("list" , data.getItems());
+        model.addAttribute("pagination", data.getPagination());
         return "front/teacher/studyGroup/list";
     }
 
@@ -80,9 +85,13 @@ public class StGroupController {
      * @return
      */
     @GetMapping("/add")
-    public String add1(Model model , @ModelAttribute RequestStGroup form){
+    public String add1(Model model , @ModelAttribute RequestStGroup form ,@ModelAttribute GameContentSearch search){
         model.addAttribute("mode" , "add1");
-        model.addAttribute("gameList" , vetaGameInfo.getList());
+
+        ListData<GameContent> data = gameContentInfoService.getList(search);
+        model.addAttribute("items" , data.getItems());
+        model.addAttribute("pagination" , data.getPagination());
+
         return "front/teacher/studyGroup/add";
     }
 
