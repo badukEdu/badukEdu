@@ -177,7 +177,7 @@ public class StGroupController {
             for(Long n : chks){
                 sgDeleteService.delete(n);
             }
-        return "redirect:/studyGroup";
+        return "redirect:/studyGroup" ;
     }
 
 }
