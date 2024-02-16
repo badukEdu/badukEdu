@@ -16,8 +16,8 @@ public class JoinSTGSaveService {
 
 
     private final JoinStGroupRepository joinStGroupRepository;
-
     private final SGInfoService sgInfoService;
+    private final JoinSTGInfoService joinSTGInfoService;
 
     public void save(List<Long> chks , Long userNum){
 
@@ -31,4 +31,18 @@ public class JoinSTGSaveService {
         }
 
     }
+
+    public void accept(List<Long> chks ){
+
+        for(Long num : chks){
+            JoinStudyGroup jsg = joinStGroupRepository.getById(num);
+            if(jsg != null){
+                jsg.setAccept(true);
+                joinStGroupRepository.saveAndFlush(jsg);
+                System.out.println("승인완료");
+            }
+        }
+
+    }
+
 }

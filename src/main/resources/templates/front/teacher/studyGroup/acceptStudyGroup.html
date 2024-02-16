@@ -27,28 +27,24 @@
 
 <table border="1">
     <tr>
-        <th>선택</th>
-        <th>게임 컨텐츠 이미지</th>
-        <th>스터디그룹명</th>
-        <th>교육자명</th>
-        <th>기간</th>
-        <th>잔여 T/O</th>
+        <th>승인여부</th>
+        <th>No</th>
+        <th>학생이름</th>
+        <th>연락처</th>
+        <th>승인요청일자</th>
 
     </tr>
-    <form method="post" th:action="@{/JoinStudyGroup/join}" autocomplete="off">
+    <form method="post" th:action="@{/JoinStudyGroup/accept}" autocomplete="off">
         <!--<input type="hidden" name="userNum" th:value="${session.member.num}">-->
-        <input type="hidden" name="userNum" value="0000">
         <tr th:each="item : ${list}" th:object="${item}">
             <td><input type="checkbox" name="chk" th:value="*{num}"></td>
-            <td >게임 컨텐츠 이미지 처리 완료되면 -> 이미지 띄우기</td>
-            <td th:text="*{name}"></td>
-            <td >user 완성되면 -> 교육자명</td>
-            <td th:text="*{startDate+' ~ '+endDate}"></td>
-            <td >구독 부분 완료되면 -> 총 인원 - 현재인원 </td>
+            <td >th:text="*{member.name}"</td>
+            <td >th:text="*{member.tel}"</td>
+            <td >th:text="*{createAt}"</td>
         </tr>
         <tr >
             <td colspan="6">
-                <button type="submit">가입하기</button>
+                <button type="submit">가입 승인</button>
             </td>
 
         </tr>
