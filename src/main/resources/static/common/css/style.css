@@ -1,6 +1,0 @@
-/* test 페이징 test S */
-.pagination { text-align: center; margin: 30px 0; }
-.pagination .page { border: 1px solid #3e90d5; color: #3e90d5; display: inline-block; padding: 5px 10px; border-radius: 3px; background: #fff; }
-.pagination .page.on { background: #3e90d5; color: #fff; }
-.pagination .page + .page { margin-left: 3px; }
-/* tset 페이징 test E */

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="pagination" th:if="${pagination != null}" th:object="${pagination}">
-    <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css}">
 
     <div class="pagination">
         <th:block th:if="*{prevRangePage > 0}">
