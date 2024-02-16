@@ -5,12 +5,14 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.choongang.admin.gamecontent.controllers.GameContentSearch;
+import org.choongang.admin.gamecontent.controllers.RequestGameContentData;
 import org.choongang.admin.gamecontent.entities.GameContent;
 import org.choongang.admin.gamecontent.entities.QGameContent;
 import org.choongang.admin.gamecontent.repositories.GameContentRepository;
 import org.choongang.commons.ListData;
 import org.choongang.commons.Pagination;
 import org.choongang.commons.Utils;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -70,6 +72,18 @@ public class GameContentInfoService {
         Pagination pagination = new Pagination(page, total, limit, 20, request);
 
         return new ListData<>(data.getContent(), pagination);
+    }
+
+    public GameContent getById(Long num) {
+
+        return gameContentRepository.getById(num);
+    }
+
+    public RequestGameContentData getForm(Long num) {
+        GameContent data = getById(num);
+        RequestGameContentData form = new ModelMapper().map(data, RequestGameContentData.class);
+        form.setNum(data.getNum());
+        return form;
     }
 
 }

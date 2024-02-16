@@ -7,6 +7,10 @@ import java.time.LocalDate;
 
 @Data
 public class RequestGameContentData {
+
+    private Long num;
+    private String mode = "add";
+
     private String gameTitle; // 게임콘텐츠명
     private Long totalGameLevels; // 총게임레벨
     private int subscriptionMonths; // 구독개월
