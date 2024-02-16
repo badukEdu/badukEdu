@@ -1,11 +1,17 @@
 package org.choongang.stGrooup.services.stGroup;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Order;
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.choongang.commons.ListData;
+import org.choongang.commons.Pagination;
+import org.choongang.commons.Utils;
 import org.choongang.stGrooup.controllers.RequestStGroup;
 import org.choongang.stGrooup.controllers.StGroupSearch;
 import org.choongang.stGrooup.entities.QStudyGroup;
@@ -15,6 +21,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.net.http.HttpRequest;
 import java.util.List;
 
 @Service
@@ -23,9 +30,16 @@ public class SGInfoService {
 
     private final StGroupRepository stGroupRepository;
     private final EntityManager em;
+    private final HttpServletRequest request;
 
 
-    public List<StudyGroup> getList(StGroupSearch search){
+    public ListData<StudyGroup> getList(StGroupSearch search){
+
+        int page = Utils.onlyPositiveNumber(search.getPage(), 1);
+        /*페이지 블럭 수*/
+        int limit = Utils.onlyPositiveNumber(search.getLimit(), 4);
+        int offset = (page - 1) * limit; // 레코드 시작 위치
+
 
         QStudyGroup studyGroup = QStudyGroup.studyGroup;
        // QGameContent gameTitle = QGameContent.gameTitle;
@@ -55,11 +69,14 @@ public class SGInfoService {
 
         List<StudyGroup> items = new JPAQueryFactory(em)
                 .selectFrom(studyGroup)
+                .offset(offset)
+                .limit(limit)
                 .where(andBuilder)
                 .fetch();
+            long total = stGroupRepository.count(andBuilder);
+            Pagination pagination = new Pagination(page, (int)total, 5, limit, request);
 
-
-            return items;
+            return new ListData <> (items , pagination);
     }
 
     public StudyGroup getById(Long num){
