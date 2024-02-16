@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.choongang.member.constants.Authority;
 import org.choongang.member.controllers.JoinValidator;
 import org.choongang.member.controllers.RequestJoin;
-import org.choongang.member.entities.Authorities;
 import org.choongang.member.entities.Member;
 import org.choongang.member.repositories.AuthoritiesRepository;
 import org.choongang.member.repositories.MemberRepository;
@@ -41,14 +40,14 @@ public class JoinService {
     member.setTel(form.getTel());
     member.setBirth(form.getBDay());
     member.setAgree(form.isAgree());
-    member.setAuthority(Authority.valueOf(String.valueOf(form.getAuthority())));
+    member.setAuthority(Authority.valueOf(form.getAuthority()));
 
     process(member);
 
-    Authorities authorities = new Authorities();
-    authorities.setMember(member);
-    authorities.setAuthority(Authority.USER);
-    authoritiesRepository.saveAndFlush(authorities);
+//    Authorities authorities = new Authorities();
+//    authorities.setMember(member);
+//    authorities.setAuthority(Authority.USER);
+//    authoritiesRepository.saveAndFlush(authorities);
 
   }
 

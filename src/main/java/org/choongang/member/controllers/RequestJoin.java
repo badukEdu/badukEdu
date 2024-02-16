@@ -1,5 +1,7 @@
 package org.choongang.member.controllers;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -37,7 +39,7 @@ public class RequestJoin {
 
   private String gender;
 
-  private Authority authority;
+  private String authority;
 
   @AssertTrue
   private boolean agree;  // 이용 동의

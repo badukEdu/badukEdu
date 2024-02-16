@@ -21,9 +21,9 @@
             </th:block>
             <th:block sec:authorize="isAuthenticated()"> <!-- 로그인 상태 -->
 
-                <th:block th:if="${session.member.profileImage != null}"
-                          th:utext="${@utils.printThumb(session.member.profileImage.seq, 80, 80, 'profile_image')}">
-                    ></th:block>
+<!--                <th:block th:if="${session.member.profileImage != null}"-->
+<!--                          th:utext="${@utils.printThumb(session.member.profileImage.seq, 80, 80, 'profile_image')}">-->
+<!--                    ></th:block>-->
 
                 <span th:text="${#messages.msg('LOGIN_MSG', session.member.name, session.member.userId)}"></span>
                 <a th:href="@{/mypage}">

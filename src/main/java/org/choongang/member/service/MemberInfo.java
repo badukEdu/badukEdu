@@ -17,6 +17,8 @@ public class MemberInfo implements UserDetails {
     private String userId;
     private String password;
     private Member member;
+    private boolean enable;
+    private boolean lock;
 
     private Collection<? extends GrantedAuthority> authorities;
 
@@ -42,7 +44,7 @@ public class MemberInfo implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
@@ -52,7 +54,6 @@ public class MemberInfo implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return enable;
     }
-
 }

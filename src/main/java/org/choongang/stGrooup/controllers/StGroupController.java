@@ -56,8 +56,10 @@ public class StGroupController {
     @GetMapping("/detail/{num}")
     public String detail(@PathVariable("num") Long num, Model model, @ModelAttribute StGroupSearch search){
 
-        model.addAttribute("list" , sgInfoService.getList(search));
+        model.addAttribute("list" , sgInfoService.getList(search).getItems());
         model.addAttribute("item" , sgInfoService.getForm(num));
+
+
 
         return "front/teacher/studyGroup/detail";
     }
@@ -72,7 +74,7 @@ public class StGroupController {
     @GetMapping("/detail")
     public String detail2(@RequestParam("num") Long num, Model model, @ModelAttribute StGroupSearch search){
 
-        model.addAttribute("list" , sgInfoService.getList(search));
+        model.addAttribute("list" , sgInfoService.getList(search).getItems());
         model.addAttribute("item" , sgInfoService.getForm(num));
 
         return "front/teacher/studyGroup/detail";
@@ -104,11 +106,11 @@ public class StGroupController {
      */
     @PostMapping("/add2")
     public String add2(Model model , @ModelAttribute RequestStGroup form
-            , @RequestParam(name = "num" , required = false) Long num){
+            , @RequestParam(name = "num" , required = false) Long num,@ModelAttribute GameContentSearch search){
 
         if(num == null){
             model.addAttribute("mode" , "add1");
-            model.addAttribute("gameList" , vetaGameInfo.getList());
+            model.addAttribute("items" ,  gameContentInfoService.getList(search).getItems());
             model.addAttribute("emsg" , "게임 컨텐츠를 선택하세요");
             return "front/teacher/studyGroup/add";
         }
