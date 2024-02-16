@@ -27,6 +27,7 @@ public class StGroupController {
     private final vetaGameInfo vetaGameInfo; //게임 인포서비스 만들어지면 이거 지워야함
     private final HttpSession session;
 
+
     /**
      * 스터디 그룹 목록
      * @param model
