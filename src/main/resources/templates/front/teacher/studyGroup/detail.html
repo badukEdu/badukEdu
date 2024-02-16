@@ -4,15 +4,17 @@
 
 
 
-<form th:action="@{/studyGroup/detail}">
-    <select name="num" >
-        <option th:each="stGroup : ${list}" th:value="${stGroup.num}" th:text="${stGroup.name}" th:field="${item.num}"></option>
+<form th:action="@{/studyGroup/detail}" th:object="${item}">
+   <select name="num" th:field="*{num}">
+        <option th:each="stGroup : ${list}"  th:value="${stGroup.num}" th:text="${stGroup.name}" ></option>
     </select>
     <button type="submit">상세 조회</button>
 </form>
 
 <div th:replace="~{front/teacher/studyGroup/_detail::detail}"></div>
 <hr>
+<h1>더미데이터라 고정돼있음</h1>
+<h2>해당 스터디그룹 가입 학생 목록</h2>
 <table border="1">
     <tr>
 
