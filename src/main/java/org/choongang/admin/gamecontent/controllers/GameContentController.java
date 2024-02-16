@@ -9,7 +9,12 @@ import org.choongang.admin.gamecontent.service.GameContentSaveService;
 import org.choongang.commons.ListData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller("AdminGameContentController")
 @RequestMapping("/admin/gamecontent")
@@ -27,13 +32,36 @@ public class GameContentController {
      * @return
      */
     @GetMapping("/add")
-    public String add(@ModelAttribute GameContent form, Model model) {
+    public String add(@ModelAttribute RequestGameContentData form, Model model) {
+        commonProcess("add", model);
 
         return "admin/gamecontent/add";
     }
 
-    @PostMapping("/add")
-    public String addPs(@Valid RequestGameContentData form, Model model) {
+    @GetMapping("/edit/{num}")
+    public String edit(@PathVariable("num") Long num, Model model) {
+
+        RequestGameContentData form = gameContentInfoService.getForm(num);
+        model.addAttribute("requestGameContentData", form);
+
+        return "admin/gamecontent/edit";
+    }
+
+    @PostMapping("/edit/{num}")
+    public String editPs(@PathVariable("num") Long num, Model model) {
+        commonProcess("edit", model);
+
+        return "admin/gamecontent/edit";
+    }
+
+    @PostMapping("/save")
+    public String save(@Valid RequestGameContentData form, Errors errors, Model model) {
+        String mode = form.getMode();
+        commonProcess(mode, model);
+
+        if(errors.hasErrors()) {
+            return "admin/gamecontent/" + mode;
+        }
 
         gameContentSaveService.save(form);
 
@@ -69,6 +97,7 @@ public class GameContentController {
         return "redirect:/admin/gamecontent/list";
     }
 
+    /*
     @GetMapping("/edit/{num}")
     public String edit(@PathVariable("num") Long num, Model model) {
 
@@ -90,5 +119,19 @@ public class GameContentController {
         return "redirect:/admin/gamecontent/list";
     }
 
+     */
 
+    private void commonProcess(String mode, Model model) {
+        mode = StringUtils.hasText(mode) ? mode : "add";
+
+        List<String> addCommonScript = new ArrayList<>();
+        List<String> addScript = new ArrayList<>();
+        if (mode.equals("add") || mode.equals("edit")) {
+            addCommonScript.add("fileManager");
+            addScript.add("gamecontent/form");
+        }
+
+        model.addAttribute("addCommonScript", addCommonScript);
+        model.addAttribute("addScript", addScript);
+    }
 }

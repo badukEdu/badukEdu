@@ -16,6 +16,8 @@ public class SecurityConfig { // spring security 무력화?
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
+        http.headers(c -> c.frameOptions(f -> f.sameOrigin()));
+
         return http.build();
     }
 

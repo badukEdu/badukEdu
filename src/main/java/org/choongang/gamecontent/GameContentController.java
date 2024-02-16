@@ -18,6 +18,13 @@ public class GameContentController {
 
     private final GameContentInfoService gameContentInfoService;
 
+    /**
+     * 구독 할 게임콘텐츠 리스트
+     * @param form
+     * @param search
+     * @param model
+     * @return
+     */
     @GetMapping("/subscribe")
     public String subscribe(@ModelAttribute GameContent form,
                             GameContentSearch search,
@@ -30,6 +37,12 @@ public class GameContentController {
         return "front/teacher/gamecontent/subscribe";
     }
 
+    /**
+     * 결제 할 게임콘텐츠 리스트
+     * @param search
+     * @param model
+     * @return
+     */
     @GetMapping("/payment")
     public String payment(@ModelAttribute GameContentSearch search , Model model) {
 
@@ -40,6 +53,12 @@ public class GameContentController {
         return "front/teacher/gamecontent/payment";
     }
 
+    /**
+     * 결제 완료한 게임 콘텐츠 리스트
+     * @param search
+     * @param model
+     * @return
+     */
     @GetMapping("/list")
     public String list(@ModelAttribute GameContentSearch search, Model model) {
 
