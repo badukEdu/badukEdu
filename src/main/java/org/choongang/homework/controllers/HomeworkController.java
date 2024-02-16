@@ -3,8 +3,10 @@ package org.choongang.homework.controllers;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.choongang.homework.entities.Homework;
+import org.choongang.homework.entities.TrainingData;
 import org.choongang.homework.service.HomeworkInfoService;
 import org.choongang.homework.service.HomeworkSaveService;
+import org.choongang.member.MemberUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +20,19 @@ public class HomeworkController {
 
     private final HomeworkSaveService homeworkSaveService;
     private final HomeworkInfoService homeworkInfoService;
+    private final MemberUtil memberUtil;
+
     @GetMapping
-    public String homework(@ModelAttribute Homework form, Model model) {
-        // List 뽑아서 model에 담아서 이동하는 코드...
-        // getList 설정추가필요
+    public String homework(Model model) {
+
+        // 내가(한 교육자가) 담당하는 그룹만 조회할 수 있도록
+        /*
+        Member member = memberUtil.getMember();
+
+        List<Homework> items = homeworkInfoService.getList(member.getNum());
+         */
         List<Homework> items = homeworkInfoService.getList();
         model.addAttribute("items", items);
-
 
         return "front/teacher/homework/list";
     }
@@ -38,10 +46,8 @@ public class HomeworkController {
     }
     @PostMapping("/add")
     public String addPs(@Valid RequestHomework form, Model model) {
-        // 등록 버튼 후
 
         homeworkSaveService.save(form);
-
 
         return "redirect:/homework";
     }
@@ -75,15 +81,18 @@ public class HomeworkController {
     public String homeworkList() {
         return "/front/user/homework/list";
     }
-    @GetMapping("/submit")
-    public String submit() {
 
-        return "front/user/homework/";
+    @GetMapping("/submit/{num}")
+    public String submit(@PathVariable("num") Long num, @ModelAttribute TrainingData trainingData, Model model) {
+        model.addAttribute("trainingData", trainingData);
+        return "front/user/homework/homework";
     }
 
     @PostMapping("/submit")
     public String submitPs() {
 
-        return "redirect:/";
+
+
+        return "redirect:/homework/list";
     }
 }

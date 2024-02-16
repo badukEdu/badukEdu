@@ -4,15 +4,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.choongang.commons.entities.Base;
 import org.choongang.member.entities.Member;
-
 import org.choongang.stGrooup.entities.StudyGroup;
-import org.choongang.stGrooup.entities.TrainingData;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -28,7 +23,7 @@ public class Homework extends Base {
     @Column
     private String content; // 숙제내용
 
-    @Column
+    @Column()
     private int studyLevel; // 숙제레벨
 
     @Column
