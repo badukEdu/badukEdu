@@ -39,8 +39,7 @@ public class RequestJoin {
 
   private String gender;
 
-  @Enumerated(EnumType.STRING)
-  private Authority authority;
+  private String authority;
 
   @AssertTrue
   private boolean agree;  // 이용 동의
