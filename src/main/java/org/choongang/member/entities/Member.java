@@ -10,7 +10,7 @@ import org.choongang.homework.entities.Homework;
 import org.choongang.member.constants.Authority;
 import org.choongang.stGrooup.entities.JoinStudyGroup;
 import org.choongang.stGrooup.entities.StudyGroup;
-import org.choongang.stGrooup.entities.TrainingData;
+import org.choongang.homework.entities.TrainingData;
 
 import java.util.List;
 
