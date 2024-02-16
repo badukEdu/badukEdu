@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<h2>숙제 전송</h2>
+<form method="post" th:action="@{/homework/post}" autocomplete="off">
+    <table>
+        <tbody>
+            <tr>
+                <th>교육자가 관리하는 숙제 목록...</th>
+            </tr>
+            <tr>
+                <td>
+                    목록들...
+                </td>
+            </tr>
+        </tbody>
+        <tbody>
+        <tr>
+            <th>교육자가 관리하는 학습그룹 목록...</th>
+        </tr>
+        <tr>
+            <td>
+                목록들...
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="reset">다시하기</button>
+    <button type="submit">등록</button>
+</form>
+</html>
