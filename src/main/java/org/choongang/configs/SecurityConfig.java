@@ -40,22 +40,22 @@ public class SecurityConfig {
         // hasAuthority('ADMIN')
         // ROLE_ADMIN -> hasAuthority('ROLE_ADMIN')
         // hasRole('ADMIN')
-        http.authorizeHttpRequests(c -> {
-            c.requestMatchers("/").authenticated() // 회원 전용
-                //.requestMatchers("/admin/**").hasAnyAuthority("ADMIN", "MANAGER")
-                .anyRequest().permitAll(); // 그외 모든 페이지는 모두 접근 가능
-        });
-
-        http.exceptionHandling(c -> {
-            c.authenticationEntryPoint((req, res, e) -> {
-                String URL = req.getRequestURI();
-                if (URL.indexOf("/admin") != -1) { // 관리자 페이지
-                    res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-                } else { // 회원전용 페이지
-                    res.sendRedirect(req.getContextPath() + "/member/login");
-                }
-            });
-        });
+//        http.authorizeHttpRequests(c -> {
+//            c.requestMatchers("/").authenticated() // 회원 전용
+//                //.requestMatchers("/admin/**").hasAnyAuthority("ADMIN", "MANAGER")
+//                .anyRequest().permitAll(); // 그외 모든 페이지는 모두 접근 가능
+//        });
+//
+//        http.exceptionHandling(c -> {
+//            c.authenticationEntryPoint((req, res, e) -> {
+//                String URL = req.getRequestURI();
+//                if (URL.indexOf("/admin") != -1) { // 관리자 페이지
+//                    res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+//                } else { // 회원전용 페이지
+//                    res.sendRedirect(req.getContextPath() + "/member/login");
+//                }
+//            });
+//        });
 
         /* 인가 설정 E - 접근 통제 */
 
