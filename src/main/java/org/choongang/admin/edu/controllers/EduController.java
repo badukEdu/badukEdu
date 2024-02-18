@@ -66,7 +66,7 @@ public class EduController {
         return "admin/edu/edit";
     }
 
-    @PostMapping("save")
+    @PostMapping("/save")
     public String save(@Valid RequestEduData form, Errors errors, Model model) {
         String mode = form.getMode();
         commonProcess(mode, model);

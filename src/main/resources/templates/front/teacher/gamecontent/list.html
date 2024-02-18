@@ -5,7 +5,8 @@
         <table border="1">
             <tr>
                 <th>번호</th>
-                <th>콘텐츠명(이미지 기능구현이 안되서 잠시 대체)</th>
+                <th>콘텐츠명</th>
+                <th>콘텐츠이미지</th>
                 <th>가격/구독기간</th>
                 <th>구매일자</th>
                 <th>학습그룹 등록내역</th>
@@ -14,6 +15,9 @@
             <tr th:each="item : ${items}" th:object="${item}">
                 <td th:text="*{num}"></td>
                 <td th:text="*{gameTitle}"></td>
+                <td>
+                    <th:block th:if="*{thumbnail != null}" th:utext="*{@utils.printThumb(thumbnail.seq, 100, 100, 'image')}"></th:block>
+                </td>
                 <td th:text="*{originalPrice + '원' + startDate + '~' + endDate + '(' + subscriptionMonths + '개월)'}"></td>
                 <td>구매일자</td>
                 <td>학습그룹 등록내역</td>

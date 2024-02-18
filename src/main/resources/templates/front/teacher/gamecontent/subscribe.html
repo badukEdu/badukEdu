@@ -24,7 +24,8 @@
             <table border="1">
                 <tr>
                     <th>선택</th>
-                    <th>게임콘텐츠명(콘텐츠 이미지 대체, 이미지 기능구현 완료되면 변경)</th>
+                    <th>게임콘텐츠명</th>
+                    <th>콘텐츠이미지</th>
                     <th>가격 / 구독가능기간</th>
                     <th>상품소개</th>
                 </tr>
@@ -34,6 +35,9 @@
                         <input type="checkbox" name="chk" th:value="*{num}"/>
                     </td>
                     <td th:text="*{gameTitle}"></td>
+                    <td>
+                        <th:block th:if="*{thumbnail != null}" th:utext="*{@utils.printThumb(thumbnail.seq, 100, 100, 'image')}"></th:block>
+                    </td>
                     <td th:text="*{originalPrice + '원' + startDate + '~' + endDate + '(' + subscriptionMonths + '개월)'}"></td>
                     <td th:text="*{packageContents}"></td>
                 </tr>

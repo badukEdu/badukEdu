@@ -13,14 +13,14 @@ public class RequestEduData {
     private String gid = UUID.randomUUID().toString();
 
     @NotBlank
-    private String name;
+    private String name; // 학습자료명
 
-    private String dataType;
-    private String contentType;
-    private String serviceType;
-    private String fileAddress;
+    private String dataType; // 자료구분
+    private String contentType; // 자료유형
+    private String fileAddress; // 자료 file주소
+    private String serviceType; // 서비스구분
 
     @NotBlank
-    private String content;
-//    private String thumbnail;
+    private String content; // 자료내용
+//    private FileInfo thumbnail;
 }
