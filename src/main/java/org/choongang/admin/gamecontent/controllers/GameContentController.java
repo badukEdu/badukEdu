@@ -38,6 +38,12 @@ public class GameContentController {
         return "admin/gamecontent/add";
     }
 
+    /**
+     * 게임 컨텐츠 수정
+     * @param num
+     * @param model
+     * @return
+     */
     @GetMapping("/edit/{num}")
     public String edit(@PathVariable("num") Long num, Model model) {
 
@@ -97,6 +103,20 @@ public class GameContentController {
         return "redirect:/admin/gamecontent/list";
     }
 
+    private void commonProcess(String mode, Model model) {
+        mode = StringUtils.hasText(mode) ? mode : "add";
+
+        List<String> addCommonScript = new ArrayList<>();
+        List<String> addScript = new ArrayList<>();
+        if (mode.equals("add") || mode.equals("edit")) {
+            addCommonScript.add("fileManager");
+            addScript.add("gamecontent/form");
+        }
+
+        model.addAttribute("addCommonScript", addCommonScript);
+        model.addAttribute("addScript", addScript);
+    }
+
     /*
     @GetMapping("/edit/{num}")
     public String edit(@PathVariable("num") Long num, Model model) {
@@ -119,19 +139,5 @@ public class GameContentController {
         return "redirect:/admin/gamecontent/list";
     }
 
-     */
-
-    private void commonProcess(String mode, Model model) {
-        mode = StringUtils.hasText(mode) ? mode : "add";
-
-        List<String> addCommonScript = new ArrayList<>();
-        List<String> addScript = new ArrayList<>();
-        if (mode.equals("add") || mode.equals("edit")) {
-            addCommonScript.add("fileManager");
-            addScript.add("gamecontent/form");
-        }
-
-        model.addAttribute("addCommonScript", addCommonScript);
-        model.addAttribute("addScript", addScript);
-    }
+    */
 }

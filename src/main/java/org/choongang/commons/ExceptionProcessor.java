@@ -34,7 +34,7 @@ public interface ExceptionProcessor {
             }
 
             model.addAttribute("script", script);
-            return "common/_execute_script";
+            return "commons/_execute_script";
         }
 
         model.addAttribute("status", status.value());

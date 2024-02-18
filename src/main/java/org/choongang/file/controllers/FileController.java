@@ -30,7 +30,7 @@ public class FileController implements ExceptionProcessor {
         String script = String.format("if (typeof parent.callbackFileDelete == 'function') parent.callbackFileDelete(%d);", seq);
         model.addAttribute("script", script);
 
-        return "common/_execute_script";
+        return "commons/_execute_script";
     }
 
     @ResponseBody
