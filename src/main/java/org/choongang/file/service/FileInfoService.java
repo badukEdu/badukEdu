@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static org.springframework.data.domain.Sort.Order.asc;
 
@@ -53,7 +54,7 @@ public class FileInfoService {
         QFileInfo fileInfo = QFileInfo.fileInfo;
 
         mode = StringUtils.hasText(mode) ? mode : "ALL";
-
+        gid = StringUtils.hasText(gid) ? gid : UUID.randomUUID().toString();
         BooleanBuilder builder = new BooleanBuilder();
         builder.and(fileInfo.gid.eq(gid));
 

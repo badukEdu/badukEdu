@@ -2,35 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <h2>학습 자료 조회</h2>
-    <table border="1">
-        <tr>
-            <th>학습자료명</th>
-            <th>자료구분</th>
-            <th>자료유형</th>
-            <th>자료file주소</th>
-            <th>서비스구분</th>
-            <th>자료내용</th>
-            <th>수정</th>
-            <th>삭제</th>
-        </tr>
+    <form method="post" autocomplete="off">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>학습자료명</th>
+                    <th>자료구분</th>
+                    <th>자료유형</th>
+                    <th>자료file주소</th>
+                    <th>서비스구분</th>
+                    <th>자료내용</th>
+                    <th>수정</th>
+                    <th>삭제</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="dataList : ${dataList}"  th:object="${dataList}">
 
-        <tr th:each="dataList : ${dataList}">
-            <td th:text="${dataList.name}"></td>
-            <td th:text="${dataList.dataType}"></td>
-            <td th:text="${dataList.contentType}"></td>
-            <td th:text="${dataList.fileAddress}"></td>
-            <td th:text="${dataList.serviceType}"></td>
-            <td th:text="${dataList.content}"></td>
-            <td>
-                <a th:href="@{/admin/edu/edit/{num}(num=*{num})}">
-                    <i class="xi-pen-o"></i>
-                </a>
-            </td>
-            <td>
-                <a th:href="@{/admin/edu/delete/{num}(num=*{num})}" onclick="return confirm('정말 삭제하시겠습니까?');">
-                    <i class="xi-trash"></i>
-                </a>
-            </td>
-        </tr>
-    </table>
-    <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
+                    <td th:text="*{name}"></td>
+                    <td th:text="*{dataType}"></td>
+                    <td th:text="*{contentType}"></td>
+                    <td th:text="*{fileAddress}"></td>
+                    <td th:text="*{serviceType}"></td>
+                    <td th:text="*{content}"></td>
+                    <td>
+                        <a th:href="@{/admin/edu/edit/{num}(num=*{num})}">
+                            <i class="xi-pen-o"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{/admin/edu/delete/{num}(num=*{num})}" onclick="return confirm('정말 삭제하시겠습니까?');">
+                            <i class="xi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
+    </form>
