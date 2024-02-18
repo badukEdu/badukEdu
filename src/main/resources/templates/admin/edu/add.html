@@ -1,62 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
     <h2>학습 자료 등록</h2>
     <form method="post" th:action="@{/admin/edu/add}" autocomplete="off" th:object="${requestEduData}" enctype="multipart/form-data">
-<!--        <input type="hidden" name="gid" th:field="*{gid}">-->
-        <dl>
-            <dt th:text="#{학습자료명}"></dt>
-            <dd>
-                <input type="text" name="name" th:field="*{name}">
-            </dd>
-        </dl>
 
-        <dl>
-            <dt th:text="#{자료구분}"></dt>
-            <dd>
-                <select name="dataType" th:field="*{dataType}">
-                    <option value="튜토리얼">튜토리얼</option>
-                    <option value="교육영상">교육영상</option>
-                </select>
-            </dd>
-        </dl>
+        <input type="hidden" name="mode" value="add">
+        <th:block th:replace="~{admin/edu/_form::form}"></th:block>
 
-        <dl>
-            <dt th:text="#{자료유형}"></dt>
-            <dd>
-                <input type="text" name="contentType" th:field="*{contentType}">
-            </dd>
-        </dl>
-
-        <dl>
-            <dt th:text="#{자료file주소}"></dt>
-            <dd>
-                <input type="text" name="fileAddress" th:field="*{fileAddress}">
-            </dd>
-        </dl>
-
-        <dl>
-            <dt th:text="#{서비스구분}"></dt>
-            <dd>
-                <select name="serviceType" th:field="*{serviceType}">
-                    <option value="full(유료)">full(유료)</option>
-                    <option value="short(무료)">short(무료)</option>
-                </select>
-            </dd>
-        </dl>
-
-        <dl>
-            <dt th:text="#{자료내용}"></dt>
-            <dd>
-                <input type="text" name="content" th:field="*{content}">
-            </dd>
-        </dl>
-
-<!--        <dl>-->
-<!--            <dt th:text="#{썸네일}"></dt>-->
-<!--            <dd>-->
-<!--                <input type="file" name="thumbnail" th:field="*{thumbnail}">-->
-<!--            </dd>-->
-<!--        </dl>-->
-        <button type="submit">등록하기</button>
+        <div class="submit_btns">
+            <button type="reset" class="btn">다시입력</button>
+            <button type="submit" class="btn">등록하기</button>
+        </div>
     </form>
+</section>
 </html>

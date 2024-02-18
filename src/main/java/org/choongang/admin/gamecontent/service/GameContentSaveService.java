@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.choongang.admin.gamecontent.controllers.RequestGameContentData;
 import org.choongang.admin.gamecontent.entities.GameContent;
 import org.choongang.admin.gamecontent.repositories.GameContentRepository;
+import org.choongang.file.service.FileInfoService;
 import org.choongang.file.service.FileUploadService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -14,7 +15,6 @@ public class GameContentSaveService {
 
     private final GameContentRepository gameContentRepository;
     private final FileUploadService fileUploadService;
-
 
     /**
      * 게임 콘텐츠 등록/수정
@@ -45,6 +45,7 @@ public class GameContentSaveService {
         gameContent.setDiscountRate(form.getDiscountRate()); // 할인율
         gameContent.setSalePrice(form.getSalePrice()); // 판매가
         gameContent.setPackageContents(form.getPackageContents()); // 패키지내용
+        gameContent.setThumbnail(form.getThumbnail()); // 썸네일
 
         gameContentRepository.saveAndFlush(gameContent);
 

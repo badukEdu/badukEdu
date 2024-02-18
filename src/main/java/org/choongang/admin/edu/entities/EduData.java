@@ -3,7 +3,10 @@ package org.choongang.admin.edu.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.choongang.commons.entities.Base;
+import org.choongang.file.entities.FileInfo;
 import org.choongang.member.entities.Member;
+
+import java.util.UUID;
 
 @Entity
 @Data
@@ -11,6 +14,10 @@ public class EduData extends Base {
     @Id
     @GeneratedValue
     private Long num; // 자료 식별자, 자동 생성되는 고유한 번호 //pk
+
+    @Column(length = 65)
+    private String gid = UUID.randomUUID().toString();
+
     @Column(length = 30, nullable = false)
     private String name; // 학습자료명
     @Column(nullable = false)
@@ -27,8 +34,9 @@ public class EduData extends Base {
     private String fileName; // 자료file명
     @Column(length = 30)
     private String fileAddress; // 자료file주소
-//    @Column
-//    private String thumbnail; // 썸네일 (파일명)
+
+    @Transient
+    private FileInfo thumbnail; // 썸네일 (파일명)
 //    @Column
 //    private String thumbnailAddress; // 썸네일 (파일명 경로)
 
