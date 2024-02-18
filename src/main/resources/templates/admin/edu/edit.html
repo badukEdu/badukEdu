@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<h2>학습 자료 수정</h2>
+<form method="post" th:action="@{/admin/edu/save}" autocomplete="off" th:object="${requestEduData}">
+    <input type="hidden" name="mode" value="edit">
+    <input type="hidden" name="num" th:field="*{num}">
+    <th:block th:replace="~{admin/edu/_form::form}"></th:block>
+
+    <div class="submit_btns">
+        <button type="reset" class="btn">다시입력</button>
+        <button type="submit" class="btn" onclick="return confirm('정말 수정하시겠습니까?')">수정하기</button>
+    </div>
+</form>
+</html>
