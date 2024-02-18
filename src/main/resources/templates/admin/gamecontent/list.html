@@ -23,7 +23,9 @@
             <tbody>
                 <tr th:each="item : ${items}" th:object="${item}">
                     <td th:text="*{gameTitle}"></td>
-                    <td th:text="*{thumbnail}"></td>
+                    <td>
+                       <th:block th:if="*{thumbnail != null}" th:utext="*{@utils.printThumb(thumbnail.seq, 100, 100, 'image')}"></th:block>
+                    </td>
                     <td th:text="*{totalGameLevels}"></td>
                     <td th:text="*{subscriptionMonths}"></td>
                     <td th:text="*{startDate + '~' + endDate}"></td>
