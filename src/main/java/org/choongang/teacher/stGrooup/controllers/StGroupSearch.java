@@ -1,4 +1,4 @@
-package org.choongang.stGrooup.controllers;
+package org.choongang.teacher.stGrooup.controllers;
 
 import lombok.Data;
 

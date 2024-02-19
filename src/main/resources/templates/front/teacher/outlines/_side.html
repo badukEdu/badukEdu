@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<aside th:fragment="menus">
+    <a th:href="@{/studyGroup/add}" th:classappend="${menuCode} == 'config' ? 'on'">
+        <i class="xi-cog"></i> 학습그룹 등록
+    </a>
+
+    <a th:href="@{/studyGroup}" th:classappend="${menuCode} == 'member' ? 'on'">
+        <i class="xi-users"></i> 학습그룹 조회
+    </a>
+
+    <a th:href="@{/JoinStudyGroup/accept}" th:classappend="${menuCode} == 'gamecontent' ? 'on'">
+        <i class="xi-list"></i> 학습그룹 가입 승인
+    </a>
+
+    <a th:href="@{/t}" th:classappend="${menuCode} == 'order' ? 'on'">
+        <i class="xi-list"></i> 숙제 생성
+    </a>
+
+    <a th:href="@{/t}" th:classappend="${menuCode} == 'cs' ? 'on'">
+        <i class="xi-list"></i> 숙제 배포
+    </a>
+
+    <a th:href="@{/t}" th:classappend="${menuCode} == 'board' ? 'on'">
+        <i class="xi-list"></i> 숙제 학습 진도 조회
+    </a>
+
+<!--    <a th:href="@{/admin/payment}" th:classappend="${menuCode} == 'payment' ? 'on'">-->
+<!--        <i class="xi-list"></i> 결제 관리-->
+<!--    </a>-->
+
+<!--    <a th:href="@{/admin/reservation}" th:classappend="${menuCode} == 'reservation' ? 'on'">-->
+<!--        <i class="xi-tint"></i> 예약 관리-->
+<!--    </a>-->
+</aside>
+</html>

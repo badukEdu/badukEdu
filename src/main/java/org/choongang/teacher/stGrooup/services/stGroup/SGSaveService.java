@@ -1,13 +1,12 @@
-package org.choongang.stGrooup.services.stGroup;
+package org.choongang.teacher.stGrooup.services.stGroup;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.choongang.admin.gamecontent.service.GameContentInfoService;
 import org.choongang.member.entities.Member;
-import org.choongang.member.service.MemberInfoService;
-import org.choongang.stGrooup.controllers.RequestStGroup;
-import org.choongang.stGrooup.entities.StudyGroup;
-import org.choongang.stGrooup.repositories.StGroupRepository;
+import org.choongang.teacher.stGrooup.controllers.RequestStGroup;
+import org.choongang.teacher.stGrooup.entities.StudyGroup;
+import org.choongang.teacher.stGrooup.repositories.StGroupRepository;
 import org.springframework.stereotype.Service;
 
 

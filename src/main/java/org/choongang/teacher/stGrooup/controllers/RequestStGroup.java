@@ -1,4 +1,4 @@
-package org.choongang.stGrooup.controllers;
+package org.choongang.teacher.stGrooup.controllers;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;

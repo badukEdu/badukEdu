@@ -1,13 +1,12 @@
-package org.choongang.stGrooup.controllers;
+package org.choongang.teacher.stGrooup.controllers;
 
 
 import lombok.RequiredArgsConstructor;
 import org.choongang.commons.ListData;
-import org.choongang.stGrooup.entities.JoinStudyGroup;
-import org.choongang.stGrooup.entities.StudyGroup;
-import org.choongang.stGrooup.services.joinStG.JoinSTGInfoService;
-import org.choongang.stGrooup.services.joinStG.JoinSTGSaveService;
-import org.choongang.stGrooup.services.stGroup.SGInfoService;
+import org.choongang.teacher.stGrooup.entities.StudyGroup;
+import org.choongang.teacher.stGrooup.services.joinStG.JoinSTGInfoService;
+import org.choongang.teacher.stGrooup.services.joinStG.JoinSTGSaveService;
+import org.choongang.teacher.stGrooup.services.stGroup.SGInfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package org.choongang.stGrooup.entities;
+package org.choongang.teacher.stGrooup.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;

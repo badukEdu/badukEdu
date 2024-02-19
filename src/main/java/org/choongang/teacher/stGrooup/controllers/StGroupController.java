@@ -1,4 +1,4 @@
-package org.choongang.stGrooup.controllers;
+package org.choongang.teacher.stGrooup.controllers;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -7,10 +7,10 @@ import org.choongang.admin.gamecontent.controllers.GameContentSearch;
 import org.choongang.admin.gamecontent.entities.GameContent;
 import org.choongang.admin.gamecontent.service.GameContentInfoService;
 import org.choongang.commons.ListData;
-import org.choongang.stGrooup.entities.StudyGroup;
-import org.choongang.stGrooup.services.stGroup.SGDeleteService;
-import org.choongang.stGrooup.services.stGroup.SGInfoService;
-import org.choongang.stGrooup.services.stGroup.SGSaveService;
+import org.choongang.teacher.stGrooup.entities.StudyGroup;
+import org.choongang.teacher.stGrooup.services.stGroup.SGDeleteService;
+import org.choongang.teacher.stGrooup.services.stGroup.SGInfoService;
+import org.choongang.teacher.stGrooup.services.stGroup.SGSaveService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;

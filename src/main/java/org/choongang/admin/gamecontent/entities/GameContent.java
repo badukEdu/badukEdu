@@ -5,9 +5,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.choongang.commons.entities.BaseMember;
 import org.choongang.file.entities.FileInfo;
-import org.choongang.homework.entities.Homework;
 import org.choongang.member.entities.Member;
-import org.choongang.stGrooup.entities.StudyGroup;
+import org.choongang.teacher.stGrooup.entities.StudyGroup;
 
 import java.time.LocalDate;
 import java.util.List;
