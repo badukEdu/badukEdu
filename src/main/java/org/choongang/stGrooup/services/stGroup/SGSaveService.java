@@ -2,6 +2,7 @@ package org.choongang.stGrooup.services.stGroup;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.choongang.admin.gamecontent.service.GameContentInfoService;
 import org.choongang.stGrooup.controllers.RequestStGroup;
 import org.choongang.stGrooup.entities.StudyGroup;
 import org.choongang.stGrooup.repositories.StGroupRepository;
@@ -16,7 +17,8 @@ public class SGSaveService {
     private final StGroupRepository stGroupRepository;
     private final HttpSession session;
     private final SGInfoService sgInfoService;
-    private final vetaGameInfo vetaGameInfo;
+    //private final vetaGameInfo vetaGameInfo;
+    private final GameContentInfoService gameContentInfoService;
 
     public void save(RequestStGroup form){
         StudyGroup s = null;
@@ -31,7 +33,8 @@ public class SGSaveService {
             s.setText(form.getText());
             s.setMonth(form.getMonth());
             s.setGameTitle(form.getGameTitle());
-            s.setGameContent(vetaGameInfo.getById(form.getGameContentNum()));
+            //s.setGameContent(vetaGameInfo.getById(form.getGameContentNum()));
+            s.setGameContent(gameContentInfoService.getById(form.getGameContentNum()));
         }else{
             s = sgInfoService.getById(form.getNum());
 

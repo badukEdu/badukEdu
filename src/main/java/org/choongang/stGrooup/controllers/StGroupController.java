@@ -11,7 +11,7 @@ import org.choongang.stGrooup.entities.StudyGroup;
 import org.choongang.stGrooup.services.stGroup.SGDeleteService;
 import org.choongang.stGrooup.services.stGroup.SGInfoService;
 import org.choongang.stGrooup.services.stGroup.SGSaveService;
-import org.choongang.stGrooup.services.stGroup.vetaGameInfo;
+//import org.choongang.stGrooup.services.stGroup.vetaGameInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -27,7 +27,7 @@ public class StGroupController {
     private final SGSaveService sgSaveService;
     private final SGInfoService sgInfoService;
     private final SGDeleteService sgDeleteService;
-    private final vetaGameInfo vetaGameInfo; //게임 인포서비스 만들어지면 이거 지워야함
+    //private final vetaGameInfo vetaGameInfo; //게임 인포서비스 만들어지면 이거 지워야함
     private final HttpSession session;
     private final GameContentInfoService gameContentInfoService;
 
@@ -116,7 +116,8 @@ public class StGroupController {
         }
 
         model.addAttribute("mode" , "add2");
-        session.setAttribute("game" , vetaGameInfo.getById(num));  //폼을 두 번 이동해야해서 session에 저장
+        //session.setAttribute("game" , vetaGameInfo.getById(num));  //폼을 두 번 이동해야해서 session에 저장
+        session.setAttribute("game" , gameContentInfoService.getById(num));
         return "front/teacher/studyGroup/add";
     }
 
@@ -132,7 +133,7 @@ public class StGroupController {
         RequestStGroup stg = sgInfoService.getForm(num);
 
         model.addAttribute("requestStGroup" , stg);
-        session.setAttribute("game" , vetaGameInfo.getById(stg.getGameContentNum()));
+        session.setAttribute("game" , gameContentInfoService.getById(num));
         return "front/teacher/studyGroup/edit";
     }
 
