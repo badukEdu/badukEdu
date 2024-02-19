@@ -2,8 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <h2>학습 자료 조회</h2>
+<form method="get" th:action="@{/admin/edu/list}" autocomplete="off" th:object="${eduDataSearch}">
+    <table>
+        <tr>
+            <th>검색</th>
+            <td>
+                <select name="sopt">
+                    <option value="ALL" th:field="*{sopt}">통합검색</option>
+                    <option value="name" th:field="*{sopt}">학습자료명</option>
+                    <option value="content" th:field="*{sopt}">자료내용</option>
+                </select>
+                <input type="text" name="skey" th:field="*{skey}">
+            </td>
+        </tr>
+        <td>
+            <button type="submit">검색하기</button>
+        </td>
+    </table>
+</form>
+
+
+
     <form method="post" autocomplete="off">
-        <table border="1">
+        <table class="table_rows" border="1">
             <thead>
                 <tr>
                     <th>학습자료명</th>
@@ -18,8 +39,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="dataList : ${dataList}"  th:object="${dataList}">
-
+                <tr th:each="item : ${items}"  th:object="${item}">
                     <td th:text="*{name}"></td>
                     <td>
                         <th:block th:if="*{thumbnail != null}" th:utext="*{@utils.printThumb(thumbnail.seq, 100, 100, 'image')}"></th:block>

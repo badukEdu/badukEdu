@@ -6,6 +6,7 @@ import org.choongang.admin.edu.entities.EduData;
 import org.choongang.admin.edu.service.EduContentDeleteService;
 import org.choongang.admin.edu.service.EduDataInfoService;
 import org.choongang.admin.edu.service.EduDataSaveService;
+import org.choongang.commons.ListData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -32,6 +33,7 @@ public class EduController {
      */
     @GetMapping("/add")
     public String add(@ModelAttribute RequestEduData form, Model model) {
+        commonProcess("add", model);
 
         return "admin/edu/add";
     }
@@ -95,15 +97,16 @@ public class EduController {
 
     /**
      * 학습 자료 조회
-     * @param form
+     * @param search
      * @param model
      * @return
      */
     @GetMapping("/list")
-    public String list(@ModelAttribute EduData form, Model model) {
+    public String list(@ModelAttribute EduDataSearch search, Model model) {
 
-        List<EduData> dataList = eduDataInfoService.getList();
-        model.addAttribute("dataList", dataList);
+        ListData<EduData> data = eduDataInfoService.getList(search);
+        model.addAttribute("items", data.getItems());
+        model.addAttribute("pagination", data.getPagination());
 
         return "admin/edu/list";
     }
@@ -116,6 +119,7 @@ public class EduController {
         if (mode.equals("add") || mode.equals("edit")) {
             addCommonScript.add("fileManager");
             addScript.add("edu/form");
+
         }
 
         model.addAttribute("addCommonScript", addCommonScript);
