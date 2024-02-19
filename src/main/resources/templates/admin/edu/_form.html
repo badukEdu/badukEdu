@@ -64,14 +64,21 @@
                  th:text="${err}"></div>
             </td>
         </tr>
-        <!--
+
         <tr>
             <th th:text="#{썸네일}"></th>
             <td>
-               <input type="file" name="thumbnail" th:field="*{thumbnail}">
-           </td>
+                <div id="thumbnail_img">
+                    <th:block th:if="*{thumbnail != null}">
+                        <img th:src="*{thumbnail.fileUrl}">
+                        <a th:href="@{/file/delete/{seq}(seq=*{thumbnail.seq})}"
+                           target="ifrmProcess" onclick="return confirm('정말 삭제하시겠습니까?');">[삭제]</a>
+                    </th:block>
+                </div>
+                <button type="button" class="sbtn upload_files"
+                        data-image-only="true" data-single-file="true">업로드</button>
+            </td>
         </tr>
-        -->
     </table>
 </th:block>
 </html>

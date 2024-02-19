@@ -2,6 +2,7 @@ package org.choongang.admin.edu.controllers;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import org.choongang.file.entities.FileInfo;
 
 import java.util.UUID;
 
@@ -22,5 +23,5 @@ public class RequestEduData {
 
     @NotBlank
     private String content; // 자료내용
-//    private FileInfo thumbnail;
+    private FileInfo thumbnail;
 }
