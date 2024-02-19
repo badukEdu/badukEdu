@@ -11,7 +11,6 @@ import org.choongang.stGrooup.entities.StudyGroup;
 import org.choongang.stGrooup.services.stGroup.SGDeleteService;
 import org.choongang.stGrooup.services.stGroup.SGInfoService;
 import org.choongang.stGrooup.services.stGroup.SGSaveService;
-//import org.choongang.stGrooup.services.stGroup.vetaGameInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -58,8 +57,6 @@ public class StGroupController {
 
         model.addAttribute("list" , sgInfoService.getList(search).getItems());
         model.addAttribute("item" , sgInfoService.getForm(num));
-
-
 
         return "front/teacher/studyGroup/detail";
     }
