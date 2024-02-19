@@ -1,8 +1,10 @@
 package org.choongang.teacher.stGrooup.controllers;
 
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.choongang.commons.ListData;
+import org.choongang.member.entities.Member;
 import org.choongang.teacher.stGrooup.entities.JoinStudyGroup;
 import org.choongang.teacher.stGrooup.entities.StudyGroup;
 import org.choongang.teacher.stGrooup.services.joinStG.JoinSTGInfoService;
@@ -23,6 +25,8 @@ public class JoinStGroupController {
     private final SGInfoService sgInfoService;
     private final JoinSTGSaveService joinSTGSaveService;
     private final JoinSTGInfoService joinSTGInfoService;
+    private final HttpSession session;
+
     /**
      * 스터디그룹 목록
      * @param model
@@ -33,7 +37,8 @@ public class JoinStGroupController {
     public String list(Model model , @ModelAttribute StGroupSearch search){
 
         ListData<StudyGroup> data = sgInfoService.getList(search);
-        model.addAttribute("list" , data.getItems());
+       // model.addAttribute("list" , data.getItems());
+        model.addAttribute("list" , validstg(data.getItems()));
         model.addAttribute("pagination", data.getPagination());
         return "front/user/studyGroup/join";
     }
@@ -68,7 +73,7 @@ public class JoinStGroupController {
     public String accept(Model model , @ModelAttribute StGroupSearch search){
 
         //joinSTGInfoService.getList();
-
+        model.addAttribute("num" , 1);
         ListData<StudyGroup> data = sgInfoService.getList(search);
         model.addAttribute("list" , joinSTGInfoService.getList());
         //model.addAttribute("pagination", data.getPagination());
@@ -88,7 +93,8 @@ public class JoinStGroupController {
         ListData<StudyGroup> data = sgInfoService.getList(search);
         model.addAttribute("list" , data.getItems());
         model.addAttribute("pagination", data.getPagination());
-        return "front/user/studyGroup/test2";
+        return "redirect:/JoinStudyGroup/accept";
+
 
     }
 
@@ -98,17 +104,27 @@ public class JoinStGroupController {
      * @param list
      * @return
      */
-    private List<StudyGroup> Valid(List<StudyGroup> list){
+    public List<StudyGroup> validstg(List<StudyGroup> list){    //신청 가능한 스터디그룹 목록
 
-        List<JoinStudyGroup> jlist = joinSTGInfoService.getList();
-        List<Long> idList = new ArrayList<>();
-
-
-
-
-        return null;
+        //신청 한 스터디그룹
+        List<JoinStudyGroup> joinList = joinSTGInfoService.getList();
+        //로그인 회원 정보
+        Member member = (Member)session.getAttribute("member");
+        for(JoinStudyGroup jsg : joinList){
+            if(member.getNum().equals(jsg.getMember().getNum())) {
+                for(int k=list.size()-1; k>=0; k--){
+                    if(list.get(k).getNum().equals(jsg.getStudyGroup().getNum())){
+                        list.remove(sgInfoService.getById(jsg.getStudyGroup().getNum()));
+                    }
+                }
+            }
+        }
+        return list;
     }
 
 
+    public int count(int num){
+        return num++;
+    }
 
 }

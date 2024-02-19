@@ -2,6 +2,7 @@ package org.choongang.teacher.stGrooup.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 import org.choongang.admin.gamecontent.entities.GameContent;
 import org.choongang.homework.entities.Homework;
 import org.choongang.member.entities.Member;
