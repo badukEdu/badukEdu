@@ -37,7 +37,14 @@
     <form method="post" th:action="@{/JoinStudyGroup/accept}" autocomplete="off">
         <!--<input type="hidden" name="userNum" th:value="${session.member.num}">-->
         <tr th:each="item : ${list}" th:object="${item}">
-            <td><input type="checkbox" name="chk" th:value="*{num}"></td>
+            <td>
+                <div th:if="*{accept}">
+                    승인완료
+                </div>
+                <div th:if="*{!accept}">
+                    <input type="checkbox" name="chk" th:value="*{num}">
+                </div>
+            </td>
             <td >th:text="*{member.name}"</td>
             <td >th:text="*{member.tel}"</td>
             <td >th:text="*{createAt}"</td>

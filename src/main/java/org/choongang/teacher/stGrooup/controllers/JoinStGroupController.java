@@ -3,6 +3,7 @@ package org.choongang.teacher.stGrooup.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.choongang.commons.ListData;
+import org.choongang.teacher.stGrooup.entities.JoinStudyGroup;
 import org.choongang.teacher.stGrooup.entities.StudyGroup;
 import org.choongang.teacher.stGrooup.services.joinStG.JoinSTGInfoService;
 import org.choongang.teacher.stGrooup.services.joinStG.JoinSTGSaveService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -89,5 +91,24 @@ public class JoinStGroupController {
         return "front/user/studyGroup/test2";
 
     }
+
+
+    /**
+     * 이미 신청한 스터디그룹 제외
+     * @param list
+     * @return
+     */
+    private List<StudyGroup> Valid(List<StudyGroup> list){
+
+        List<JoinStudyGroup> jlist = joinSTGInfoService.getList();
+        List<Long> idList = new ArrayList<>();
+
+
+
+
+        return null;
+    }
+
+
 
 }

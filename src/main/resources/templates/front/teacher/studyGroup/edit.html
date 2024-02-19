@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/teacher/layouts/main}">
+
+<main layout:fragment="content" class="layout_width">
 
 <form method="post" th:action="@{/studyGroup/save}">
     <input type="hidden" name="mode" value="edit" >
@@ -9,6 +12,6 @@
     <button type="submit">저장</button>
 </form>
 
-
+</main>
 
 </html>

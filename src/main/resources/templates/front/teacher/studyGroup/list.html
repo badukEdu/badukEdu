@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/teacher/layouts/main}">
+
+<main layout:fragment="content" >
 <h1>스터디그룹 목록 / UI-W-012</h1>
-<hr>
+<br>
+    <table border="1">
 <form method="get" th:action="@{/studyGroup}" th:object="${stGroupSearch}" >
-    <table >
+
         <tr>
             <th>키워드</th>
             <td>
@@ -19,11 +23,9 @@
                 <button type="submit">검색하기</button>
             </td>
         </tr>
-    </table>
-</form>
-<hr>
 
-<table border="1">
+</form>
+
     <tr>
         <th>선택</th>
         <th>스터디그룹명</th>
@@ -57,12 +59,15 @@
         <td>
             <button type="submit">선택삭제</button>
         </td>
-    </tr>
+            <td colspan="6">
+                <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
+            </td>
+        </tr>
     </form>
 </table>
-<th:block th:replace="~{commons/_pagination::pagination}"></th:block>
 
 
 
+</main>
 
 </html>
