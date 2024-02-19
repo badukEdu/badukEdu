@@ -5,11 +5,14 @@ import lombok.Data;
 import org.choongang.member.entities.Member;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Data
+@EntityListeners(AuditingEntityListener.class)
 public class JoinStudyGroup {
 
     @Id
@@ -20,8 +23,11 @@ public class JoinStudyGroup {
     private LocalDateTime SDate; // 신청일 (자동생성)
     @Column
     private boolean accept = false; // 가입승인여부
-    @Column(updatable = false)
-    private LocalDateTime JoinDate; // 가입 승인일
+
+    @LastModifiedDate
+    @Column(insertable = false)
+    private LocalDateTime JoinDate; // 가입 승인일 (자동생성)
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "studyGroupNum")
@@ -29,6 +35,6 @@ public class JoinStudyGroup {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberNum")
-    private Member member; //구독회원 회원번호
+    private Member member; //신청한 회원 정보
 
 }

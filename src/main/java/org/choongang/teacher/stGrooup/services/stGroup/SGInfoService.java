@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.choongang.commons.ListData;
 import org.choongang.commons.Pagination;
 import org.choongang.commons.Utils;
+import org.choongang.member.constants.Authority;
 import org.choongang.member.entities.Member;
 import org.choongang.teacher.stGrooup.controllers.RequestStGroup;
 import org.choongang.teacher.stGrooup.controllers.StGroupSearch;
@@ -46,8 +47,10 @@ public class SGInfoService {
        // QGameContent gameTitle = QGameContent.gameTitle;
         BooleanBuilder andBuilder = new BooleanBuilder();
 
-        //로그인 회원 본인 그룹만 보이도록
-        andBuilder.and(studyGroup.member.eq((Member) session.getAttribute("member")));
+        //교육자는 본인 스터디그룹만 볼 수 있음
+        if(((Member)session.getAttribute("member")).getAuthority() == Authority.TEACHER){
+            andBuilder.and(studyGroup.member.eq((Member) session.getAttribute("member")));
+        }
 
         String sopt = search.getSopt();
         String skey = search.getSkey().trim();

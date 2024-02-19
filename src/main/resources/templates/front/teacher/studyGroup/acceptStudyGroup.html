@@ -36,19 +36,23 @@
     </tr>
     <form method="post" th:action="@{/JoinStudyGroup/accept}" autocomplete="off">
         <!--<input type="hidden" name="userNum" th:value="${session.member.num}">-->
+
         <tr th:each="item : ${list}" th:object="${item}">
             <td>
                 <div th:if="*{accept}">
+                    <input type="checkbox" name="n" checked  onClick="return false">
                     승인완료
                 </div>
                 <div th:if="*{!accept}">
-                    <input type="checkbox" name="chk" th:value="*{num}">
+                    <input type="checkbox" name="chk" th:value="*{num}"> 미승인
                 </div>
             </td>
-            <td >th:text="*{member.name}"</td>
-            <td >th:text="*{member.tel}"</td>
-            <td >th:text="*{createAt}"</td>
+            <td> 00 </td>
+            <td th:text="*{member.name}"></td>
+            <td th:text="*{member.tel}"></td>
+            <td th:text="*{SDate}"></td>
         </tr>
+
         <tr >
             <td colspan="6">
                 <button type="submit">가입 승인</button>
@@ -58,6 +62,9 @@
 
     </form>
 </table>
+
+
+
 <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
 
 </html>
