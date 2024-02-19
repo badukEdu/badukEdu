@@ -1,27 +1,27 @@
-package org.choongang.stGrooup.services.stGroup;
+package org.choongang.teacher.stGrooup.services.stGroup;
 
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Order;
-import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.choongang.commons.ListData;
 import org.choongang.commons.Pagination;
 import org.choongang.commons.Utils;
-import org.choongang.stGrooup.controllers.RequestStGroup;
-import org.choongang.stGrooup.controllers.StGroupSearch;
-import org.choongang.stGrooup.entities.QStudyGroup;
-import org.choongang.stGrooup.entities.StudyGroup;
-import org.choongang.stGrooup.repositories.StGroupRepository;
+import org.choongang.member.entities.Member;
+import org.choongang.teacher.stGrooup.controllers.RequestStGroup;
+import org.choongang.teacher.stGrooup.controllers.StGroupSearch;
+import org.choongang.teacher.stGrooup.entities.QStudyGroup;
+import org.choongang.teacher.stGrooup.entities.QStudyGroup;
+import org.choongang.teacher.stGrooup.entities.StudyGroup;
+import org.choongang.teacher.stGrooup.repositories.StGroupRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.net.http.HttpRequest;
 import java.util.List;
 
 @Service
@@ -31,6 +31,7 @@ public class SGInfoService {
     private final StGroupRepository stGroupRepository;
     private final EntityManager em;
     private final HttpServletRequest request;
+    private final HttpSession session;
 
 
     public ListData<StudyGroup> getList(StGroupSearch search){
@@ -44,6 +45,9 @@ public class SGInfoService {
         QStudyGroup studyGroup = QStudyGroup.studyGroup;
        // QGameContent gameTitle = QGameContent.gameTitle;
         BooleanBuilder andBuilder = new BooleanBuilder();
+
+        //로그인 회원 본인 그룹만 보이도록
+        andBuilder.and(studyGroup.member.eq((Member) session.getAttribute("member")));
 
         String sopt = search.getSopt();
         String skey = search.getSkey().trim();

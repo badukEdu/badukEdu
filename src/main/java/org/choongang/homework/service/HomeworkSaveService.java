@@ -4,9 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.choongang.homework.controllers.RequestHomework;
 import org.choongang.homework.entities.Homework;
 import org.choongang.homework.repositories.HomeworkRepository;
-import org.choongang.member.entities.Member;
-
-import org.choongang.stGrooup.entities.StudyGroup;
 
 import org.springframework.stereotype.Service;
 

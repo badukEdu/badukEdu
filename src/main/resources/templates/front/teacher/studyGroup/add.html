@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{front/teacher/layouts/main}">
+
+<main layout:fragment="content" class="layout_width">
 
 <div th:if="${mode.equals('add1')}">
     <h1>UI-W-010</h1>
@@ -44,7 +47,7 @@
         <button type="submit">다음</button>
     </form>
 </div>
-
+</main>
 
 
 </html>

@@ -1,10 +1,6 @@
-package org.choongang.stGrooup.controllers;
+package org.choongang.teacher.stGrooup.controllers;
 
-import jakarta.persistence.*;
 import lombok.Data;
-import org.choongang.member.entities.Member;
-import org.choongang.stGrooup.entities.StudyGroup;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 import java.util.List;

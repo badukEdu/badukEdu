@@ -1,4 +1,4 @@
-package org.choongang.stGrooup.controllers;
+package org.choongang.teacher.stGrooup.controllers;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -7,11 +7,10 @@ import org.choongang.admin.gamecontent.controllers.GameContentSearch;
 import org.choongang.admin.gamecontent.entities.GameContent;
 import org.choongang.admin.gamecontent.service.GameContentInfoService;
 import org.choongang.commons.ListData;
-import org.choongang.stGrooup.entities.StudyGroup;
-import org.choongang.stGrooup.services.stGroup.SGDeleteService;
-import org.choongang.stGrooup.services.stGroup.SGInfoService;
-import org.choongang.stGrooup.services.stGroup.SGSaveService;
-import org.choongang.stGrooup.services.stGroup.vetaGameInfo;
+import org.choongang.teacher.stGrooup.entities.StudyGroup;
+import org.choongang.teacher.stGrooup.services.stGroup.SGDeleteService;
+import org.choongang.teacher.stGrooup.services.stGroup.SGInfoService;
+import org.choongang.teacher.stGrooup.services.stGroup.SGSaveService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -27,7 +26,7 @@ public class StGroupController {
     private final SGSaveService sgSaveService;
     private final SGInfoService sgInfoService;
     private final SGDeleteService sgDeleteService;
-    private final vetaGameInfo vetaGameInfo; //게임 인포서비스 만들어지면 이거 지워야함
+    //private final vetaGameInfo vetaGameInfo; //게임 인포서비스 만들어지면 이거 지워야함
     private final HttpSession session;
     private final GameContentInfoService gameContentInfoService;
 
@@ -58,8 +57,6 @@ public class StGroupController {
 
         model.addAttribute("list" , sgInfoService.getList(search).getItems());
         model.addAttribute("item" , sgInfoService.getForm(num));
-
-
 
         return "front/teacher/studyGroup/detail";
     }
@@ -111,12 +108,14 @@ public class StGroupController {
         if(num == null){
             model.addAttribute("mode" , "add1");
             model.addAttribute("items" ,  gameContentInfoService.getList(search).getItems());
+            model.addAttribute("pagination" , gameContentInfoService.getList(search).getPagination());
             model.addAttribute("emsg" , "게임 컨텐츠를 선택하세요");
             return "front/teacher/studyGroup/add";
         }
 
         model.addAttribute("mode" , "add2");
-        session.setAttribute("game" , vetaGameInfo.getById(num));  //폼을 두 번 이동해야해서 session에 저장
+        //session.setAttribute("game" , vetaGameInfo.getById(num));  //폼을 두 번 이동해야해서 session에 저장
+        session.setAttribute("game" , gameContentInfoService.getById(num));
         return "front/teacher/studyGroup/add";
     }
 
@@ -132,7 +131,7 @@ public class StGroupController {
         RequestStGroup stg = sgInfoService.getForm(num);
 
         model.addAttribute("requestStGroup" , stg);
-        session.setAttribute("game" , vetaGameInfo.getById(stg.getGameContentNum()));
+        session.setAttribute("game" , gameContentInfoService.getById(stg.getGameContentNum()));
         return "front/teacher/studyGroup/edit";
     }
 
@@ -151,6 +150,7 @@ public class StGroupController {
             model.addAttribute("mode" , "add2");
             return "front/teacher/studyGroup/add";
         }
+
         sgSaveService.save(form);
         session.removeAttribute("game");    //session 비워주기
         return "redirect:/studyGroup";

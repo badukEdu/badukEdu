@@ -1,4 +1,4 @@
-package org.choongang.stGrooup.entities;
+package org.choongang.teacher.stGrooup.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -40,6 +40,9 @@ public class StudyGroup {
 
     @Column
     private String gameTitle;   //게임컨텐츠명
+
+    @Column
+    private String teacherName;   //게임컨텐츠명
 
     ////////////////////////////////
 

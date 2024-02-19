@@ -1,4 +1,4 @@
-package org.choongang.stGrooup.controllers;
+package org.choongang.teacher.stGrooup.controllers;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -39,9 +39,9 @@ public class RequestStGroup {
 
     @NotNull
     private long month;
-
+    private String teacherName;
 
     private String gameTitle;
-
+    private Long memberNum;
 
 }

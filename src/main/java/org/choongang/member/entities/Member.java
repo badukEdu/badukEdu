@@ -3,15 +3,8 @@ package org.choongang.member.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
-import org.choongang.admin.edu.entities.EduData;
-import org.choongang.admin.gamecontent.entities.GameContent;
-import org.choongang.board.entities.Notice_;
 import org.choongang.commons.entities.Base;
-import org.choongang.homework.entities.Homework;
 import org.choongang.member.constants.Authority;
-import org.choongang.stGrooup.entities.JoinStudyGroup;
-import org.choongang.stGrooup.entities.StudyGroup;
-import org.choongang.homework.entities.TrainingData;
 
 import java.util.ArrayList;
 import java.util.List;

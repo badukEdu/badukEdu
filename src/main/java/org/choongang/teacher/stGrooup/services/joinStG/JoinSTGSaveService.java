@@ -1,11 +1,9 @@
-package org.choongang.stGrooup.services.joinStG;
+package org.choongang.teacher.stGrooup.services.joinStG;
 
 import lombok.RequiredArgsConstructor;
-import org.choongang.member.entities.Member;
-import org.choongang.member.service.MemberInfo;
-import org.choongang.stGrooup.entities.JoinStudyGroup;
-import org.choongang.stGrooup.repositories.JoinStGroupRepository;
-import org.choongang.stGrooup.services.stGroup.SGInfoService;
+import org.choongang.teacher.stGrooup.entities.JoinStudyGroup;
+import org.choongang.teacher.stGrooup.repositories.JoinStGroupRepository;
+import org.choongang.teacher.stGrooup.services.stGroup.SGInfoService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
