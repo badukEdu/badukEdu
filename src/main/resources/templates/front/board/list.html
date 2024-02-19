@@ -7,16 +7,38 @@
 <body>
 <h2>공지사항 조회</h2>
 <form th:action="@{/board/list}" method="post" autocomplete="off">
-<table border="1">
+<table>
+    <tr>
+        <th>검색</th>
+        <td>
+            <select>
+                <option value="" hidden>검색 유형을 선택하세요</option>
+                <option value="all">전체</option>
+                <option value="notice">공지사항</option>
+                <option value="faq">FAQ</option>
+            </select>
+        </td>
+        <td>
+            <input type="text" placeholder="검색어를 입력하세요">
+            <input type="button" value="검색">
+        </td>
+        <th>표기</th>
+        <td>
+            <select>
+                <option value="10">10</option>
+                <option value="20">20</option>
+            </select>
+        </td>
+    </tr>
+</table>
+    <div></div>
+    <table border="1">
     <tr>
         <th>선택</th>
         <th>게시글 번호</th>
         <th>공지 분류</th>
-        <th>공지사항 분류</th>
-        <th>FAQ 분류</th>
         <th>노출 여부</th>
-        <th>공지사항 제목</th>
-        <th>FAQ 제목</th>
+        <th>제목</th>
         <th>내용</th>
         <th>조회수</th>
         <th>첨부파일명</th>
@@ -30,14 +52,14 @@
         <td><input type="checkbox" name="selectNotice" th:value="${noticeList}" /></td>
         <td th:text="*{num}"></td>
         <td th:text="*{type}"></td>
-        <td th:text="*{noticeCategory}"></td>
-        <td th:text="*{faqCategory}"></td>
         <td>
-            <span th:if="${onTop}"></span>
-            <span th:unless="${onTop}"></span>
+            <span th:if="${noticeList.type == 'faq'}">NULL</span>
+            <span th:unless="${noticeList.type == 'faq'}">
+            <span th:if="${noticeList.onTop}">O</span>
+            <span th:unless="${noticeList.onTop}">X</span>
+        </span>
         </td>
-        <td th:text="*{noticeTitle}"></td>
-        <td th:text="*{faqTitle}"></td>
+        <td th:text="*{title}"></td>
         <td th:text="*{content}"></td>
         <td th:text="*{visit}"></td>
         <td th:text="*{fileName}"></td>
@@ -47,6 +69,9 @@
         <td th:text="*{answer}"></td>
     </tr>
 </table>
+    <div>
+
+    </div>
 </form>
 </body>
 </html>

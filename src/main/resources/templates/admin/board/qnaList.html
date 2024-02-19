@@ -5,6 +5,29 @@
     <title>QnA List</title>
 </head>
 <body>
-<h2>qna List</h2>
+<h2>QnA 조회</h2>
+<form th:action="@{/board/qnaList}" method="post" autocomplete="off">
+    <table border="1">
+        <tr>
+            <th>번호</th>
+            <th>문의 유형</th>
+            <th>제목</th>
+            <th>답변 알림</th>
+            <th>내용</th>
+            <th>첨부파일명</th>
+            <th>첨부파일경로</th>
+        </tr>
+
+        <tr th:each="qnaList : ${qnaList}" th:object="${qnaList}">
+            <td th:text="*{num}"></td>
+            <td th:text="*{type}"></td>
+            <td th:text="*{title}"></td>
+            <td th:text="*{answerAlert}"></td>
+            <td th:text="*{content}"></td>
+            <td th:text="*{fileName}"></td>
+            <td th:text="*{fileAddress}"></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

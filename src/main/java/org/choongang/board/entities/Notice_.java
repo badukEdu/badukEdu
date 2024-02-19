@@ -22,20 +22,11 @@ public class Notice_ extends Base {
     private String type; // 공지사항 분류(공지사항, FAQ , QnA-> ENUM 클래스 사용?)
 
     @Column
-    private String noticeCategory; // notice 카테고리 분류
-
-    @Column
-    private String faqCategory; // faq 카테고리 분류
-
-    @Column
     private boolean onTop; // 중요글 상단 노출(공지사항일때만 적용)
 
     @Column
-    private String noticeTitle; // notice 게시글 제목
-
-    @Column
-    private String faqTitle; // faq 게시글 제목
-
+    private String title; // 제목
+    
     @Lob // 가변 길이의 문자열을 저장, 길이 제한 X
     private String content; // 내용
 
@@ -54,8 +45,8 @@ public class Notice_ extends Base {
 //    @Column(nullable = false)
 //    private boolean useReservation; // 예약게시 여부
 
-//    @Column(insertable = false)
-//    private LocalDateTime reservationDate; // 예약게시일 (useReservation true일 경우)
+//    @Column // (insertable = false)
+//    private LocalDateTime reservationDateTime; // 예약 게시 일시 (useReservation true일 경우)
 
     @Column
     private String question; // 질의(FaQ일 경우에만 사용)
