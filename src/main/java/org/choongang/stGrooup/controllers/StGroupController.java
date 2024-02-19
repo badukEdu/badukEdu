@@ -108,6 +108,7 @@ public class StGroupController {
         if(num == null){
             model.addAttribute("mode" , "add1");
             model.addAttribute("items" ,  gameContentInfoService.getList(search).getItems());
+            model.addAttribute("pagination" , gameContentInfoService.getList(search).getPagination());
             model.addAttribute("emsg" , "게임 컨텐츠를 선택하세요");
             return "front/teacher/studyGroup/add";
         }
