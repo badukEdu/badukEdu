@@ -2,6 +2,8 @@ package org.choongang.admin.gamecontent.controllers;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class GameContentSearch {
 
@@ -9,4 +11,6 @@ public class GameContentSearch {
     private int limit = 20;
     private String sopt = "ALL"; // 검색옵션
     private String skey = ""; // 검색 키워드
+
+
 }

@@ -7,9 +7,10 @@ import org.choongang.admin.gamecontent.service.GameContentInfoService;
 import org.choongang.commons.ListData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/gamecontent")
@@ -43,13 +44,19 @@ public class GameContentController {
      * @param model
      * @return
      */
-    @GetMapping("/payment")
-    public String payment(@ModelAttribute GameContentSearch search , Model model) {
+    @PostMapping("/payment")
+    public String payment(@ModelAttribute GameContentSearch search , Model model , @RequestParam(name = "chk" ) List<Long> chks) {
 
-        ListData<GameContent> data = gameContentInfoService.getList(search);
-        model.addAttribute("items", data.getItems());
-        model.addAttribute("pagination", data.getPagination());
+        List<GameContent> items = new ArrayList<>();
 
+        for(Long num : chks){
+            items.add(gameContentInfoService.getById(num));
+        }
+
+        //ListData<GameContent> data = gameContentInfoService.getList(search);
+        //model.addAttribute("items", data.getItems());
+        //model.addAttribute("pagination", data.getPagination());
+        model.addAttribute("items", items);
         return "front/teacher/gamecontent/payment";
     }
 
