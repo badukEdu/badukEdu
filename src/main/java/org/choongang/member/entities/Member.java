@@ -46,6 +46,24 @@ public class Member extends Base {
   //private boolean lock;
   @Column
   private boolean agree; //수신동의(이메일 E , SMS 수신 S, 모두 수신 ES, 수신 X)
+
+  @Column
+  private boolean agree2; //수신동의
+
+  @Column
+  private boolean agree3; //수신동의
+
+  @Column
+  private boolean agree4; //수신동의
+
+  @Column
+  private boolean agree5; //수신동의
+
+  @Column
+  private boolean SMSAgree; //수신동의
+
+  @Column
+  private boolean EmailAgree; //수신동의
 //  @Column
 //  private boolean use;  // 계정 상태 (정상 1 / 정지,탈퇴 0)
 

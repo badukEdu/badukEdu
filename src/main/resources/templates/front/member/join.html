@@ -21,13 +21,14 @@
 <!--  </dl>-->
 
   <form name="frmJoin" method="post" th:action="@{/member/join}" autocomplete="off" th:object="${requestJoin}">
-
+    <input type="hidden" name="redirectURL" th:if="${param.redirectURL != null}" th:value="${param.redirectURL}">
     <dl>
       <dt th:text="#{아이디}"></dt>
       <dd>
         <input type="text" class="inputId" name="userId" th:field="*{userId}" placeholder="공백없이 영문/숫자 6자">
         <button type="button" class="id_btn" id="userId_dup_check" th:text="#{중복_확인}"></button>
         <div class="id_check_ok"></div>
+        <div class="error" th:each="err : ${#fields.errors('userId')}" th:text="${err}"></div>
       </dd>
     </dl>
 
@@ -35,6 +36,7 @@
       <dt th:text="#{비밀번호}"></dt>
       <dd>
         <input type="password" name="password" th:field="*{password}" placeholder="공백없이 영문(대/소문자) 숫자 및 특수문자 조합 8~10자">
+        <div class="error" th:each="err : ${#fields.errors('password')}" th:text="${err}"></div>
       </dd>
     </dl>
 
@@ -42,13 +44,15 @@
       <dt th:text="#{비밀번호_확인}"></dt>
       <dd>
         <input type="password" name="confirmPassword" th:field="*{confirmPassword}" placeholder="비밀번호를 한번 더 입력하세요">
+        <div class="error" th:each="err : ${#fields.errors('confirmPassword')}" th:text="${err}"></div>
       </dd>
     </dl>
 
     <dl>
       <dt th:text="#{생년월일}"></dt>
       <dd>
-        <input type="text" name="bDay" th:field="*{bDay}" placeholder="앞6자리+뒤1자리">
+        <input type="date" name="bDay" id="Date" th:field="*{bDay}">
+        <div class="error" th:each="err : ${#fields.errors('bDay')}" th:text="${err}"></div>
       </dd>
     </dl>
 
@@ -56,17 +60,29 @@
       <dt th:text="#{이메일}"></dt>
       <dd>
         <input type="text" name="email" th:field="*{email}" placeholder="이메일 주소를 입력하세요.">
+        <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
       </dd>
     </dl>
+<!--    이메일 옵션 선택-->
+<!--    <input class="emailBox" id="emailTxt" type="text" name="email" th:field="*{email}" placeholder="이메일 주소를 입력하세요."/>-->
+<!--    <select class="emailBox" id="emailList" >-->
+<!--      <option value="type">직접 입력</option>-->
+<!--      <option value="naver.com">naver.com</option>-->
+<!--      <option value="google.com">google.com</option>-->
+<!--      <option value="hanmail.net">hanmail.net</option>-->
+<!--      <option value="nate.com">nate.com</option>-->
+<!--      <option value="kakao.com">kakao.com</option>-->
+<!--    </select>-->
+
 
     <dl>
       <dt th:text="#{회원종류}"></dt>
-      <dd>
         <select name="authority" th:field="*{authority}">
           <option name="authority" id="authority_USER" th:field="*{authority}" th:value="USER">일반회원</option>
           <option name="authority" id="authority_TEACHER" th:field="*{authority}" th:value="TEACHER">교육자</option>
           <option name="authority" id="authority_STUDENT" th:field="*{authority}" th:value="STUDENT">학습자</option>
         </select>
+        <div class="error" th:each="err : ${#fields.errors('authority')}" th:text="${err}"></div>
     </dl>
 
     <dl>
@@ -77,13 +93,26 @@
         <input type="radio" name="gender" id="gender_F" th:field="*{gender}" th:value="F">
         <label for="gender_F">여자</label>
       </dd>
+      <div class="error" th:each="err : ${#fields.errors('gender')}" th:text="${err}"></div>
     </dl>
 
-    <div th:text="#{수신동의}"></div>
-    <div class="terms_agree">
-      <input type="checkbox" name="agree" value="true" id="agree" th:field="*{agree}">
-      <label for="agree" th:text="#{회원가입_약관에_동의합니다.}"></label>
-    </div>
+    <dl>
+      <dt th:text="#{수신동의}"></dt>
+      <dd>
+        <label>
+          <span th:text="#{이벤트_커리큘럼_신규콘텐츠_등_광고_메시지_수신}"></span>
+          <input type="checkbox" name="SMSAgree" value="true" id="SMSAgree" th:field="*{SMSAgree}">
+          <span th:text="#{SMS}"></span>
+        </label>
+        <div class="error" th:each="err : ${#fields.errors('SMSAgree')}" th:text="${err}"></div>
+
+        <label>
+          <input type="checkbox" name="EmailAgree" value="true" id="EmailAgree" th:field="*{EmailAgree}">
+          <span th:text="#{이메일}"></span>
+        </label>
+        <div class="error" th:each="err : ${#fields.errors('EmailAgree')}" th:text="${err}"></div>
+      </dd>
+    </dl>
 
     <dl>
       <dt th:text="#{회원명}"></dt>
