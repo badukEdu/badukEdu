@@ -44,5 +44,16 @@ public class RequestJoin {
   @AssertTrue
   private boolean agree;  // 이용 동의
 
+  private boolean SMSAgree;
 
+  private boolean EmailAgree;
+
+  @AssertTrue
+  private boolean agree2;  // 개인정보 필수항목에 대한 처리 및 이용(필수)
+
+  private boolean agree3;  // 개인정보 선택항목에 대한 처리 및 이용
+
+  private boolean agree4;  // 개인정보 마케팅 및 광고 활용
+
+  private boolean agree5;  // 개인정보의 위탁
 }

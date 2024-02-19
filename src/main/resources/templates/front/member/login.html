@@ -12,6 +12,7 @@
       <dt th:text="#{아이디}"></dt>
       <dd>
         <input type="text" name="userId" th:value="${session.userId}">
+        <div class="error" th:if="${session.NotBlank_userId != null}" th:text="${session.NotBlank_userId}"></div>
       </dd>
     </dl>
     <dl>

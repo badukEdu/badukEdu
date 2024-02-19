@@ -51,6 +51,7 @@ public class MemberController implements ExceptionProcessor {
     joinService.process(form, errors);
 
     if (errors.hasErrors()) {
+      System.out.println(errors + "////////////////");
       return "front/member/confirmation";
     }
 

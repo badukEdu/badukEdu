@@ -39,7 +39,13 @@ public class JoinService {
     member.setUserId(form.getUserId());
     member.setTel(form.getTel());
     member.setBirth(form.getBDay());
+    member.setSMSAgree(form.isSMSAgree());
+    member.setEmailAgree(form.isEmailAgree());
     member.setAgree(form.isAgree());
+    member.setAgree2(form.isAgree2());
+    member.setAgree3(form.isAgree3());
+    member.setAgree4(form.isAgree4());
+    member.setAgree5(form.isAgree5());
     member.setAuthority(Authority.valueOf(form.getAuthority()));
 
     process(member);
