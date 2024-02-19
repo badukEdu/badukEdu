@@ -28,7 +28,7 @@
 <table border="1">
     <tr>
         <th>승인여부</th>
-        <th>No</th>
+        <th>스터디그룹명</th>
         <th>학생이름</th>
         <th>연락처</th>
         <th>승인요청일자</th>
@@ -47,7 +47,7 @@
                     <input type="checkbox" name="chk" th:value="*{num}"> 미승인
                 </div>
             </td>
-            <td> 00 </td>
+            <td th:text="*{studyGroup.name}" ></td>
             <td th:text="*{member.name}"></td>
             <td th:text="*{member.tel}"></td>
             <td th:text="*{SDate}"></td>

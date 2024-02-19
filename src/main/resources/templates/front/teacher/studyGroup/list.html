@@ -5,9 +5,9 @@
 
 <h1>스터디그룹 목록 / UI-W-012</h1>
 <br>
-    <table border="1">
-<form method="get" th:action="@{/studyGroup}" th:object="${stGroupSearch}" >
 
+<form method="get" th:action="@{/studyGroup}" th:object="${stGroupSearch}" >
+<table>
         <tr>
             <th>키워드</th>
             <td>
@@ -22,9 +22,11 @@
                 <button type="submit">검색하기</button>
             </td>
         </tr>
-
+</table>
 </form>
+<hr>
 
+<table border="1">
     <tr>
         <th>선택</th>
         <th>스터디그룹명</th>
