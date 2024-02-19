@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<section layout:fragment="content">
     <h2>학습 자료 조회</h2>
-<form method="get" th:action="@{/admin/edu/list}" autocomplete="off" th:object="${eduDataSearch}">
-    <table>
-        <tr>
-            <th>검색</th>
+    <form method="get" th:action="@{/admin/edu/list}" autocomplete="off" th:object="${eduDataSearch}">
+        <table>
+            <tr>
+                <th>검색</th>
+                <td>
+                    <select name="sopt">
+                        <option value="ALL" th:field="*{sopt}">통합검색</option>
+                        <option value="name" th:field="*{sopt}">학습자료명</option>
+                        <option value="content" th:field="*{sopt}">자료내용</option>
+                    </select>
+                    <input type="text" name="skey" th:field="*{skey}">
+                </td>
+            </tr>
             <td>
-                <select name="sopt">
-                    <option value="ALL" th:field="*{sopt}">통합검색</option>
-                    <option value="name" th:field="*{sopt}">학습자료명</option>
-                    <option value="content" th:field="*{sopt}">자료내용</option>
-                </select>
-                <input type="text" name="skey" th:field="*{skey}">
+                <button type="submit">검색하기</button>
             </td>
-        </tr>
-        <td>
-            <button type="submit">검색하기</button>
-        </td>
-    </table>
-</form>
+        </table>
+    </form>
 
 
 
@@ -64,3 +67,5 @@
         </table>
         <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
     </form>
+</section>
+</html>

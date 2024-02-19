@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<section layout:fragment="content">
     <h2>게임 콘텐츠 조회</h2>
     <form method="get" th:action="@{/admin/gamecontent/list}" autocomplete="off" th:object="${gameContentSearch}">
         <table>
@@ -68,3 +71,5 @@
         </table>
         <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
     </form>
+</section>
+</html>

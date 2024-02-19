@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <h3>결제 방법 선택</h3>
-    <form method="post">
+    <form method="get" th:action="@{/gamecontent/list}">
         <table>
             <tr>
                 <td colspan="2"><h3>주문하실 상품 정보</h3></td>
@@ -61,6 +61,6 @@
                 </td>
             </tr>
         </table>
-        <a th:href="@{/gamecontent/list}">결제하기</a>
+        <button type="submit">결제하기</button>
         <th:block th:replace="~{commons/_pagination::pagination}"></th:block>
     </form>

@@ -9,8 +9,20 @@
         <i class="xi-users"></i> 회원 관리
     </a>
 
+    <a th:href="@{/admin/gamecontent/add}" th:classappend="${menuCode} == 'gamecontent' ? 'on'">
+        <i class="xi-list"></i> 게임컨텐츠등록
+    </a>
+
     <a th:href="@{/admin/gamecontent/list}" th:classappend="${menuCode} == 'gamecontent' ? 'on'">
-        <i class="xi-list"></i> 게임컨텐츠
+        <i class="xi-list"></i> 게임컨텐츠조회
+    </a>
+
+    <a th:href="@{/admin/edu/add}" th:classappend="${menuCode} == 'gamecontent' ? 'on'">
+        <i class="xi-list"></i> 학습자료등록
+    </a>
+
+    <a th:href="@{/admin/edu/list}" th:classappend="${menuCode} == 'gamecontent' ? 'on'">
+        <i class="xi-list"></i> 학습자료조회
     </a>
 
     <a th:href="@{/admin}" th:classappend="${menuCode} == 'order' ? 'on'">
