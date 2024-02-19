@@ -37,7 +37,7 @@ public class EduDataSaveService {
         eduData.setServiceType(form.getServiceType());
         eduData.setContent(form.getContent());
         eduData.setFileAddress(form.getFileAddress());
-//        eduData.setThumbnail(form.getThumbnail());
+        eduData.setThumbnail(form.getThumbnail());
 
         eduDataRepository.saveAndFlush(eduData);
 

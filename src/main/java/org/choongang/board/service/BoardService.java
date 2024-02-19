@@ -15,19 +15,18 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     /**
-     * 게시글 등록 서비스
+     * 게시글(Notice, FaQ) 등록 서비스
      */
 
     public void save(RequestBoardAdd form) {
 
        Notice_ notice = new Notice_();
 
-       notice.setNoticeCategory(form.getNoticeCategory());
-       notice.setFaqCategory(form.getFaqCategory());
+       notice.setType(form.getType());
        notice.setOnTop(form.isOnTop());
-       notice.setNoticeTitle(form.getNoticeTitle());
-       notice.setFaqTitle(form.getFaqTitle());
+       notice.setTitle(form.getTitle());
        notice.setPostingType(form.getPostingType());
+       notice.setQuestion(form.getQuestion());
        notice.setAnswer(form.getAnswer());
        notice.setContent(form.getContent());
 
@@ -36,12 +35,19 @@ public class BoardService {
 
 
     /**
-     * 등록된 게시글 조회
+     * 등록된 게시글 조회(정렬 기준 X, 등록 순)
      * @return
      */
     public List<Notice_> getList() {
         List<Notice_> noticeList = boardRepository.findAll();
 
         return noticeList;
+    }
+
+    /**
+     * 노출 여부를 기준으로 게시물을 조회
+     */
+    public List<Notice_> getListOrderByOnTop() {
+        return boardRepository.findByOrderByOnTopDesc();
     }
 }

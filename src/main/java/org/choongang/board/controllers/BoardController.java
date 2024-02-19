@@ -32,7 +32,7 @@ public class BoardController {
 
         boardService.save(form);
 
-        return "front/board/list";
+        return "redirect:/board/list";
     }
     /* 게시글 등록(공지사항, FAQ등 관리자 권한) S */
 
@@ -41,7 +41,7 @@ public class BoardController {
     @GetMapping("/list")
     public String list(@ModelAttribute Notice_ form, Model model) {
 
-        List<Notice_> noticeList = boardService.getList();
+        List<Notice_> noticeList = boardService.getListOrderByOnTop();
         model.addAttribute("noticeList", noticeList);
 
         return "front/board/list";
@@ -54,18 +54,4 @@ public class BoardController {
     }
     /* 게시글 목록 E */
 
-
-    /* QnA 게시글 등록 S */
-    @GetMapping("/qna")
-    public String qnaAdd() {
-
-        return "admin/board/qnaAdd";
-    }
-
-    @PostMapping("/qna")
-    public String qnaList() {
-
-        return "admin/board/qnaList";
-    }
-    /* QnA 게시글 등록 E */
 }
