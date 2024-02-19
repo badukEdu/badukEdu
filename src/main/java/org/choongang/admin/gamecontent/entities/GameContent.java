@@ -5,9 +5,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.choongang.commons.entities.BaseMember;
 import org.choongang.file.entities.FileInfo;
+import org.choongang.homework.entities.Homework;
 import org.choongang.member.entities.Member;
+import org.choongang.stGrooup.entities.StudyGroup;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -52,6 +55,9 @@ public class GameContent extends BaseMember {
 @ManyToOne(fetch = FetchType.LAZY)
 @JoinColumn(name = "memberNum")
 private Member member; //작성자 회원번호
+
+    @OneToMany(mappedBy = "gameContent", fetch = FetchType.LAZY)
+    private List<StudyGroup> studyGroups;
 
 //private List<StudyGroup> studyGroups;
 

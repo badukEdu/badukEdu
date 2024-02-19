@@ -133,7 +133,7 @@ public class StGroupController {
         RequestStGroup stg = sgInfoService.getForm(num);
 
         model.addAttribute("requestStGroup" , stg);
-        session.setAttribute("game" , gameContentInfoService.getById(num));
+        session.setAttribute("game" , gameContentInfoService.getById(stg.getGameContentNum()));
         return "front/teacher/studyGroup/edit";
     }
 
