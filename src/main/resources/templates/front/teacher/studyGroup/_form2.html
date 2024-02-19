@@ -5,7 +5,15 @@
     <h1>UI-W-011</h1>
     <div th:if="${mode == 'edit'}">
         <input type="hidden" name="num" th:value="*{num}">
+
     </div>
+
+    <div th:if="${mode == 'add2'}">
+        <input type="hidden" name="memberNum" th:value="${session.member.Num}">
+        <input type="hidden" name="teacherName" th:value="${session.member.Name}">
+    </div>
+
+
 <div th:if="${session.game != null}" th:object="${session.game}">
     <input type="hidden" name="gameContentNum" th:value="${session.game.num}">
     <input type="hidden" name="gameTitle" th:value="${session.game.gameTitle}">
@@ -41,7 +49,13 @@
             <td>교육자명</td>
             <td>
                 <!--<p th:text="${session.member.name}"></p>-->
-                <p>${session.member.name} [로그인 회원명 띄울 예정]</p>
+                <div th:if="${mode.equals('add2')}">
+                    <p th:text="${session.member.name}"></p>
+                </div>
+                <dib th:if="${mode.equals('edit')}">
+                    <p th:text="*{teacherName}"></p>
+                </dib>
+
             </td>
         </tr>
         <tr>

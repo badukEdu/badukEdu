@@ -152,6 +152,7 @@ public class StGroupController {
             model.addAttribute("mode" , "add2");
             return "front/teacher/studyGroup/add";
         }
+
         sgSaveService.save(form);
         session.removeAttribute("game");    //session 비워주기
         return "redirect:/studyGroup";

@@ -41,6 +41,9 @@ public class StudyGroup {
     @Column
     private String gameTitle;   //게임컨텐츠명
 
+    @Column
+    private String teacherName;   //게임컨텐츠명
+
     ////////////////////////////////
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -39,9 +39,9 @@ public class RequestStGroup {
 
     @NotNull
     private long month;
-
+    private String teacherName;
 
     private String gameTitle;
-
+    private Long memberNum;
 
 }
