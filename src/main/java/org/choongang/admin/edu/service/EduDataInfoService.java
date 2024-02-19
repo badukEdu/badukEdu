@@ -23,9 +23,10 @@ public class EduDataInfoService {
      * @return
      */
     public List<EduData> getList() {
-        List<EduData> eduInfo = eduDataRepository.findAll();
+        List<EduData> items = eduDataRepository.findAll();
+        items.forEach(this::addInfo);
 
-        return eduInfo;
+        return items;
     }
 
     public EduData getById(Long num) {

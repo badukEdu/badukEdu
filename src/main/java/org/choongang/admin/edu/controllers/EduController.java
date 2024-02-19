@@ -32,6 +32,7 @@ public class EduController {
      */
     @GetMapping("/add")
     public String add(@ModelAttribute RequestEduData form, Model model) {
+        commonProcess("add", model);
 
         return "admin/edu/add";
     }
@@ -103,8 +104,8 @@ public class EduController {
     public String list(@ModelAttribute EduData form, Model model) {
 
         List<EduData> dataList = eduDataInfoService.getList();
+        System.out.println("dataList" + dataList);
         model.addAttribute("dataList", dataList);
-
         return "admin/edu/list";
     }
 
@@ -116,6 +117,7 @@ public class EduController {
         if (mode.equals("add") || mode.equals("edit")) {
             addCommonScript.add("fileManager");
             addScript.add("edu/form");
+
         }
 
         model.addAttribute("addCommonScript", addCommonScript);

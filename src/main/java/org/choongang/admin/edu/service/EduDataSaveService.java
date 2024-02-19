@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.choongang.admin.edu.controllers.RequestEduData;
 import org.choongang.admin.edu.entities.EduData;
 import org.choongang.admin.edu.repositories.EduDataRepository;
+import org.choongang.file.service.FileUploadService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -12,6 +13,7 @@ import org.springframework.util.StringUtils;
 public class EduDataSaveService {
 
     private final EduDataRepository eduDataRepository;
+    private final FileUploadService fileUploadService;
 
     /**
      * 교육 자료 등록/수정
@@ -37,9 +39,10 @@ public class EduDataSaveService {
         eduData.setServiceType(form.getServiceType());
         eduData.setContent(form.getContent());
         eduData.setFileAddress(form.getFileAddress());
-        eduData.setThumbnail(form.getThumbnail());
 
         eduDataRepository.saveAndFlush(eduData);
+
+        fileUploadService.processDone(eduData.getGid());
 
     }
 }

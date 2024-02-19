@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <h2>학습 자료 조회</h2>
     <form method="post" autocomplete="off">
-        <table border="1">
+        <table class="table_rows" border="1">
             <thead>
                 <tr>
                     <th>학습자료명</th>
@@ -19,7 +19,6 @@
             </thead>
             <tbody>
                 <tr th:each="dataList : ${dataList}"  th:object="${dataList}">
-
                     <td th:text="*{name}"></td>
                     <td>
                         <th:block th:if="*{thumbnail != null}" th:utext="*{@utils.printThumb(thumbnail.seq, 100, 100, 'image')}"></th:block>
