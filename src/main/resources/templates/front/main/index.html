@@ -4,7 +4,7 @@
       layout:decorate="~{front/layouts/main}">
 
 <th:block layout:fragment="addCss">
-    <link rel="stylesheet" type="text/css" th:href="@{/front/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/front/css/main/style.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/front/main/style.css}">
 
 
@@ -31,10 +31,10 @@
                     <img th:src="@{/common/image/mbanner1.jpg}" alt="메인배너1">
                 </div>
                 <div class="swiper-slide">
-                    <img src="images/mbanner2.jpg" alt="메인배너2">
+                    <img th:src="@{/common/image/mbanner2.jpg}" alt="메인배너2">
                 </div>
                 <div class="swiper-slide">
-                    <img src="images/mbanner3.jpg" alt="메인배너3">
+                    <img th:src="@{/common/image/mbanner3.jpg}" alt="메인배너3">
                 </div>
             </div>
             <i class="xi-angle-left prev"></i>
@@ -54,16 +54,16 @@
         <a href="#">학습그룹 조회</a>
     </section>
 
-<main layout:fragment="content" class="layout_width">
-사용자 메인페이지
-<a th:href="@{/admin}">관리자 메인</a>
-<a th:href="@{/homework}">교육자 숙제</a>
-<a th:href="@{/homework/list}">학습자 숙제</a>
-<a th:href="@{/studyGroup}">스터디 그룹</a>
-<a th:href="@{/JoinStudyGroup}">스터디그룹 가입 신청</a>
-<a th:href="@{/JoinStudyGroup/accept}">스터디그룹 가입 승인</a>
+<th:block class="layout_width">
+    사용자 메인페이지
+    <a th:href="@{/admin}">관리자 메인</a>
+    <a th:href="@{/homework}">교육자 숙제</a>
+    <a th:href="@{/homework/list}">학습자 숙제</a>
+    <a th:href="@{/studyGroup}">스터디 그룹</a>
+    <a th:href="@{/JoinStudyGroup}">스터디그룹 가입 신청</a>
+    <a th:href="@{/JoinStudyGroup/accept}">스터디그룹 가입 승인</a>
+</th:block>
 
-</main>
 
 <div class="info-container flex_center">
     <div class="info-content layout_1440  flex_center">
@@ -127,6 +127,6 @@
 </div>
 
 
-</main>
 
+</main>
 </html>
