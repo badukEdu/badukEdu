@@ -61,7 +61,7 @@ public class StGroupController {
 
         model.addAttribute("list" , sgInfoService.getList(search).getItems());
         model.addAttribute("item" , sgInfoService.getForm(num));
-
+        model.addAttribute("members" , sgInfoService.getJoinMember(num));
         return "front/teacher/studyGroup/detail";
     }
 
@@ -77,6 +77,7 @@ public class StGroupController {
 
         model.addAttribute("list" , sgInfoService.getList(search).getItems());
         model.addAttribute("item" , sgInfoService.getForm(num));
+        model.addAttribute("members" , sgInfoService.getJoinMember(num));
 
         return "front/teacher/studyGroup/detail";
     }
