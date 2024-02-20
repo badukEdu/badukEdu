@@ -1,3 +1,29 @@
+window.addEventListener("DOMContentLoaded", function() {
+    const startDateEl = document.getElementById("startDate");
+    const endDateEl = document.getElementById("endDate");
+    const subscriptionMonths = document.getElementById("subscriptionMonths");
+
+    startDateEl.addEventListener("change", updateEndDate);
+    subscriptionMonths.addEventListener("blur", updateEndDate);
+
+    function updateEndDate() {
+        if(!subscriptionMonths.value) return;
+
+        const month = parseInt(subscriptionMonths.value);
+        if (month < 1) return;
+
+        const date = new Date(startDateEl.value);
+
+        date.setMonth(date.getMonth() + month);
+        const endDate = `${date.getFullYear()}-${("" + (date.getMonth() + 1))
+        .padStart(2, '0')}-${("" + date.getDate()).padStart(2, '0')}`;
+
+        endDateEl.value = endDate;
+
+        console.log(date)
+    }
+});
+
 function callbackFileUpload(files) {
     if (files == null || files.length == 0) return;
 
