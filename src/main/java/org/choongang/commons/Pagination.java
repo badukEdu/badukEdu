@@ -38,7 +38,7 @@ public class Pagination {
         page = Utils.onlyPositiveNumber(page, 1);
         total = Utils.onlyPositiveNumber(total, 0);
         ranges = Utils.onlyPositiveNumber(ranges, 10);
-        limit = Utils.onlyPositiveNumber(limit, 20);
+        limit = Utils.onlyPositiveNumber(limit, 10);
 
         // 전체 페이지 갯수
         int totalPages = (int)Math.ceil(total / (double)limit);
