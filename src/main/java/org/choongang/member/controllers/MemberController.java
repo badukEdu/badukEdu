@@ -22,7 +22,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/member")
 @RequiredArgsConstructor
-@SessionAttributes("EmailAuthVerified")
+@SessionAttributes({"EmailAuthVerified", "requestJoin"})
 public class MemberController implements ExceptionProcessor {
 
   private final Utils utils;
@@ -33,22 +33,38 @@ public class MemberController implements ExceptionProcessor {
 
   /**
    * 동의 및 인증
-   * @param form
-   * @param model
    * @return
    */
-  @GetMapping("/confirmation")
-  public String confirmation(@ModelAttribute RequestJoin form, Model model) {
+  @ModelAttribute("requestJoin")
+  public RequestJoin setEmpty() {
+    return new RequestJoin();
+  }
+
+  @RequestMapping(value = "/confirmation", method = RequestMethod.GET)
+  public String confirmation( RequestJoin form, Model model) {
     commonProcess("confirmation", model);
+    model.addAttribute("requestJoin", new RequestJoin());
 
     return "front/member/confirmation";
   }
 
-  @PostMapping("/confirmation")
-  public String confirmationPs(@Valid RequestJoin form, Errors errors,Model model) {
+  @RequestMapping(value = "/confirmation", method = RequestMethod.POST)
+  public String confirmationPs(@ModelAttribute("requestJoin") RequestJoin form, Errors errors,Model model) {
     commonProcess("confirmation", model);
 
-    joinService.process(form, errors);
+    // 필수 필드가 비어 있는지 확인
+    if (form.getName() == null || form.getName().isEmpty()) {
+      errors.rejectValue("name", "required", "이름을 입력하세요.");
+    }
+    if (!form.isAgree()) {
+      errors.rejectValue("agree", "required", "이용 약관에 동의해주세요.");
+    }
+    if (!form.isAgree2()) {
+      errors.rejectValue("agree2", "required", "개인정보 처리 및 이용에 동의해주세요.");
+    }
+    if (form.getEmail() == null || form.getEmail().isEmpty()) {
+      errors.rejectValue("email", "required", "이메일을 입력하세요.");
+    }
 
     if (errors.hasErrors()) {
       System.out.println(errors + "////////////////");
@@ -75,10 +91,11 @@ public class MemberController implements ExceptionProcessor {
     joinService.process(form, errors);
 
     if (errors.hasErrors()) {
+      System.out.println(errors + "@@@@@@@@@@@@");
       return "front/member/join";
     }
 
-    // EmailAuthVerified 세션값 비우기 */
+    // EmailAuthVerified, requestJoin 세션값 비우기 */
     sessionStatus.setComplete();
 
     return "redirect:/member/login";
