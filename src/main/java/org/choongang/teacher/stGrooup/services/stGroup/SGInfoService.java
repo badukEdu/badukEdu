@@ -8,6 +8,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.choongang.admin.gamecontent.controllers.GameContentSearch;
+import org.choongang.admin.gamecontent.entities.GameContent;
+import org.choongang.admin.gamecontent.service.GameContentInfoService;
 import org.choongang.commons.ListData;
 import org.choongang.commons.Pagination;
 import org.choongang.commons.Utils;
@@ -15,14 +18,17 @@ import org.choongang.member.constants.Authority;
 import org.choongang.member.entities.Member;
 import org.choongang.teacher.stGrooup.controllers.RequestStGroup;
 import org.choongang.teacher.stGrooup.controllers.StGroupSearch;
+import org.choongang.teacher.stGrooup.entities.JoinStudyGroup;
 import org.choongang.teacher.stGrooup.entities.QStudyGroup;
 import org.choongang.teacher.stGrooup.entities.QStudyGroup;
 import org.choongang.teacher.stGrooup.entities.StudyGroup;
 import org.choongang.teacher.stGrooup.repositories.StGroupRepository;
+import org.choongang.teacher.stGrooup.services.joinStG.JoinSTGInfoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,6 +39,8 @@ public class SGInfoService {
     private final EntityManager em;
     private final HttpServletRequest request;
     private final HttpSession session;
+    private final GameContentInfoService gameContentInfoService;
+    public final JoinSTGInfoService joinSTGInfoService;
 
 
     public ListData<StudyGroup> getList(StGroupSearch search){
@@ -83,6 +91,11 @@ public class SGInfoService {
             long total = stGroupRepository.count(andBuilder);
             Pagination pagination = new Pagination(page, (int)total, 5, limit, request);
 
+            for(StudyGroup s : items){
+                gameContentInfoService.addInfo(s.getGameContent());
+            }
+
+
             return new ListData <> (items , pagination);
     }
 
@@ -90,6 +103,25 @@ public class SGInfoService {
 
         return stGroupRepository.getById(num);
     }
+
+    /**
+     * 해당 스터디그룹에 가입한(가입 승인 된) 멤버 목록 리턴
+     * @param num -> 스터디그룹 num
+     * @return
+     */
+    public List<Member> getJoinMember(Long num){
+
+        List<Member> members = new ArrayList<>();
+        List<JoinStudyGroup> jstgList = joinSTGInfoService.getAll();
+        StudyGroup stg = stGroupRepository.getById(num);
+        for(JoinStudyGroup j : jstgList){
+            if(stg.equals(j.getStudyGroup()) && j.isAccept()){
+                members.add(j.getMember());
+            }
+        }
+        return members;
+    }
+
 
     public RequestStGroup getForm(Long num) {
         StudyGroup data = getById(num);

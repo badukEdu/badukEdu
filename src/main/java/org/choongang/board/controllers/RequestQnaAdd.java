@@ -6,7 +6,11 @@ import lombok.Data;
 @Data
 public class RequestQnaAdd {
 
+    private Long num;
+
     private String type;
+
+    private String mode = "add"; // 등록 및 수정 분리
 
     private String title;
 

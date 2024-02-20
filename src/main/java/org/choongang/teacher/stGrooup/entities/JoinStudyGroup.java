@@ -28,7 +28,6 @@ public class JoinStudyGroup {
     @Column(insertable = false)
     private LocalDateTime JoinDate; // 가입 승인일 (자동생성)
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "studyGroupNum")
     private StudyGroup studyGroup; // 스터디그룹

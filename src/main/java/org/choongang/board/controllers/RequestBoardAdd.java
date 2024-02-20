@@ -9,7 +9,11 @@ import java.time.LocalDateTime;
 @Data
 public class RequestBoardAdd {
 
+    private Long num;
+
     private String type; // 공지 분류(notice 또는 faq)
+    
+    private String mode = "edit"; // 등록 및 수정 분리
 
     private boolean onTop;
 

@@ -51,7 +51,7 @@ public class StudyGroup {
     @JoinColumn(name = "memberNum")
     private Member member; //작성자 회원번호
 
-
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gameContentNum")
     private GameContent gameContent; //게임 번호

@@ -6,7 +6,7 @@
 <form method="get" th:action="@{/JoinStudyGroup}" th:object="${stGroupSearch}" >
     <table >
         <tr>
-            <th>키워드(user 완성되면 -> 교육자명으로 검색 가능하도록)</th>
+            <th>키워드</th>
             <td>
                 <select name="sopt">
                     <option value="ALL" th:field="*{sopt}">통합검색</option>
@@ -37,7 +37,9 @@
     <input type="hidden" name="userNum" th:value="${session.member.num}">
         <tr th:each="item : ${list}" th:object="${item}">
             <td><input type="checkbox" name="chk" th:value="*{num}"></td>
-            <td >게임 컨텐츠 이미지 처리 완료되면 -> 이미지 띄우기</td>
+            <td >
+                <th:block th:if="*{gameContent.thumbnail != null}" th:utext="*{@utils.printThumb(gameContent.thumbnail.seq, 100, 100, 'image')}"></th:block>
+            </td>
             <td th:text="*{name}"></td>
             <td th:text="*{teacherName}"></td>
             <td th:text="*{startDate+' ~ '+endDate}"></td>

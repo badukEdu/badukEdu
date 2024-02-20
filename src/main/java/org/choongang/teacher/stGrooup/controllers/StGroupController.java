@@ -7,7 +7,10 @@ import org.choongang.admin.gamecontent.controllers.GameContentSearch;
 import org.choongang.admin.gamecontent.entities.GameContent;
 import org.choongang.admin.gamecontent.service.GameContentInfoService;
 import org.choongang.commons.ListData;
+import org.choongang.member.entities.Member;
+import org.choongang.teacher.stGrooup.entities.JoinStudyGroup;
 import org.choongang.teacher.stGrooup.entities.StudyGroup;
+import org.choongang.teacher.stGrooup.services.joinStG.JoinSTGInfoService;
 import org.choongang.teacher.stGrooup.services.stGroup.SGDeleteService;
 import org.choongang.teacher.stGrooup.services.stGroup.SGInfoService;
 import org.choongang.teacher.stGrooup.services.stGroup.SGSaveService;
@@ -29,6 +32,7 @@ public class StGroupController {
     //private final vetaGameInfo vetaGameInfo; //게임 인포서비스 만들어지면 이거 지워야함
     private final HttpSession session;
     private final GameContentInfoService gameContentInfoService;
+    private final JoinSTGInfoService joinSTGInfoService;
 
     /**
      * 스터디 그룹 목록
@@ -57,7 +61,7 @@ public class StGroupController {
 
         model.addAttribute("list" , sgInfoService.getList(search).getItems());
         model.addAttribute("item" , sgInfoService.getForm(num));
-
+        model.addAttribute("members" , sgInfoService.getJoinMember(num));
         return "front/teacher/studyGroup/detail";
     }
 
@@ -73,6 +77,7 @@ public class StGroupController {
 
         model.addAttribute("list" , sgInfoService.getList(search).getItems());
         model.addAttribute("item" , sgInfoService.getForm(num));
+        model.addAttribute("members" , sgInfoService.getJoinMember(num));
 
         return "front/teacher/studyGroup/detail";
     }
@@ -89,6 +94,8 @@ public class StGroupController {
 
         ListData<GameContent> data = gameContentInfoService.getList(search);
         model.addAttribute("items" , data.getItems());
+        for(GameContent g : data.getItems()){
+        }
         model.addAttribute("pagination" , data.getPagination());
 
         return "front/teacher/studyGroup/add";

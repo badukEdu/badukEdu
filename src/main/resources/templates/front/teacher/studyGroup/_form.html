@@ -11,6 +11,7 @@
         <tr>
             <th>선택</th>
             <th>컨텐츠명</th>
+            <th>썸네일</th>
             <th>구독 기간</th>
             <th>개월</th>
             <th>(게임)학습가능인원</th>
@@ -22,6 +23,10 @@
                 <input type="radio" name="num" th:value="*{num}">
             </td>
             <th th:text="*{gameTitle}"></th>
+            <td>
+                <th:block th:if="*{thumbnail != null}" th:utext="*{@utils.printThumb(thumbnail.seq, 100, 100, 'image')}"></th:block>
+
+            </td>
             <th th:text="*{startDate+ '~' +endDate}"></th>
             <th th:text="*{subscriptionMonths}"></th>
             <th th:text="*{maxSubscriber}"></th>

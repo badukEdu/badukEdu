@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
+
 <th:block layout:fragment="addCss">
     <link rel="stylesheet" type="text/css" th:href="@{/front/style.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/front/main/style.css}">
@@ -52,6 +53,16 @@
         <a href="#">학습그룹 등록</a>
         <a href="#">학습그룹 조회</a>
     </section>
+
+<main layout:fragment="content" class="layout_width">
+사용자 메인페이지
+<a th:href="@{/admin}">관리자 메인</a>
+<a th:href="@{/homework}">교육자 숙제</a>
+<a th:href="@{/homework/list}">학습자 숙제</a>
+<a th:href="@{/studyGroup}">스터디 그룹</a>
+<a th:href="@{/JoinStudyGroup}">스터디그룹 가입 신청</a>
+<a th:href="@{/JoinStudyGroup/accept}">스터디그룹 가입 승인</a>
+
 </main>
 
 <div class="info-container flex_center">

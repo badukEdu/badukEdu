@@ -75,7 +75,7 @@ public class GameContentInfoService {
 
         data.getContent().forEach(this::addInfo);
 
-        Pagination pagination = new Pagination(page, total, limit, 20, request);
+        Pagination pagination = new Pagination(page, total, 10, limit, request);
 
         return new ListData<>(data.getContent(), pagination);
     }
@@ -95,7 +95,7 @@ public class GameContentInfoService {
         return form;
     }
 
-    private void addInfo(GameContent data) {
+    public void addInfo(GameContent data) {
         List<FileInfo> items = fileInfoService.getListDone(data.getGid());
         if(items != null && !items.isEmpty()) data.setThumbnail(items.get(0));
 

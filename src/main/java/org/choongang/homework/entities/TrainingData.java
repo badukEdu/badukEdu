@@ -2,7 +2,6 @@ package org.choongang.homework.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.choongang.homework.entities.Homework;
 import org.choongang.member.entities.Member;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -37,5 +36,5 @@ public class TrainingData {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "homeworkNum")
-  private Homework homework; //작성자 회원번호
+  private Homework homework; // 숙제
 }
