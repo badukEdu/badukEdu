@@ -7,6 +7,8 @@ import org.choongang.board.repositiries.BoardRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor // final 필드 생성자 생성
@@ -50,4 +52,13 @@ public class BoardService {
     public List<Notice_> getListOrderByOnTop() {
         return boardRepository.findByOrderByOnTopDesc();
     }
+
+    /**
+     * 게시글 번호로 상세 페이지 조회
+     */
+
+    public Optional<Notice_> findByNum(Long num) {
+        return boardRepository.findById(num);
+    }
+
 }
