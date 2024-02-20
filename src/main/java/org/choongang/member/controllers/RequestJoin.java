@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.choongang.member.constants.Authority;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 public class RequestJoin {
@@ -28,13 +29,14 @@ public class RequestJoin {
   private String userId;
 
   @NotBlank
-  @Size(min=8, max = 10)
+  @Size(min=8)
   private String password;
 
   @NotBlank
   private String confirmPassword;
 
   @NotBlank
+  @DateTimeFormat(pattern="yyyy-MM-dd")
   private String bDay;
 
   private String gender;
