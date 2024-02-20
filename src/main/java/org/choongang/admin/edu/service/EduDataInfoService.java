@@ -74,7 +74,7 @@ public class EduDataInfoService {
 
         data.getContent().forEach(this::addInfo);
 
-        Pagination pagination = new Pagination(page, total, limit, 20 ,request);
+        Pagination pagination = new Pagination(page, total, 10, limit ,request);
 
         return new ListData<>(data.getContent(), pagination);
     }
