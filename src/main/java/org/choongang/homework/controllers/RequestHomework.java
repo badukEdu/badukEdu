@@ -19,7 +19,7 @@ public class RequestHomework {
     @NotBlank @Lob
     private String content;
 
-    private Long groupNum;
+    private Long memberNum;
 
     @NotNull
     @Min(1) @Max(100)

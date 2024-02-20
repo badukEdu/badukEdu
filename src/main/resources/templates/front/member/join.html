@@ -5,34 +5,34 @@
 <main layout:fragment="content">
 
   <h1 th:text="#{인증정보}"></h1>
+
   <form name="frmJoin" method="post" th:action="@{/member/join}" autocomplete="off" th:object="${requestJoin}">
+
     <input type="hidden" name="redirectURL" th:if="${param.redirectURL != null}" th:value="${param.redirectURL}">
-  <dl>
+
+    <dl>
     <dt th:text="#{회원명}"></dt>
-    <dd>
-      <input type="text" name="name" th:field="*{name}">
+    <dd th:text="*{name}">
     </dd>
   </dl>
+
   <dl>
     <dt th:text="#{이메일}"></dt>
-    <dd>
-      <input type="text" name="email" th:field="*{email}">
-<!--      <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>-->
+    <dd th:text="*{email}">
     </dd>
   </dl>
-<!--  <dl>-->
-<!--    <dt th:text="#{회원명}"></dt>-->
-<!--    <dd>-->
-<!--      <input type="text" name="name" th:field="*{session.name}">-->
-<!--    </dd>-->
-<!--  </dl>-->
 
-<!--  <dl>-->
-<!--    <dt th:text="#{이메일}"></dt>-->
-<!--    <dd>-->
-<!--      <input type="text" name="email" th:field="*{session.email}">-->
-<!--    </dd>-->
-<!--  </dl>-->
+    <!--    이메일 옵션 선택-->
+    <!--    <input class="emailBox" id="emailTxt" type="text" name="email" th:field="*{email}" placeholder="이메일 주소를 입력하세요."/>-->
+    <!--    <select class="emailBox" id="emailList" >-->
+    <!--      <option value="type">직접 입력</option>-->
+    <!--      <option value="naver.com">naver.com</option>-->
+    <!--      <option value="google.com">google.com</option>-->
+    <!--      <option value="hanmail.net">hanmail.net</option>-->
+    <!--      <option value="nate.com">nate.com</option>-->
+    <!--      <option value="kakao.com">kakao.com</option>-->
+    <!--    </select>-->
+
     <h1 th:text="#{정보입력}"></h1>
 
     <dl>
@@ -76,18 +76,6 @@
         <div class="error" th:each="err : ${#fields.errors('bDay')}" th:text="${err}"></div>
       </dd>
     </dl>
-
-<!--    이메일 옵션 선택-->
-<!--    <input class="emailBox" id="emailTxt" type="text" name="email" th:field="*{email}" placeholder="이메일 주소를 입력하세요."/>-->
-<!--    <select class="emailBox" id="emailList" >-->
-<!--      <option value="type">직접 입력</option>-->
-<!--      <option value="naver.com">naver.com</option>-->
-<!--      <option value="google.com">google.com</option>-->
-<!--      <option value="hanmail.net">hanmail.net</option>-->
-<!--      <option value="nate.com">nate.com</option>-->
-<!--      <option value="kakao.com">kakao.com</option>-->
-<!--    </select>-->
-
 
     <dl>
       <dt th:text="#{회원종류}"></dt>

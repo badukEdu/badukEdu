@@ -2,7 +2,8 @@ package org.choongang.board.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.choongang.board.entities.Qna;
-import org.choongang.board.service.QnaService;
+import org.choongang.board.service.QnaInfoService;
+import org.choongang.board.service.QnaSaveService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class QnaController {
 
-    private final QnaService qnaService;
+    private final QnaSaveService qnaSaveService;
+    private final QnaInfoService qnaInfoService;
 
     /* QnA 게시글 등록 S */
     @GetMapping("/qna")
@@ -30,7 +32,7 @@ public class QnaController {
     @PostMapping("/qna")
     public String qnaList(RequestQnaAdd form, Model model) {
 
-        qnaService.save(form);
+        qnaSaveService.save(form);
 
         return "redirect:/board/qnaList";
     }
@@ -41,7 +43,7 @@ public class QnaController {
     @GetMapping("/qnaList")
     public String list(@ModelAttribute Qna form, Model model) {
 
-        List<Qna> qnaList = qnaService.getList();
+        List<Qna> qnaList = qnaInfoService.getList();
         model.addAttribute("qnaList", qnaList);
 
         return "admin/board/qnaList";
