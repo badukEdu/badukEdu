@@ -8,6 +8,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.choongang.admin.gamecontent.controllers.GameContentSearch;
+import org.choongang.admin.gamecontent.entities.GameContent;
+import org.choongang.admin.gamecontent.service.GameContentInfoService;
 import org.choongang.commons.ListData;
 import org.choongang.commons.Pagination;
 import org.choongang.commons.Utils;
@@ -33,6 +36,7 @@ public class SGInfoService {
     private final EntityManager em;
     private final HttpServletRequest request;
     private final HttpSession session;
+    private final GameContentInfoService gameContentInfoService;
 
 
     public ListData<StudyGroup> getList(StGroupSearch search){
@@ -82,6 +86,11 @@ public class SGInfoService {
                 .fetch();
             long total = stGroupRepository.count(andBuilder);
             Pagination pagination = new Pagination(page, (int)total, 5, limit, request);
+
+            for(StudyGroup s : items){
+                gameContentInfoService.addInfo(s.getGameContent());
+            }
+
 
             return new ListData <> (items , pagination);
     }
