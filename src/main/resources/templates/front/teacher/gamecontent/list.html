@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <h2>내 구독 상품 조회</h2>
+        <form method="get" th:action="@{/gamecontent/list}" autocomplete="off" th:object="${gameContentSearch}">
+            <table>
+                <tr>
+                    <th>검색</th>
+                    <td>
+                        <select name="sopt">
+                            <option value="ALL" th:field="*{sopt}">통합검색</option>
+                            <option value="gameTitle" th:field="*{sopt}">게임콘텐츠명</option>
+                            <option value="packageContents" th:field="*{sopt}">패키지내용</option>
+                        </select>
+                        <input type="text" name="skey" th:field="*{skey}">
+                    </td>
+                </tr>
+                <td>
+                    <button type="submit">검색하기</button>
+                </td>
+            </table>
+        </form>
 
         <table border="1">
             <tr>
