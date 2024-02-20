@@ -17,8 +17,41 @@ public class MemberUtil {
 
         if (isLogin()) {
             return getMember().getAuthorities()
-                    .stream().map(Authorities::getAuthority)
-                    .anyMatch(a -> a == Authority.ADMIN || a == Authority.USER);
+                .stream().map(Authorities::getAuthority)
+                .anyMatch(a -> a == Authority.ADMIN);
+        }
+
+        return false;
+    }
+
+    public boolean isTeacher() {
+
+        if (isLogin()) {
+            return getMember().getAuthorities()
+                .stream().map(Authorities::getAuthority)
+                .anyMatch(a -> a == Authority.TEACHER);
+        }
+
+        return false;
+    }
+
+    public boolean isStudent() {
+
+        if (isLogin()) {
+            return getMember().getAuthorities()
+                .stream().map(Authorities::getAuthority)
+                .anyMatch(a -> a == Authority.STUDENT);
+        }
+
+        return false;
+    }
+
+    public boolean isUser() {
+
+        if (isLogin()) {
+            return getMember().getAuthorities()
+                .stream().map(Authorities::getAuthority)
+                .anyMatch(a -> a == Authority.USER);
         }
 
         return false;
@@ -36,8 +69,8 @@ public class MemberUtil {
     }
 
     public static void clearLoginData(HttpSession session) {
-        session.removeAttribute("userId");
-        session.removeAttribute("NotBlank_userId");
+        session.removeAttribute("username");
+        session.removeAttribute("NotBlank_username");
         session.removeAttribute("NotBlank_password");
         session.removeAttribute("Global_error");
     }

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지 수정</title>
+    <script src="/board/js/boardAdd.js"></script>
+    <link rel="stylesheet" type="text/css" href="/board/css/boardAdd.css">
+</head>
+<body>
+<h2>공지 수정</h2>
+<form th:action="@{/board/edit}" method="post" th:object="${requestBoardAdd}" autocomplete="off">
+    <div class="tableContainer">
+        <table>
+            <tr>
+                <th>공지 분류</th>
+                <td>
+                    <select id="type" th:field="*{type}" name="type">
+                        <option value="notice">공지사항</option>
+                        <option value="faq">FAQ</option>
+                    </select>
+                </td>
+            </tr>
+
+            <!-- Notice 노출 여부 -->
+            <tr class="noticeRow">
+                <th>노출 여부</th>
+                <td>
+                    <label for="onTop">
+                        <input type="checkbox" id="onTop" th:field="*{onTop}" name="onTop">
+                        중요글로 상단 노출
+                    </label>
+                </td>
+            </tr>
+
+            <!-- 제목 -->
+            <tr class="row">
+                <th>제목</th>
+                <td>
+                    <input type="text" id="title" th:field="*{title}" name="title" placeholder="제목을 입력하세요">
+                </td>
+            </tr>
+
+            <!-- notice 게시일자 -->
+            <tr class="noticeRow">
+                <th>게시일자</th>
+                <td>
+                    <input type="radio" id="immediately" th:field="*{postingType}" name="postingType" value="immediately">
+                    <label for="immediately">등록 즉시 게시</label>
+                    <input type="radio" id="expectedPostingDate" th:field="*{postingType}" name="postingType" value="expectedPostingDate">
+                    <label for="expectedPostingDate">게시 예정일</label>
+                    <input type="datetime-local" id="calendar" name="expectedPostingDate" class="calendar" th:field="*{postingType}">
+                </td>
+            </tr>
+
+            <!-- faq 질의 -->
+            <tr class="faqRow">
+                <th>질의</th>
+                <td>
+                    <textarea id="question" th:field="*{question}" name="question" rows="3" cols="30"></textarea>
+                </td>
+            </tr>
+
+            <!-- faq 답변 -->
+            <tr class="faqRow">
+                <th>답변</th>
+                <td>
+                    <textarea id="answer" th:field="*{answer}" name="answer" rows="10" cols="30"></textarea>
+                </td>
+            </tr>
+
+            <!-- notice 내용 -->
+            <tr class="noticeRow">
+                <th>내용</th>
+                <td>
+                    <textarea id="content" th:field="*{content}" name="content" rows="20" cols="30"></textarea>
+                </td>
+            </tr>
+
+            <!-- 공지 번호(hidden) -->
+            <input type="hidden" th:field="*{num}" name="num" th:value="${requestBoardAdd.num}">
+
+            <!-- 등록 버튼 -->
+            <tr>
+                <td>
+                    <input type="submit" id="editNoticeFaq" value="수정하기">
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+</body>
+</html>
