@@ -8,6 +8,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.choongang.admin.gamecontent.controllers.GameContentSearch;
+import org.choongang.admin.gamecontent.entities.GameContent;
+import org.choongang.admin.gamecontent.service.GameContentInfoService;
 import org.choongang.commons.ListData;
 import org.choongang.commons.Pagination;
 import org.choongang.commons.Utils;
@@ -33,6 +36,7 @@ public class SGInfoService {
     private final EntityManager em;
     private final HttpServletRequest request;
     private final HttpSession session;
+    private final GameContentInfoService gameContentInfoService;
 
 
     public ListData<StudyGroup> getList(StGroupSearch search){
@@ -51,14 +55,6 @@ public class SGInfoService {
         if(((Member)session.getAttribute("member")).getAuthority() == Authority.TEACHER){
             andBuilder.and(studyGroup.member.eq((Member) session.getAttribute("member")));
         }
-/*
-        쿼리가 복잡해서 포문으로 처리
-        //스터디그룹 신청쪽 리스트 (본인이 이미 신청 한 스터디그룹은 제외하고 보여주기 위해)
-        if(search.getType().equals("joinstg")){
-            //andBuilder.and();
-        }
-*/
-
 
         String sopt = search.getSopt();
         String skey = search.getSkey().trim();
@@ -90,6 +86,12 @@ public class SGInfoService {
                 .fetch();
             long total = stGroupRepository.count(andBuilder);
             Pagination pagination = new Pagination(page, (int)total, 5, limit, request);
+
+             // 스터디그룹 리스트에 있는 게임 컨텐츠에 게임 컨텐스 셋 해줘야함
+            for(StudyGroup s : items){
+                gameContentInfoService.addInfo(s.getGameContent());
+            }
+
 
             return new ListData <> (items , pagination);
     }
