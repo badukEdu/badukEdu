@@ -20,18 +20,15 @@
                 </td>
             </tr>
         </thead>
-        <tbody id="table_body">
+        <tbody>
             <tr>
-                <td></td>
+                <td><input type="checkbox" id="chks"></td>
                 <td>학습자명</td>
                 <td>전화번호</td>
                 <td>현재 레벨</td>
             </tr>
-            <tr th:each="item : ${list}" th:object="${item}">
-                <td><input type="checkbox" name="chk"></td>
-                <td>aa</td>
-                <td>aa</td>
-                <td>aa</td>
+            <tr id="group_member" th:each="item : ${list}" th:object="${item}">
+                <td colspan="4">학습그룹을 선택해주세요.</td>
             </tr>
         </tbody>
     </table>
@@ -56,13 +53,13 @@
                 if (this.readyState == 4 && this.status == 200) {
                     // 서버로부터 응답을 받으면 테이블 업데이트
 
-                    document.getElementById("table_body").innerHTML = this.responseText;
+                    document.getElementById("group_member").innerHTML = this.responseText;
                 }
             };
 
             // 선택한 값에 따라 새로운 내용을 생성합니다.
             // 서버로 요청 보내기
-            xhr.open("GET", "get_table_data?option=" + selectedOption, true);
+            xhr.open("GET", "/homework/get_table_data?option=" + selectedOption, true);
             xhr.send();
 
     }

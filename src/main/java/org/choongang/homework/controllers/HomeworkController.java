@@ -2,6 +2,7 @@ package org.choongang.homework.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.choongang.commons.ListData;
 import org.choongang.homework.entities.Homework;
 import org.choongang.homework.entities.TrainingData;
 import org.choongang.homework.service.HomeworkInfoService;
@@ -10,6 +11,7 @@ import org.choongang.homework.service.TrainingDataSaveService;
 import org.choongang.member.MemberUtil;
 import org.choongang.member.entities.Member;
 import org.choongang.teacher.stGrooup.controllers.StGroupSearch;
+import org.choongang.teacher.stGrooup.entities.StudyGroup;
 import org.choongang.teacher.stGrooup.services.stGroup.SGInfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -123,6 +125,12 @@ public class HomeworkController {
         }
         List<Homework> items = homeworkInfoService.getList(member.getNum());
 
+
+        ListData<StudyGroup> data = sgInfoService.getList(search);
+
+        model.addAttribute("list" , data.getItems());
+        model.addAttribute("pagination", data.getPagination());
+
         model.addAttribute("items", items);
 
         return "front/teacher/homework/post";
@@ -176,8 +184,8 @@ public class HomeworkController {
 
     /** 사용자 - 숙제 작성 페이지 (작업중)
      *
-     * @param num
-     * @param form
+     * @param
+     * @param
      * @param model
      * @return
      */
@@ -200,24 +208,28 @@ public class HomeworkController {
         return "redirect:/homework/list";
     }
 
-    @GetMapping("/get_table_data")
+    @GetMapping("get_table_data")
     @ResponseBody
     public String getTableData(@RequestParam("option") String selectedOption) {
-        // 선택된 학습 그룹의 데이터를 조회
-//        List<Member> members =
 
+        System.out.println("///////////////////" + selectedOption);
+        // 선택된 학습 그룹의 데이터를 조회
+        List<Member> members = sgInfoService.getJoinMember(Long.valueOf(selectedOption));
+
+        System.out.println("members :" +  members);
 
         // 조회된 데이터를 HTML 형식으로 생성
         StringBuilder tableData = new StringBuilder();
-        tableData.append("<tr><td>학습자명</td><td>전화번호</td><td>현재 레벨</td></tr>" + "<tr><td colspan='4'>studyGroup에 속한 members 출력하는 동작...<td>");
 
-//        for (String[] rowData : members) {
-//            tableData.append("<tr>");
-//            tableData.append("<td>").append(rowData[0]).append("</td>"); // 학습자명
-//            tableData.append("<td>").append(rowData[1]).append("</td>"); // 전화번호
-//            tableData.append("<td>").append(rowData[2]).append("</td>"); // 현재 레벨
-//            tableData.append("</tr>");
-//        }
+
+        for (Member member : members) {
+            tableData.append("<tr>");
+            tableData.append("<td><input type='checkbox' th:id='*{'member' + num}>").append("</td>"); // 체크박스
+            tableData.append("<td>").append(member.getName()).append("</td>"); // 학습자명
+            tableData.append("<td>").append(member.getTel()).append("</td>"); // 전화번호
+            tableData.append("<td>").append(member.getLevels()).append("</td>"); // 현재 레벨
+            tableData.append("</tr>");
+        }
 
         return tableData.toString();
     }
