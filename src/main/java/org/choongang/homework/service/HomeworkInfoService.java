@@ -6,8 +6,8 @@ import org.choongang.homework.controllers.RequestHomework;
 import org.choongang.homework.entities.Homework;
 import org.choongang.homework.entities.QHomework;
 import org.choongang.homework.repositories.HomeworkRepository;
+import org.choongang.member.MemberUtil;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HomeworkInfoService {
     private final HomeworkRepository homeworkRepository;
-
+    private final MemberUtil memberUtil;
 
     /** 숙제 전체조회
      *
@@ -28,7 +28,7 @@ public class HomeworkInfoService {
         return items;
     }
 
-    /** 학습그룹별 숙제 조회 : 확인 필요
+    /** 교육자별 숙제 조회 : 확인 필요
      *
      * @param memberNum
      * @return
@@ -38,9 +38,10 @@ public class HomeworkInfoService {
         QHomework homework = QHomework.homework;
 
         BooleanBuilder andBuilder = new BooleanBuilder();
-        andBuilder.and(homework.studyGroup.num.eq(homework.num));
-
-        List<Homework> items = (List<Homework>) homeworkRepository.findAll(andBuilder, Sort.by(Sort.Order.asc("createdAt")));
+        andBuilder.and(homework.member.num.eq(memberUtil.getMember().getNum()));
+//
+//        List<Homework> items = (List<Homework>) homeworkRepository.findAll(andBuilder, Sort.by(Sort.Order.asc("createdAt")));
+        List<Homework> items = (List<Homework>) homeworkRepository.findAll(andBuilder);
 
         return items;
     }
