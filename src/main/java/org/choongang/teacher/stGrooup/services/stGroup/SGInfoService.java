@@ -87,7 +87,6 @@ public class SGInfoService {
             long total = stGroupRepository.count(andBuilder);
             Pagination pagination = new Pagination(page, (int)total, 5, limit, request);
 
-             // 스터디그룹 리스트에 있는 게임 컨텐츠에 게임 컨텐스 셋 해줘야함
             for(StudyGroup s : items){
                 gameContentInfoService.addInfo(s.getGameContent());
             }
