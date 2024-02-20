@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 학습자 숙제 제출페이지
-<form method="post" th:action="@{/homework/submit}" th:object="${trainingData}">
+<form method="post" th:action="@{/homework/submit}" th:object="${requestTrainingData}">
     <table>
         <thead>
             <tr>
@@ -19,6 +19,14 @@
                 <td>
                     <label>
                         <textarea th:field="*{homeworkAnswer}" placeholder="내용을 입력하세요."></textarea>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>질문</th>
+                <td>
+                    <label>
+                        <textarea th:field="*{question}" placeholder="내용을 입력하세요."></textarea>
                     </label>
                 </td>
             </tr>
