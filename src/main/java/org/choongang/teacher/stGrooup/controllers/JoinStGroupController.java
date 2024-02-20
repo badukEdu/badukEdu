@@ -40,7 +40,6 @@ public class JoinStGroupController {
        // model.addAttribute("list" , data.getItems());
         model.addAttribute("list" , validstg(data.getItems()));
         for(StudyGroup s : data.getItems()){
-            System.out.println(s.getGameContent()+"dddddddd");
         }
 
         model.addAttribute("pagination", data.getPagination());

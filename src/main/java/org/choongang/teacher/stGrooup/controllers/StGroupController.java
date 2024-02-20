@@ -94,7 +94,6 @@ public class StGroupController {
         ListData<GameContent> data = gameContentInfoService.getList(search);
         model.addAttribute("items" , data.getItems());
         for(GameContent g : data.getItems()){
-            System.out.println(g.getThumbnail()+"dddddddddddddddddddddddddddddd");
         }
         model.addAttribute("pagination" , data.getPagination());
 
