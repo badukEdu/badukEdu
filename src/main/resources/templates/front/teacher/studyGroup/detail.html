@@ -21,11 +21,13 @@
         <th>NO</th>
         <th>학생이름</th>
         <th>이메일</th>
-        <th>주소</th>
         <th>가입일자</th>
     </tr>
-    <tr>
-
+    <tr th:each="member : ${members}" th:object="${member}">
+        <td th:text="*{num}"></td>
+        <td th:text="*{name}"></td>
+        <td th:text="*{email}"></td>
+        <td > 000 </td>
     </tr>
 </table>
 
