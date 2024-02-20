@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<aside th:fragment="menus">
+    <a th:href="@{/admin}" th:classappend="${menuCode} == 'config' ? 'on'">
+        <i class="xi-cog"></i> 기본설정
+    </a>
+
+    <a th:href="@{/admin}" th:classappend="${menuCode} == 'member' ? 'on'">
+        <i class="xi-users"></i> 회원 관리
+    </a>
+
+    <a th:href="@{/admin/gamecontent/add}" th:classappend="${menuCode} == 'gamecontent' ? 'on'">
+        <i class="xi-list"></i> 게임컨텐츠등록
+    </a>
+
+    <a th:href="@{/admin/gamecontent/list}" th:classappend="${menuCode} == 'gamecontent' ? 'on'">
+        <i class="xi-list"></i> 게임컨텐츠조회
+    </a>
+
+    <a th:href="@{/admin/edu/add}" th:classappend="${menuCode} == 'gamecontent' ? 'on'">
+        <i class="xi-list"></i> 학습자료등록
+    </a>
+
+    <a th:href="@{/admin/edu/list}" th:classappend="${menuCode} == 'gamecontent' ? 'on'">
+        <i class="xi-list"></i> 학습자료조회
+    </a>
+
+    <a th:href="@{/admin}" th:classappend="${menuCode} == 'order' ? 'on'">
+        <i class="xi-list"></i> ㅁㅁ
+    </a>
+
+    <a th:href="@{/admin}" th:classappend="${menuCode} == 'cs' ? 'on'">
+        <i class="xi-list"></i> CS
+    </a>
+
+    <a th:href="@{/board/list}" th:classappend="${menuCode} == 'board' ? 'on'">
+        <i class="xi-list"></i> 공지 목록
+    </a>
+
+<!--    <a th:href="@{/admin/payment}" th:classappend="${menuCode} == 'payment' ? 'on'">-->
+<!--        <i class="xi-list"></i> 결제 관리-->
+<!--    </a>-->
+
+<!--    <a th:href="@{/admin/reservation}" th:classappend="${menuCode} == 'reservation' ? 'on'">-->
+<!--        <i class="xi-tint"></i> 예약 관리-->
+<!--    </a>-->
+</aside>
+</html>
