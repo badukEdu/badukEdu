@@ -2,7 +2,6 @@ package org.choongang.homework.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.choongang.commons.ListData;
 import org.choongang.homework.entities.Homework;
 import org.choongang.homework.entities.TrainingData;
 import org.choongang.homework.service.HomeworkInfoService;
@@ -11,7 +10,6 @@ import org.choongang.homework.service.TrainingDataSaveService;
 import org.choongang.member.MemberUtil;
 import org.choongang.member.entities.Member;
 import org.choongang.teacher.stGrooup.controllers.StGroupSearch;
-import org.choongang.teacher.stGrooup.entities.StudyGroup;
 import org.choongang.teacher.stGrooup.services.stGroup.SGInfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +28,7 @@ public class HomeworkController {
     private final TrainingDataSaveService trainingDataSaveService;
     private final MemberUtil memberUtil;
 
-    /** 교육자
+    /** 교육자 index 페이지
      *
      * @param model
      * @return
@@ -109,7 +107,7 @@ public class HomeworkController {
         return "redirect:/homework";
     }
 
-    /** 교육자 - 숙제 전송 페이지
+    /** 교육자 - 숙제 전송 페이지 (작업중)
      *
      * @return
      */
@@ -125,19 +123,12 @@ public class HomeworkController {
         }
         List<Homework> items = homeworkInfoService.getList(member.getNum());
 
-
-        ListData<StudyGroup> data = sgInfoService.getList(search);
-
-        model.addAttribute("list" , data.getItems());
-        model.addAttribute("pagination", data.getPagination());
-
         model.addAttribute("items", items);
-
 
         return "front/teacher/homework/post";
     }
 
-    /** 교육자 - 숙제 전송 처리
+    /** 교육자 - 숙제 전송 처리 (작업중)
      *
      * @return
      */
@@ -148,7 +139,7 @@ public class HomeworkController {
         return "redirect:/homework/post";
     }
 
-    /** 교육자 - 숙제 평가 페이지
+    /** 교육자 - 숙제 평가 페이지 (작업중)
      * num : 교육자 num
      * @return
      */
@@ -159,7 +150,7 @@ public class HomeworkController {
         return "front/teacher/homework/assess";
     }
 
-    /** 교육자 - 숙제 평가 처리
+    /** 교육자 - 숙제 평가 처리 (작업중)
      *
      * @return
      */
@@ -172,7 +163,7 @@ public class HomeworkController {
 
 
 
-    /** 학습자 - 학습그룹에 주어진 숙제 리스트
+    /** 학습자 - 학습그룹에 주어진 숙제 리스트 (작업중)
      *
      * @return
      */
@@ -183,21 +174,22 @@ public class HomeworkController {
     }
 
 
-    /** 사용자 - 숙제 작성 페이지
+    /** 사용자 - 숙제 작성 페이지 (작업중)
      *
      * @param num
-     * @param trainingData
+     * @param form
      * @param model
      * @return
      */
-    @GetMapping("/submit/{num}")
-    public String submit(@PathVariable("num") Long num, @ModelAttribute TrainingData trainingData, Model model) {
-        model.addAttribute("trainingData", trainingData);
+    @GetMapping("/submit")
+    public String submit(@ModelAttribute RequestTrainingData requestTrainingData, Model model) {
+//        model.addAttribute("requestTrainingData", requestTrainingData);
+
         return "front/user/homework/submit";
     }
 
 
-    /** 사용자 - 숙제 등록 처리
+    /** 사용자 - 숙제 등록 처리 (작업중)
      *
      * @return
      */
