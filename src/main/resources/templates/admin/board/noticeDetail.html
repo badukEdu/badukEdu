@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>게시글 상세</title>
+    <script src="/board/js/boardAdd.js"></script>
 </head>
 <body>
 <h2>게시글 상세 조회</h2>
@@ -19,6 +20,14 @@
     <p>제목: <span th:text="${noticeDetail.title}"></span></p>
     <p>내용: <span th:text="${noticeDetail.content}"></span></p>
     <!-- 추가 필드가 있다면 추가 -->
+</div>
+<div>
+    <form th:action="@{/board/edit/{num}(num=${noticeDetail.num})}" method="get">
+        <input type="submit" value="수정하기">
+    </form>
+    <a th:href="@{/board/delete/{num}(num=*{num})}" onclick="return confirm('정말 삭제하시겠습니까?');">
+        <i class="xi-trash"></i> 게시글 삭제
+    </a>
 </div>
 
 </body>
