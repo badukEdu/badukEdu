@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class QnaService {
+public class QnaSaveService {
 
     private final QnaRepository qnaRepository;
 
@@ -32,13 +32,5 @@ public class QnaService {
         qnaRepository.saveAndFlush(qna);
     }
 
-    /**
-     * 등록된 QnA 조회(등록 순)
-     */
 
-    public List<Qna> getList() {
-        List<Qna> qnaList = qnaRepository.findAll();
-
-        return qnaList;
-    }
 }
