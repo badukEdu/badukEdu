@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Menu {
 
-    private final static Map<String, List<List<String>> menus;
+    private final static Map<String, List<List<String>>> menus;
 
     static {
         menus = new HashMap<>();
