@@ -7,6 +7,7 @@ import org.choongang.homework.entities.TrainingData;
 import org.choongang.homework.service.HomeworkInfoService;
 import org.choongang.homework.service.HomeworkSaveService;
 import org.choongang.member.MemberUtil;
+import org.choongang.member.entities.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,12 +32,14 @@ public class HomeworkController {
     public String homework(Model model) {
 
         // 내가(한 교육자가) 담당하는 그룹만 조회할 수 있도록
-        /*
         Member member = memberUtil.getMember();
+        if (member == null) {
+            return "redirect:/member/login";
+        }
 
         List<Homework> items = homeworkInfoService.getList(member.getNum());
-         */
-        List<Homework> items = homeworkInfoService.getList();
+
+//        List<Homework> items = homeworkInfoService.getList();
         model.addAttribute("items", items);
 
         return "front/teacher/homework/list";

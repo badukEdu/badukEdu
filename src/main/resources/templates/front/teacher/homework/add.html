@@ -4,6 +4,7 @@
     <h2>숙제 등록</h2>
     <form method="post" th:action="@{/homework/add}" autocomplete="off" th:object="${requestHomework}">
         <table>
+            <input type="hidden" th:field="*{memberNum}">
             <tr>
                 <th>제목</th>
                 <td>
@@ -16,13 +17,6 @@
                     <input type="text" name="content" th:field="*{content}">
                 </td>
             </tr>
-            <tr>
-                <th>그룹</th>
-                <td>
-                    <input type="text" th:field="*{groupNum}">로그인 정보로..
-                </td>
-            </tr>
-            <tr>
                 <th>학습레벨</th>
                 <td>
                     <input type="text" th:field="*{studyLevel}">
