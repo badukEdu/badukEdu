@@ -40,7 +40,6 @@ public class JoinStGroupController {
        // model.addAttribute("list" , data.getItems());
         model.addAttribute("list" , validstg(data.getItems()));
         for(StudyGroup s : data.getItems()){
-            System.out.println(s.getGameContent()+"dddddddd");
         }
 
         model.addAttribute("pagination", data.getPagination());
@@ -63,7 +62,7 @@ public class JoinStGroupController {
         ListData<StudyGroup> data = sgInfoService.getList(search);
         model.addAttribute("list" , data.getItems());
         model.addAttribute("pagination", data.getPagination());
-        return "front/user/studyGroup/test";
+        return "redirect:/JoinStudyGroup";
 
     }
 
