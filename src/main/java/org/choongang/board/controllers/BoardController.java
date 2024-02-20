@@ -5,12 +5,10 @@ import org.choongang.board.entities.Notice_;
 import org.choongang.board.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/board")
@@ -54,4 +52,29 @@ public class BoardController {
     }
     /* 게시글 목록 E */
 
+    /* 게시글 상세 조회 S */
+
+    @GetMapping("/detail/{num}")
+    public String detail(@PathVariable Long num, Model model) {
+
+        // 경로 변수 num이 null이거나 음수인 경우에는 front/board/list로 리다이렉션
+        if (num <= 0) {
+            return "redirect:/front/board/list";
+        }
+
+        // 게시글 번호를 사용하여 해당 게시글 정보를 가져온다.
+        Optional<Notice_> noticeDetail = boardService.findByNum(num);
+
+        // 게시글이 존재하는 경우에는 모델에 추가하고 admin/board/detail 페이지를 반환
+        if (noticeDetail.isPresent()) {
+            model.addAttribute("noticeDetail", noticeDetail.get());
+            return "admin/board/detail";
+        }
+
+        // 해당 게시글을 찾을 수 없는 경우에는 front/board/list로 리다이렉션
+        return "redirect:/front/board/list";
+        }
+    /* 게시글 상세 조회 E */
+
 }
+

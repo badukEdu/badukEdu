@@ -15,7 +15,8 @@ import java.util.List;
 public class Notice_ extends Base {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notice_seq")
+    @SequenceGenerator(name = "notice_seq", sequenceName = "NOTICE_SEQ", allocationSize = 1)
     private Long num; // 공지사항(게시물) 번호
 
     @Column

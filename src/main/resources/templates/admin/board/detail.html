@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세</title>
+</head>
+<body>
+<h2>게시글 상세 조회</h2>
+
+<div th:if="${noticeDetail}">
+    <p>게시글 번호: <span th:text="${noticeDetail.num}"></span></p>
+    <div th:if="${noticeDetail != null}">
+        <p th:if="${noticeDetail.member != null}">작성자: <span th:text="${noticeDetail.member.userId}"></span></p>
+        <p th:unless="${noticeDetail.member != null}">작성자 정보 없음</p>
+    </div>
+    <div th:unless="${noticeDetail != null}">게시글 정보 없음</div>
+    <p>공지 분류: <span th:text="${noticeDetail.type}"></span></p>
+    <p>노출 여부: <span th:if="${noticeDetail.onTop}">O</span><span th:unless="${noticeDetail.onTop}">X</span></p>
+    <p>제목: <span th:text="${noticeDetail.title}"></span></p>
+    <p>내용: <span th:text="${noticeDetail.content}"></span></p>
+    <!-- 추가 필드가 있다면 추가 -->
+</div>
+
+</body>
+</html>
