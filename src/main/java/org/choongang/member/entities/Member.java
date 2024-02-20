@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.ToString;
 import org.choongang.commons.entities.Base;
 import org.choongang.member.constants.Authority;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public class Member extends Base {
   @Column(nullable = false)
   private String tel; //전화번호
   @Column(nullable = false)
+  @DateTimeFormat(pattern="yyyy-MM-dd")
   private String birth; //생년월일
   @Column
   private String gender; //성별 (M / F)
