@@ -35,7 +35,7 @@ public class JoinStGroupController {
      */
     @GetMapping
     public String list(Model model , @ModelAttribute StGroupSearch search){
-
+        search.setType("joinstg");
         ListData<StudyGroup> data = sgInfoService.getList(search);
        // model.addAttribute("list" , data.getItems());
         model.addAttribute("list" , validstg(data.getItems()));
@@ -70,12 +70,15 @@ public class JoinStGroupController {
      * @return
      */
     @GetMapping("/accept")
-    public String accept(Model model , @ModelAttribute StGroupSearch search){
+    public String accept(Model model , @ModelAttribute JoinStGroupSearch search){
 
         //joinSTGInfoService.getList();
         model.addAttribute("num" , 1);
-        ListData<StudyGroup> data = sgInfoService.getList(search);
-        model.addAttribute("list" , joinSTGInfoService.getList());
+        ListData<JoinStudyGroup> data = joinSTGInfoService.getList(search);
+        //System.out.println(data.getItems()+"dddddddddddddddddddddddddddddddddddddddddd"+search);
+        model.addAttribute("list" , data.getItems());
+        //System.out.println("dddddddddddddddddddddddddddddddddddddddddd"+data.getItems());
+        model.addAttribute("pagination" , data.getPagination());
         //model.addAttribute("pagination", data.getPagination());
         return "front/teacher/studyGroup/acceptStudyGroup";
 
@@ -107,7 +110,7 @@ public class JoinStGroupController {
     public List<StudyGroup> validstg(List<StudyGroup> list){    //신청 가능한 스터디그룹 목록
 
         //신청 한 스터디그룹
-        List<JoinStudyGroup> joinList = joinSTGInfoService.getList();
+        List<JoinStudyGroup> joinList = joinSTGInfoService.getAll();
         //로그인 회원 정보
         Member member = (Member)session.getAttribute("member");
         for(JoinStudyGroup jsg : joinList){

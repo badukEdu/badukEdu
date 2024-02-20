@@ -5,7 +5,7 @@
 <h1>스터디그룹 가입 승인 / UI-W-014 </h1>
 
 
-<form method="get" th:action="@{/JoinStudyGroup}" th:object="${stGroupSearch}" >
+<form method="get" th:action="@{/JoinStudyGroup/accept}" th:object="${joinStGroupSearch}" >
     <table >
         <tr>
             <th>키워드(user 완성되면 -> 교육자명으로 검색 가능하도록)</th>
@@ -13,7 +13,7 @@
                 <select name="sopt">
                     <option value="ALL" th:field="*{sopt}">통합검색</option>
                     <option value="groupName" th:field="*{sopt}">스터디그룹명</option>
-
+                    <option value="memberName" th:field="*{sopt}">스터디그룹명</option>
                 </select>
                 <input type="text" name="skey" th:field="*{skey}">
             </td>

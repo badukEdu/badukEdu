@@ -51,6 +51,14 @@ public class SGInfoService {
         if(((Member)session.getAttribute("member")).getAuthority() == Authority.TEACHER){
             andBuilder.and(studyGroup.member.eq((Member) session.getAttribute("member")));
         }
+/*
+        쿼리가 복잡해서 포문으로 처리
+        //스터디그룹 신청쪽 리스트 (본인이 이미 신청 한 스터디그룹은 제외하고 보여주기 위해)
+        if(search.getType().equals("joinstg")){
+            //andBuilder.and();
+        }
+*/
+
 
         String sopt = search.getSopt();
         String skey = search.getSkey().trim();
