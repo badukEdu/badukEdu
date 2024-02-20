@@ -2,12 +2,17 @@ package org.choongang.homework.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.choongang.commons.ListData;
 import org.choongang.homework.entities.Homework;
 import org.choongang.homework.entities.TrainingData;
 import org.choongang.homework.service.HomeworkInfoService;
 import org.choongang.homework.service.HomeworkSaveService;
+import org.choongang.homework.service.TrainingDataSaveService;
 import org.choongang.member.MemberUtil;
 import org.choongang.member.entities.Member;
+import org.choongang.teacher.stGrooup.controllers.StGroupSearch;
+import org.choongang.teacher.stGrooup.entities.StudyGroup;
+import org.choongang.teacher.stGrooup.services.stGroup.SGInfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +26,8 @@ public class HomeworkController {
 
     private final HomeworkSaveService homeworkSaveService;
     private final HomeworkInfoService homeworkInfoService;
+    private final SGInfoService sgInfoService;
+    private final TrainingDataSaveService trainingDataSaveService;
     private final MemberUtil memberUtil;
 
     /** 교육자
@@ -107,11 +114,25 @@ public class HomeworkController {
      * @return
      */
     @GetMapping("/post")
-    public String post() {
+    public String post(@ModelAttribute StGroupSearch search, Model model) {
         /*
         학습그룹 조회, 숙제 조회
         체크박스로 체크하여 숙제를 해당 인원들에게 전송.
          */
+        Member member = memberUtil.getMember();
+        if (member == null) {
+            return "redirect:/member/login";
+        }
+        List<Homework> items = homeworkInfoService.getList(member.getNum());
+
+
+        ListData<StudyGroup> data = sgInfoService.getList(search);
+
+        model.addAttribute("list" , data.getItems());
+        model.addAttribute("pagination", data.getPagination());
+
+        model.addAttribute("items", items);
+
 
         return "front/teacher/homework/post";
     }
@@ -121,8 +142,9 @@ public class HomeworkController {
      * @return
      */
     @PostMapping("/post")
-    public String postPs() {
+    public String postPs( TrainingData form, Long num) {
 
+        trainingDataSaveService.save(form, num);
         return "redirect:/homework/post";
     }
 
@@ -185,4 +207,27 @@ public class HomeworkController {
 
         return "redirect:/homework/list";
     }
+
+    @GetMapping("/get_table_data")
+    @ResponseBody
+    public String getTableData(@RequestParam("option") String selectedOption) {
+        // 선택된 학습 그룹의 데이터를 조회
+//        List<Member> members =
+
+
+        // 조회된 데이터를 HTML 형식으로 생성
+        StringBuilder tableData = new StringBuilder();
+        tableData.append("<tr><td>학습자명</td><td>전화번호</td><td>현재 레벨</td></tr>" + "<tr><td colspan='4'>studyGroup에 속한 members 출력하는 동작...<td>");
+
+//        for (String[] rowData : members) {
+//            tableData.append("<tr>");
+//            tableData.append("<td>").append(rowData[0]).append("</td>"); // 학습자명
+//            tableData.append("<td>").append(rowData[1]).append("</td>"); // 전화번호
+//            tableData.append("<td>").append(rowData[2]).append("</td>"); // 현재 레벨
+//            tableData.append("</tr>");
+//        }
+
+        return tableData.toString();
+    }
+
 }
