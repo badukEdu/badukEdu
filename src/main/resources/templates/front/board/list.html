@@ -59,7 +59,7 @@
             <span th:unless="${noticeList.onTop}">X</span>
         </span>
         </td>
-        <td th:text="*{title}"></td>
+        <td><a th:href="@{'/board/detail/' + ${noticeList.num}}" th:text="*{title}"></a></td>
         <td th:text="*{content}"></td>
         <td th:text="*{visit}"></td>
         <td th:text="*{fileName}"></td>
