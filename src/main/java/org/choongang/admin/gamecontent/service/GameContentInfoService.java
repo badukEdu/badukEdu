@@ -95,7 +95,7 @@ public class GameContentInfoService {
         return form;
     }
 
-    private void addInfo(GameContent data) {
+    public void addInfo(GameContent data) {
         List<FileInfo> items = fileInfoService.getListDone(data.getGid());
         if(items != null && !items.isEmpty()) data.setThumbnail(items.get(0));
 
