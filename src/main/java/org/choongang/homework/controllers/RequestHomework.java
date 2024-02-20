@@ -23,7 +23,7 @@ public class RequestHomework {
 
     @NotNull
     @Min(1) @Max(100)
-    private int studyLevel;
+    private Long studyLevel;
     @NotNull
     private LocalDate deadLine;
 }

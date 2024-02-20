@@ -39,7 +39,7 @@ public class Member extends Base {
   private String email; //이메일
   private boolean enable = true;
 //  @Column(length=30, nullable = false)
-//  private Long levels; //레벨 (??)
+  private Long levels = 1L; //레벨 (??)
 //  @Column
 //  private String type; //사용자 구분2(유료회원 / 무료회원)
 //  @Column

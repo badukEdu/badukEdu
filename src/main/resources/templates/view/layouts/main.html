@@ -1,5 +1,3 @@
-main layout
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
@@ -26,11 +24,9 @@ main layout
     <!--    <link rel="stylesheet" href="text/css" th:href="@{/admin/css/style.css?v={v}(v=${siteConfig.cssJsVersion})}">-->
     <link rel="stylesheet" href="text/css"
           th:each="cssFile : ${addCss}"
-    <<<<<<< HEAD
-    th:href="@{/front/css/{file}.css}">
-    =======
-    th:href="@{/front/css/{file}.css?(file=${cssFile})}">
-    >>>>>>> main
+            th:href="@{/front/css/{file}.css}"
+            th:href="@{/front/css/{file}.css?(file=${cssFile})}">
+
 
     <!--css-->
     <th:block layout:fragment="addCss"></th:block>
@@ -43,12 +39,12 @@ main layout
     <!--    <script th:each="jsFile : ${addCommonScript}"-->
     <!--            th:src="@{/common/js/{file}.js?v={v}(file=${jsFile}, v=${siteConfig.cssJsVersion})}"></script>-->
 
-    <<<<<<< HEAD
+
 
     <!--    <script th:src="@{/admin/js/common.js?v={v}(v=${siteConfig.cssJsVersion})}"></script>-->
     <!--    <script th:each="jsFile : ${addScript}"-->
     <!--            th:src="@{/admin/js/{file}.js?v={v}(file=${jsFile}, v=${siteConfig.cssJsVersion})}"></script>-->
-    =======
+
     <!--    <script th:src="@{/common/js/common.js?v={v}(v=${siteConfig.cssJsVersion})}"></script>-->
     <script th:src="@{/common/js/common.js}"></script>
     <script th:each="jsFile : ${addCommonScript}"
@@ -58,7 +54,7 @@ main layout
     <script th:src="@{/front/js/common.js}"></script>
     <script th:each="jsFile : ${addScript}"
             th:src="@{/front/js/{file}.js?(file=${jsFile})}"></script>
-    >>>>>>> main
+
 
     <th:block layout:fragment="addScript"></th:block>
 </head>

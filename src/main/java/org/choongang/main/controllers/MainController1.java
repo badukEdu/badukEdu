@@ -15,7 +15,7 @@ public class MainController1 {
     @ModelAttribute("addScript")
     public String[] addScript() { return new String[] { "main/common" };}
 
-    @GetMapping("/")
+    @GetMapping
     public String index() {
 
         return "front/main/index";
