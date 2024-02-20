@@ -63,6 +63,18 @@ function callbackFileUpload(files) {
     const img = new Image();
     img.src = file.fileUrl;
 
+
+
+
+
+
+
+
+
+
+
+
+
     const thumbEl = document.getElementById("thumbnail_img");
     thumbEl.innerHTML = "";
     thumbEl.appendChild(img);
