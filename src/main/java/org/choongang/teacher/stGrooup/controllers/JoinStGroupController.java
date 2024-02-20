@@ -63,7 +63,7 @@ public class JoinStGroupController {
         ListData<StudyGroup> data = sgInfoService.getList(search);
         model.addAttribute("list" , data.getItems());
         model.addAttribute("pagination", data.getPagination());
-        return "front/user/studyGroup/test";
+        return "redirect:/JoinStudyGroup";
 
     }
 
