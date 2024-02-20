@@ -16,8 +16,8 @@
   <dl>
     <dt th:text="#{이메일}"></dt>
     <dd>
-      <input type="text" name="email" th:field="*{email}" placeholder="이메일 주소를 입력하세요.">
-      <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
+      <input type="text" name="email" th:field="*{email}">
+<!--      <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>-->
     </dd>
   </dl>
 <!--  <dl>-->
@@ -48,7 +48,7 @@
     <dl>
       <dt th:text="#{비밀번호}"></dt>
       <dd>
-        <input type="password" name="password" th:field="*{password}" placeholder="공백없이 영문(대/소문자) 숫자 및 특수문자 조합 8~10자">
+        <input type="password" name="password" th:field="*{password}" placeholder="공백없이 영문(대&소문자) 숫자 및 특수문자 조합 8자 이상">
         <div class="error" th:each="err : ${#fields.errors('password')}" th:text="${err}"></div>
       </dd>
     </dl>
@@ -65,13 +65,14 @@
       <dt th:text="#{휴대전화}"></dt>
       <dd>
         <input type="text" name="tel" th:field="*{tel}" placeholder="( - ) 빼고 숫자만 입력">
+        <div class="error" th:each="err : ${#fields.errors('tel')}" th:text="${err}"></div>
       </dd>
     </dl>
 
     <dl>
       <dt th:text="#{생년월일}"></dt>
       <dd>
-        <input type="date" name="bDay" id="Date" th:field="*{bDay}">
+        <input type="date" name="bDay" th:max="9999-12-31" th:field="*{bDay}" onchange="MaxMinDate();">
         <div class="error" th:each="err : ${#fields.errors('bDay')}" th:text="${err}"></div>
       </dd>
     </dl>

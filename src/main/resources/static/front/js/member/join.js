@@ -33,3 +33,18 @@ window.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
+
+function MaxMinDate() {
+  const selectedDate = new Date(document.getElementsByName('bDay')[0].value);
+  const currentDate = new Date();
+  const minDate = new Date('1824-01-01');
+  const maxDate = currentDate;
+
+  if (selectedDate > maxDate) {
+    alert('오늘 날짜 이전으로만 선택할 수 있습니다.');
+    document.getElementsByName('bDay')[0].value = '';
+  } else if (selectedDate < minDate) {
+    alert('해당 날짜 이후로만 선택할 수 있습니다.');
+    document.getElementsByName('bDay')[0].value = '';
+  }
+}
