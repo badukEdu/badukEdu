@@ -8,7 +8,10 @@ import org.choongang.admin.gamecontent.controllers.GameContentSearch;
 import org.choongang.admin.gamecontent.entities.GameContent;
 import org.choongang.admin.gamecontent.service.GameContentInfoService;
 import org.choongang.commons.ListData;
+import org.choongang.education.stgroup.controllers.JoinStGroupSearch;
+import org.choongang.education.stgroup.entities.JoinStudyGroup;
 import org.choongang.education.stgroup.services.joinStG.JoinSTGInfoService;
+import org.choongang.teacher.stGrooup.services.joinStG.JoinSTGSaveService;
 import org.choongang.teacher.stGrooup.entities.StudyGroup;
 import org.choongang.teacher.stGrooup.services.stGroup.SGDeleteService;
 import org.choongang.teacher.stGrooup.services.stGroup.SGInfoService;
@@ -20,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @Controller
-@RequestMapping("/studyGroup")
+@RequestMapping("/teacher/studyGroup")
 @RequiredArgsConstructor
 public class StGroupController {
 
@@ -31,6 +34,7 @@ public class StGroupController {
     private final HttpSession session;
     private final GameContentInfoService gameContentInfoService;
     private final JoinSTGInfoService joinSTGInfoService;
+    private final JoinSTGSaveService joinSTGSaveService;
 
     /**
      * 스터디 그룹 목록
@@ -162,7 +166,7 @@ public class StGroupController {
 
         //저장 후session 비워주기
         session.removeAttribute("game");
-        return "redirect:/studyGroup";
+        return "redirect:/teacher/studyGroup";
     }
 
     /**
@@ -174,7 +178,7 @@ public class StGroupController {
     @GetMapping("/delete/{num}")
     public String delete(@PathVariable("num") Long num , Model model){
         sgDeleteService.delete(num);
-        return "redirect:/studyGroup";
+        return "redirect:/teacher/studyGroup";
     }
 
     /**
@@ -188,7 +192,39 @@ public class StGroupController {
         for(Long n : chks){
             sgDeleteService.delete(n);
         }
-        return "redirect:/studyGroup";
+        return "redirect:/teacher/studyGroup";
+    }
+
+
+    /**
+     * ( 교육자가 가입 승인하는 )
+     * 가입 신청 목록
+     * @param model
+     * @param search
+     * @return
+     */
+    @GetMapping("/accept")
+    public String accept(Model model , @ModelAttribute JoinStGroupSearch search){
+
+        //가입 승인 대기 / 완료 목록
+        ListData<JoinStudyGroup> data = joinSTGInfoService.getList(search);
+        model.addAttribute("list" , data.getItems());
+        model.addAttribute("pagination" , data.getPagination());
+
+        return "front/teacher/studyGroup/acceptStudyGroup";
+
+    }
+
+
+    @PostMapping("/accept")
+    public String accept1(Model model ,  @RequestParam(name = "chk" ) List<Long> chks){
+
+        //가입 승인 처리
+        joinSTGSaveService.accept(chks);
+
+        return "redirect:/teacher/studyGroup/accept";
+
+
     }
 
 }

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/JoinStudyGroup")
+@RequestMapping("/education/JoinStudyGroup")
 @RequiredArgsConstructor
 public class JoinStGroupController {
 
@@ -64,36 +64,6 @@ public class JoinStGroupController {
 
     }
 
-    /**
-     * ( 교육자가 가입 승인하는 )
-     * 가입 신청 목록
-     * @param model
-     * @param search
-     * @return
-     */
-    @GetMapping("/accept")
-    public String accept(Model model , @ModelAttribute JoinStGroupSearch search){
-
-        //가입 승인 대기 / 완료 목록
-        ListData<JoinStudyGroup> data = joinSTGInfoService.getList(search);
-        model.addAttribute("list" , data.getItems());
-        model.addAttribute("pagination" , data.getPagination());
-
-        return "front/teacher/studyGroup/acceptStudyGroup";
-
-    }
-
-
-    @PostMapping("/accept")
-    public String accept1(Model model ,  @RequestParam(name = "chk" ) List<Long> chks){
-
-        //가입 승인 처리
-        joinSTGSaveService.accept(chks);
-
-        return "redirect:/JoinStudyGroup/accept";
-
-
-    }
 
 
     /**

@@ -27,14 +27,14 @@ public class Menu {
 
         // 학습서비스 / 권한 - STUDENT , ADMIN
         menus.put("학습서비스", Arrays.asList(
-                new MenuDetail("join", "학습그룹 가입 신청", "/education/")
+                new MenuDetail("join", "학습그룹 가입 신청", "/education/JoinStudyGroup")
         ));
 
         // 교육자마당 / 권한 - TEACHER , ADMIN
         menus.put("교육자마당", Arrays.asList(
-                new MenuDetail("add", "학습 그룹 등록", "/teacher/"),
-                new MenuDetail("list", "학습 그룹 조회", "/teacher/"),
-                new MenuDetail("accept", "학습 그룹 가입 승인", "/teacher/"),
+                new MenuDetail("add", "학습 그룹 등록", "/teacher/studyGroup/add"),//
+                new MenuDetail("list", "학습 그룹 조회", "/teacher/studyGroup"),//
+                new MenuDetail("accept", "학습 그룹 가입 승인", "/teacher/studyGroup/accept"),
                 new MenuDetail("", "숙제 생성", "/teacher/"),
                 new MenuDetail("", "숙제 배포", "/teacher/"),
                 new MenuDetail("", "숙제 학습 진도 조회", "/teacher/")
