@@ -49,6 +49,11 @@
             <ul class="subMenu">
                 <li th:each="menu : ${menus}">
                     <a href="#" th:text="${menu.key}"></a>
+                    <ul class="subMenu">
+                        <li th:each="item : ${menu.value}" th:object="${item}">
+                            <a th:href="*{url}" th:text="*{name}"></a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
 
