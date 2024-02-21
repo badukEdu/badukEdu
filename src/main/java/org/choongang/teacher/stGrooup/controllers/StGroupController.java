@@ -1,3 +1,4 @@
+
 package org.choongang.teacher.stGrooup.controllers;
 
 import jakarta.servlet.http.HttpSession;
@@ -7,8 +8,8 @@ import org.choongang.admin.gamecontent.controllers.GameContentSearch;
 import org.choongang.admin.gamecontent.entities.GameContent;
 import org.choongang.admin.gamecontent.service.GameContentInfoService;
 import org.choongang.commons.ListData;
-import org.choongang.teacher.stGrooup.entities.StudyGroup;
 import org.choongang.education.stgroup.services.joinStG.JoinSTGInfoService;
+import org.choongang.teacher.stGrooup.entities.StudyGroup;
 import org.choongang.teacher.stGrooup.services.stGroup.SGDeleteService;
 import org.choongang.teacher.stGrooup.services.stGroup.SGInfoService;
 import org.choongang.teacher.stGrooup.services.stGroup.SGSaveService;
@@ -27,7 +28,6 @@ public class StGroupController {
     private final SGSaveService sgSaveService;
     private final SGInfoService sgInfoService;
     private final SGDeleteService sgDeleteService;
-    //private final vetaGameInfo vetaGameInfo; //게임 인포서비스 만들어지면 이거 지워야함
     private final HttpSession session;
     private final GameContentInfoService gameContentInfoService;
     private final JoinSTGInfoService joinSTGInfoService;
@@ -92,8 +92,6 @@ public class StGroupController {
 
         ListData<GameContent> data = gameContentInfoService.getList(search);
         model.addAttribute("items" , data.getItems());
-        for(GameContent g : data.getItems()){
-        }
         model.addAttribute("pagination" , data.getPagination());
 
         return "front/teacher/studyGroup/add";
@@ -110,6 +108,7 @@ public class StGroupController {
     public String add2(Model model , @ModelAttribute RequestStGroup form
             , @RequestParam(name = "num" , required = false) Long num,@ModelAttribute GameContentSearch search){
 
+        //스터디그룹 등록 1. 게임 컨텐츠 설정에서 게임 선택하지 않을경우
         if(num == null){
             model.addAttribute("mode" , "add1");
             model.addAttribute("items" ,  gameContentInfoService.getList(search).getItems());
@@ -118,8 +117,10 @@ public class StGroupController {
             return "front/teacher/studyGroup/add";
         }
 
+        //게임 선택 정상적으로 한 경우
         model.addAttribute("mode" , "add2");
-        //session.setAttribute("game" , vetaGameInfo.getById(num));  //폼을 두 번 이동해야해서 session에 저장
+
+        //폼을 두 번 이동 해야 해서 session에 저장
         session.setAttribute("game" , gameContentInfoService.getById(num));
         return "front/teacher/studyGroup/add";
     }
@@ -150,6 +151,7 @@ public class StGroupController {
     @PostMapping("/save")
     public String save( @Valid RequestStGroup form , Errors errors , Model model){
 
+        //스터디그룹 입력항목 누락 시
         if (errors.hasErrors()) {
             errors.getAllErrors().stream().forEach(System.out::println);
             model.addAttribute("mode" , "add2");
@@ -157,7 +159,9 @@ public class StGroupController {
         }
 
         sgSaveService.save(form);
-        session.removeAttribute("game");    //session 비워주기
+
+        //저장 후session 비워주기
+        session.removeAttribute("game");
         return "redirect:/studyGroup";
     }
 
@@ -169,7 +173,7 @@ public class StGroupController {
      */
     @GetMapping("/delete/{num}")
     public String delete(@PathVariable("num") Long num , Model model){
-            sgDeleteService.delete(num);
+        sgDeleteService.delete(num);
         return "redirect:/studyGroup";
     }
 
@@ -181,9 +185,9 @@ public class StGroupController {
      */
     @DeleteMapping
     public String deletes(@RequestParam(name = "chk" ) List<Long> chks ,Model model){
-            for(Long n : chks){
-                sgDeleteService.delete(n);
-            }
+        for(Long n : chks){
+            sgDeleteService.delete(n);
+        }
         return "redirect:/studyGroup";
     }
 

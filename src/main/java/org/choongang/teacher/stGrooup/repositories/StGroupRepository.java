@@ -1,3 +1,4 @@
+
 package org.choongang.teacher.stGrooup.repositories;
 
 import org.choongang.teacher.stGrooup.entities.StudyGroup;
