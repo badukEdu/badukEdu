@@ -25,7 +25,7 @@ public class SGSaveService {
     public void save(RequestStGroup form){
         StudyGroup s = null;
         if(form.getMode().equals("add")){
-             s = new StudyGroup();
+            s = new StudyGroup();
 
             s.setName(form.getName());
             s.setStartDate(form.getStartDate());
