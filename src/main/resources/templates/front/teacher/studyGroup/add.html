@@ -5,7 +5,7 @@
 
 <div th:if="${mode.equals('add1')}">
     <h1>UI-W-010</h1>
-    <form method="get" th:action="@{/studyGroup/add}" autocomplete="off" th:object="${gameContentSearch}">
+    <form method="get" th:action="@{/teacher/studyGroup/add}" autocomplete="off" th:object="${gameContentSearch}">
         <table>
             <tr>
                 <th>검색</th>
@@ -30,7 +30,7 @@
     </form>
 
 
-    <form method="post" th:action="@{/studyGroup/add2}">
+    <form method="post" th:action="@{/teacher/studyGroup/add2}">
         <input type="hidden" name="mode" value="add" >
 
         <div th:replace="~{front/teacher/studyGroup/_form::form}"></div>
@@ -38,7 +38,7 @@
     </form>
 </div>
 <div th:if="${mode.equals('add2')}">
-    <form method="post" th:action="@{/studyGroup/save}">
+    <form method="post" th:action="@{/teacher/studyGroup/save}">
         <input type="hidden" name="mode" value="add" >
 
         <div th:replace="~{front/teacher/studyGroup/_form2::form}"></div>

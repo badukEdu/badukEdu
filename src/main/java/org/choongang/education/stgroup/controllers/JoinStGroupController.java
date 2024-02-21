@@ -60,7 +60,7 @@ public class JoinStGroupController {
         //가입 신청 내역 저장(칼럼 : accept -> (미승인)false == 0)
         joinSTGSaveService.save(chks);
 
-        return "redirect:/JoinStudyGroup";
+        return "redirect:/education/JoinStudyGroup";
 
     }
 

@@ -6,7 +6,7 @@
 <h1>스터디그룹 목록 / UI-W-012</h1>
 <br>
 
-<form method="get" th:action="@{/studyGroup}" th:object="${stGroupSearch}" >
+<form method="get" th:action="@{/teacher/studyGroup}" th:object="${stGroupSearch}" >
     <table>
         <tr>
             <th>키워드</th>
@@ -37,25 +37,25 @@
         <th>가입학생수</th>
         <th>수정 / 삭제</th>
     </tr>
-    <form method="post" th:action="@{/studyGroup}" autocomplete="off">
+    <form method="post" th:action="@{/teacher/studyGroup}" autocomplete="off">
         <input type="hidden" name="_method" value="delete">
         <tr th:each="item : ${list}" th:object="${item}">
             <td><input type="checkbox" name="chk" th:value="*{num}"></td>
-            <td > <a th:href="@{/studyGroup/detail/{num}(num=*{num})}" th:text="*{name}"></a></td>
+            <td > <a th:href="@{/teacher/studyGroup/detail/{num}(num=*{num})}" th:text="*{name}"></a></td>
             <td th:text="*{gameTitle}"></td>
             <td th:text="*{maxSubscriber}"></td>
             <td th:text="*{startDate+' ~ '+endDate}"></td>
             <td th:text="*{maxLevel}"></td>
             <td >member 완성되면</td>
             <th>
-                <a th:href="@{/studyGroup/edit/{num}(num=*{num})}">수정</a>
+                <a th:href="@{/teacher/studyGroup/edit/{num}(num=*{num})}">수정</a>
                 /
-                <a th:href="@{/studyGroup/delete/{num}(num=*{num})}">삭제</a>
+                <a th:href="@{/teacher/studyGroup/delete/{num}(num=*{num})}">삭제</a>
             <th>
         </tr>
         <tr>
             <td>
-                <a th:href="@{/studyGroup/add}">생성</a>
+                <a th:href="@{/teacher/studyGroup/add}">생성</a>
             </td>
             <td>
                 <button type="submit">선택삭제</button>

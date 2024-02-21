@@ -4,7 +4,7 @@
 
 
 
-<form th:action="@{/studyGroup/detail}" th:object="${item}">
+<form th:action="@{/teacher/studyGroup/detail}" th:object="${item}">
     <select name="num" th:field="*{num}">
         <option th:each="stGroup : ${list}"  th:value="${stGroup.num}" th:text="${stGroup.name}" ></option>
     </select>

@@ -5,7 +5,7 @@
 <h1>스터디그룹 가입 승인 / UI-W-014 </h1>
 
 
-<form method="get" th:action="@{/JoinStudyGroup/accept}" th:object="${joinStGroupSearch}" >
+<form method="get" th:action="@{/teacher/JoinStudyGroup/accept}" th:object="${joinStGroupSearch}" >
     <table >
         <tr>
             <th>키워드(user 완성되면 -> 교육자명으로 검색 가능하도록)</th>
@@ -34,7 +34,7 @@
         <th>승인요청일자</th>
 
     </tr>
-    <form method="post" th:action="@{/JoinStudyGroup/accept}" autocomplete="off">
+    <form method="post" th:action="@{/teacher/studyGroup/accept}" autocomplete="off">
         <!--<input type="hidden" name="userNum" th:value="${session.member.num}">-->
 
         <tr th:each="item : ${list}" th:object="${item}">
