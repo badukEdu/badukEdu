@@ -16,7 +16,7 @@
         </th:block>
 
         <th:block sec:authorize="isAnonymous()">
-            <a th:href="@{/member/join}">회원가입</a>
+            <a th:href="@{/member/confirmation}">회원가입</a>
             <a th:href="@{/member/login}">로그인</a>
         </th:block>
     </section>
@@ -44,18 +44,18 @@
 
 
 
-    <div class="all-menus">
-        <nav class="lnb">
-            <ul class="subMenu">
-                <li th:each="menu : ${menus}">
-                    <a href="#" th:text="${menu.key}"></a>
-                    <ul class="subMenu">
-                        <li th:each="item : ${menu.value}" th:object="${item}">
-                            <a th:href="*{url}" th:text="*{name}"></a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+<!--    <div class="all-menus">-->
+<!--        <nav class="lnb">-->
+<!--            <ul class="subMenu">-->
+<!--                <li th:each="menu : ${menus}">-->
+<!--                    <a href="#" th:text="${menu.key}"></a>-->
+<!--                    <ul class="subMenu">-->
+<!--                        <li th:each="item : ${menu.value}" th:object="${item}">-->
+<!--                            <a th:href="*{url}" th:text="*{name}"></a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--            </ul>-->
 
   <!--          <ul>
                 <li><a href="#">이용안내</a>
