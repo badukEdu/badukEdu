@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
 import org.choongang.admin.gamecontent.entities.GameContent;
-import org.choongang.homework.entities.Homework;
+import org.choongang.education.stgroup.entities.JoinStudyGroup;
+import org.choongang.teacher.homework.entities.Homework;
 import org.choongang.member.entities.Member;
 
 import java.time.LocalDate;

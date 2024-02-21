@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{commons/layouts/main}">
+<section layout:fragment="content">
+
+관리자 메인페이지
+<a th:href="@{/}">사용자 메인</a>
+<a th:href="@{/board/add}">공지 등록</a>
+
+    <h1></h1>
+    <h1>각각 관리자 페이지 이름과 매핑주소를 연결해주세요</h1>
+    <h2>template > admin > outlines > _side.html</h2>
+    <h2> + java > admin > menus > Menu.java</h2>
+</section>
+</html>
