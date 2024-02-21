@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <h2>게임콘텐츠 검색 및 구독 신청</h2>
-    <form method="get" th:action="@{/gamecontent/subscribe}" autocomplete="off" th:object="${gameContentSearch}">
+    <form method="get" th:action="@{/subscription/gamecontent/subscribe}" autocomplete="off" th:object="${gameContentSearch}">
         <table>
             <tr>
                 <th>검색</th>
@@ -20,7 +20,7 @@
         </table>
     </form>
 
-    <form method="post" th:action="@{/gamecontent/payment}" autocomplete="off">
+    <form method="post" th:action="@{/subscription/gamecontent/payment}" autocomplete="off">
         <table border="1">
             <tr>
                 <th>선택</th>
