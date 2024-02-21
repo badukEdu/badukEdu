@@ -1,5 +1,6 @@
 package org.choongang.member.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,21 +36,24 @@ public class MemberController implements ExceptionProcessor {
    * 동의 및 인증
    * @return
    */
-  @ModelAttribute("requestJoin")
-  public RequestJoin setEmpty() {
-    return new RequestJoin();
-  }
+//  @ModelAttribute("requestJoin")
+//  public RequestJoin setEmpty() {
+//    return new RequestJoin();
+//  }
 
-  @RequestMapping(value = "/confirmation", method = RequestMethod.GET)
+  @GetMapping("/confirmation")
   public String confirmation( RequestJoin form, Model model) {
     commonProcess("confirmation", model);
     model.addAttribute("requestJoin", new RequestJoin());
 
+    // 이메일 인증 여부 false로 초기화
+    model.addAttribute("EmailAuthVerified", false);
+
     return "front/member/confirmation";
   }
 
-  @RequestMapping(value = "/confirmation", method = RequestMethod.POST)
-  public String confirmationPs(@ModelAttribute("requestJoin") RequestJoin form, Errors errors,Model model) {
+  @PostMapping("/confirmation")
+  public String confirmationPs(@ModelAttribute("requestJoin") RequestJoin form, Errors errors,Model model, HttpSession session) {
     commonProcess("confirmation", model);
 
     // 필수 필드가 비어 있는지 확인
@@ -66,6 +70,12 @@ public class MemberController implements ExceptionProcessor {
       errors.rejectValue("email", "required", "이메일을 입력하세요.");
     }
 
+    // 4. 이메일 인증 여부 체크
+    Boolean verified = (Boolean)session.getAttribute("EmailAuthVerified");
+    if (verified == null || !verified) { // 이메일 인증 실패시
+      errors.rejectValue("email", "NotVerified");
+    }
+
     if (errors.hasErrors()) {
       System.out.println(errors + "////////////////");
       return "front/member/confirmation";
@@ -77,9 +87,6 @@ public class MemberController implements ExceptionProcessor {
   @GetMapping("/join")
   public String join(@ModelAttribute RequestJoin form, Model model) {
     commonProcess("join", model);
-
-    // 이메일 인증 여부 false로 초기화
-    model.addAttribute("EmailAuthVerified", false);
 
     return "front/member/join";
   }
@@ -234,14 +241,15 @@ public class MemberController implements ExceptionProcessor {
     } else if (mode.equals("join")) { // 회원가입
       addCss.add("member/join");
       addScript.add("member/join");
-      addCommonScript.add("address");
 
     } else if (mode.equals("find_id")) { // 아이디 찾기
       pageTitle = Utils.getMessage("아이디_찾기", "commons");
 
-
     } else if (mode.equals("find_pw")) { // 비밀번호 찾기
       pageTitle = Utils.getMessage("비밀번호_찾기", "commons");
+
+    } else if (mode.equals("confirmation")) { //인증
+      addScript.add("member/confirmation");
     }
 
     model.addAttribute("pageTitle", pageTitle);

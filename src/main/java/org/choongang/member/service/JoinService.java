@@ -10,6 +10,7 @@ import org.choongang.member.repositories.MemberRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 
 @Service
@@ -18,7 +19,7 @@ import org.springframework.validation.Errors;
 public class JoinService {
 
   private final MemberRepository memberRepository;
-  private final AuthoritiesRepository authoritiesRepository;
+//  private final AuthoritiesRepository authoritiesRepository;
   private final JoinValidator validator;
   private final PasswordEncoder encoder;
 
@@ -30,6 +31,9 @@ public class JoinService {
 
     // 비밀번호 BCrypt로 해시화
     String hash = encoder.encode(form.getPassword());
+
+    Authority authority = StringUtils.hasText(form.getAuthority()) ?
+        Authority.valueOf(form.getAuthority()) : Authority.USER;
 
     Member member = new Member();
     member.setEmail(form.getEmail());
@@ -46,7 +50,7 @@ public class JoinService {
     member.setAgree3(form.isAgree3());
     member.setAgree4(form.isAgree4());
     member.setAgree5(form.isAgree5());
-    member.setAuthority(Authority.valueOf(form.getAuthority()));
+    member.setAuthority(authority);
 
     process(member);
 
