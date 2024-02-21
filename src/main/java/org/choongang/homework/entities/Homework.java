@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Homework extends Base {
+
     @Id @GeneratedValue
     private Long num; // 숙제번호
 
@@ -29,7 +30,6 @@ public class Homework extends Base {
     @Column
     private LocalDate deadLine; // 제출기한
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "studyGroupNum")
     private StudyGroup studyGroup; //작성자 회원번호
@@ -38,11 +38,6 @@ public class Homework extends Base {
     @JoinColumn(name = "memberNum")
     private Member member; //교육자 회원번호
 
-
-
     @OneToMany(mappedBy = "homework", fetch = FetchType.LAZY)
     private List<TrainingData> trainingDatas;
-
-
-
 }

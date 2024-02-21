@@ -22,7 +22,7 @@
         </thead>
         <tbody>
             <tr>
-                <td><input type="checkbox" id="chks"></td>
+                <td><input type="checkbox" id="checkall"></td>
                 <td>학습자명</td>
                 <td>전화번호</td>
                 <td>현재 레벨</td>
@@ -36,6 +36,15 @@
     <button type="submit">전송</button>
 </form>
 <script>
+    window.addEventListener("DOMContentLoaded", function() {
+        const checkall = document.getElementById("checkall");
+        checkall.addEventListener("change", function() {
+            const chks = document.getElementsByName("chk");
+            for (const chk of chks) {
+                chk.checked = checkall.checked;
+            }
+        });
+    });
     function updateTable() {
             const selectedOption = document.getElementById("options").value;
 
@@ -61,7 +70,6 @@
             // 서버로 요청 보내기
             xhr.open("GET", "/homework/get_table_data?option=" + selectedOption, true);
             xhr.send();
-
     }
 </script>
 </html>

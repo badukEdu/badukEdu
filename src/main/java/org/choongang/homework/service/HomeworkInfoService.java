@@ -28,7 +28,7 @@ public class HomeworkInfoService {
         return items;
     }
 
-    /** 교육자별 숙제 조회 : 확인 필요
+    /** 교육자별 숙제 조회
      *
      * @param memberNum
      * @return
@@ -45,6 +45,7 @@ public class HomeworkInfoService {
 
         return items;
     }
+
 
     /** 숙제 하나 조회
      *
