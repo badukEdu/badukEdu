@@ -34,7 +34,7 @@
 
     </tr>
     <form method="post" th:action="@{/JoinStudyGroup/join}" autocomplete="off">
-    <input type="hidden" name="userNum" th:value="${session.member.num}">
+
         <tr th:each="item : ${list}" th:object="${item}">
             <td><input type="checkbox" name="chk" th:value="*{num}"></td>
             <td >
