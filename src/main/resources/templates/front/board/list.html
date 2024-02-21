@@ -13,9 +13,9 @@
         <td>
             <select>
                 <option value="" hidden>검색 유형을 선택하세요</option>
-                <option value="all">전체</option>
-                <option value="notice">공지사항</option>
-                <option value="faq">FAQ</option>
+                <option value="TitleContent">제목+내용</option>
+                <option value="Title">제목</option>
+                <option value="Content">내용</option>
             </select>
         </td>
         <td>
@@ -36,11 +36,14 @@
     <tr>
         <th>선택</th>
         <th>게시글 번호</th>
-        <th>공지 분류</th>
+        <th>분류</th>
         <th>노출 여부</th>
         <th>제목</th>
         <th>내용</th>
+<!--        <th>작성자</th>-->
+<!--        <th>등록일시</th>-->
         <th>조회수</th>
+<!--        <th>댓글수</th>-->
         <th>첨부파일명</th>
         <th>첨부파일경로</th>
         <th>게시 타입</th>
@@ -61,7 +64,10 @@
         </td>
         <td><a th:href="@{'/board/detail/' + ${noticeList.num}}" th:text="*{title}"></a></td>
         <td th:text="*{content}"></td>
-        <td th:text="*{visit}"></td>
+<!--        <td th:text="*{}"></td> &lt;!&ndash; 작성자 &ndash;&gt;-->
+<!--        <td th:text="*{}"></td> &lt;!&ndash; 등록일시 &ndash;&gt;-->
+        <td th:text="*{visit}"></td> <!-- 조회수 -->
+<!--        <td th:text="*{}"></td> &lt;!&ndash; 댓글 수&ndash;&gt;-->
         <td th:text="*{fileName}"></td>
         <td th:text="*{fileAddress}"></td>
         <td th:text="*{postingType}"></td>

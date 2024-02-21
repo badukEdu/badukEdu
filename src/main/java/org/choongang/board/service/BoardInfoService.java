@@ -26,13 +26,17 @@ public class BoardInfoService {
 
     /**
      * 노출 여부를 기준으로 게시물을 조회
+     * @return
      */
+
     public List<Notice_> getListOrderByOnTop() {
         return boardRepository.findByOrderByOnTopDesc();
     }
 
     /**
      * 게시글 번호로 상세 페이지 조회
+     * @param num
+     * @return
      */
 
     public Optional<Notice_> findByNum(Long num) {

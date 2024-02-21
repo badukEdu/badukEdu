@@ -39,7 +39,7 @@ public class BoardController {
     /* 게시글 등록(공지사항, FAQ등 관리자 권한) S */
 
 
-    /* 게시글 목록 S */
+    /* 게시글 목록 조회 S */
     @GetMapping("/list")
     public String list(@ModelAttribute Notice_ form, Model model) {
 
@@ -54,9 +54,9 @@ public class BoardController {
 
         return "front/board/list";
     }
-    /* 게시글 목록 E */
+    /* 게시글 목록 조회 E */
 
-    /* 게시글 상세 조회 S */
+    /* 공지사항 및 FAQ 게시글 상세 조회 S */
 
     @GetMapping("/detail/{num}")
     public String detail(@PathVariable Long num, Model model) {
@@ -69,7 +69,7 @@ public class BoardController {
         // 게시글 번호를 사용하여 해당 게시글 정보를 가져온다.
         Optional<Notice_> noticeDetail = boardInfoService.findByNum(num);
 
-        // 게시글이 존재하는 경우에는 모델에 추가하고 admin/board/detail 페이지를 반환
+        // 게시글이 존재하는 경우에는 모델에 추가하고 admin/board/noitceDetail 페이지를 반환
         if (noticeDetail.isPresent()) {
             model.addAttribute("noticeDetail", noticeDetail.get());
             model.addAttribute("requestBoardAdd", new RequestBoardAdd());
@@ -80,12 +80,13 @@ public class BoardController {
         return "redirect:/front/board/list";
         }
 
-    /* 게시글 상세 조회 E */
+    /* 공지사항 및 FAQ 게시글 상세 조회 E */
 
-    /* 게시글 수정 S */
+    /* 공지사항 및 FAQ 게시글 수정 S */
 
     @GetMapping("/edit/{num}")
     public String editForm(@PathVariable Long num, Model model) {
+
         // 게시글 번호를 사용하여 해당 게시글 정보를 가져온다.
         Optional<Notice_> noticeDetail = boardInfoService.findByNum(num);
 
@@ -99,7 +100,6 @@ public class BoardController {
         return "redirect:/front/board/list";
     }
 
-    /* 게시글 수정 */
     @PostMapping("/edit")
     public String editBoard(RequestBoardAdd form, Model model) {
         // 기존 게시물 정보 가져오기
@@ -121,15 +121,15 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
-    /* 게시글 수정 E */
+    /* 공지사항 및 FAQ 게시글 수정 E */
 
-    /* 게시글 삭제 S */
+    /* 공지사항 및 FAQ 게시글 삭제 S */
 
     @GetMapping("/delete/{num}")
     public String deleteBoard(@PathVariable Long num) {
         boardDeleteService.deleteById(num);
         return "front/board/list";
     }
-    /* 게시글 삭제 S */
+    /* 공지사항 및 FAQ 게시글 삭제 E */
 }
 

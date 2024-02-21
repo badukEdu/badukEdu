@@ -9,24 +9,43 @@
 <h2>게시글 상세 조회</h2>
 
 <div th:if="${noticeDetail}">
-    <p>게시글 번호: <span th:text="${noticeDetail.num}"></span></p>
-    <div th:if="${noticeDetail != null}">
-        <p th:if="${noticeDetail.member != null}">작성자: <span th:text="${noticeDetail.member.userId}"></span></p>
-        <p th:unless="${noticeDetail.member != null}">작성자 정보 없음</p>
-    </div>
-    <div th:unless="${noticeDetail != null}">게시글 정보 없음</div>
-    <p>공지 분류: <span th:text="${noticeDetail.type}"></span></p>
-    <p>노출 여부: <span th:if="${noticeDetail.onTop}">O</span><span th:unless="${noticeDetail.onTop}">X</span></p>
-    <p>제목: <span th:text="${noticeDetail.title}"></span></p>
-    <p>내용: <span th:text="${noticeDetail.content}"></span></p>
-    <!-- 추가 필드가 있다면 추가 -->
+    <table>
+        <tr>
+            <td>게시글 번호:</td>
+            <td><span th:text="${noticeDetail.num}"></span></td>
+        </tr>
+        <tr th:if="${noticeDetail.member != null}">
+            <td>작성자:</td>
+            <td><span th:text="${noticeDetail.member.userId}"></span></td>
+        </tr>
+        <tr th:unless="${noticeDetail.member != null}">
+            <td>작성자 정보 없음</td>
+        </tr>
+        <tr>
+            <td>공지 분류:</td>
+            <td><span th:text="${noticeDetail.type}"></span></td>
+        </tr>
+        <tr>
+            <td>노출 여부:</td>
+            <td><span th:if="${noticeDetail.onTop}">O</span><span th:unless="${noticeDetail.onTop}">X</span></td>
+        </tr>
+        <tr>
+            <td>제목:</td>
+            <td><span th:text="${noticeDetail.title}"></span></td>
+        </tr>
+        <tr>
+            <td>내용:</td>
+            <td><span th:text="${noticeDetail.content}"></span></td>
+        </tr>
+        <!-- 추가 필드가 있다면 추가 -->
+    </table>
 </div>
 <div>
     <form th:action="@{/board/edit/{num}(num=${noticeDetail.num})}" method="get">
         <input type="submit" value="수정하기">
     </form>
     <a th:href="@{/board/delete/{num}(num=*{num})}" onclick="return confirm('정말 삭제하시겠습니까?');">
-        <i class="xi-trash"></i> 게시글 삭제
+        <i class="xi-trash"></i> 삭제하기
     </a>
 </div>
 
