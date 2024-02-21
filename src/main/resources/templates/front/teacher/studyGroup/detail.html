@@ -5,7 +5,7 @@
 
 
 <form th:action="@{/studyGroup/detail}" th:object="${item}">
-   <select name="num" th:field="*{num}">
+    <select name="num" th:field="*{num}">
         <option th:each="stGroup : ${list}"  th:value="${stGroup.num}" th:text="${stGroup.name}" ></option>
     </select>
     <button type="submit">상세 조회</button>
