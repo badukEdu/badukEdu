@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
-
 <th:block layout:fragment="addCss">
     <link rel="stylesheet" type="text/css" th:href="@{/front/style.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/front/main/style.css}">
@@ -24,109 +23,100 @@
     <a th:href="@{/teacher/edu/add}">학습자료등록</a>
     서버 테스트
 
-    <section class="main-bg">
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img th:src="@{/common/image/mbanner1.jpg}" alt="메인배너1">
+    <main>
+        <section class="main-bg">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+
+                        <img th:src="@{/common/image/mbanner1.jpg}" alt="메인배너1">
+                    </div>
+                    <div class="swiper-slide">
+                        <img th:src="@{/common/image/mbanner2.jpg}" alt="메인배너2">
+
+                    </div>
+                    <div class="swiper-slide">
+                        <img th:src="@{/common/image/mbanner3.jpg}" alt="메인배너3">
+                    </div>
                 </div>
-                <div class="swiper-slide">
-                    <img src="images/mbanner2.jpg" alt="메인배너2">
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/mbanner3.jpg" alt="메인배너3">
-                </div>
+                <i class="xi-angle-left prev"></i>
+                <i class="xi-angle-right next"></i>
+                <div class="swiper-pagination"></div>
             </div>
-            <i class="xi-angle-left prev"></i>
-            <i class="xi-angle-right next"></i>
-            <div class="swiper-pagination"></div>
-        </div>
-    </section>
-    <section class="sub-menus">
-        <a href="#">사이트 소개</a>
-        <a href="#">이용 가이드</a>
-        <a href="#">FAQ</a>
-        <a href="#">게임콘택스 구매</a>
-        <a href="#">내 게임 콘텐츠 구매</a>
-        <a href="#">학습 그룹 가입신청</a>
-        <a href="#">교육자마당</a>
-        <a href="#">학습그룹 등록</a>
-        <a href="#">학습그룹 조회</a>
-    </section>
+        </section>
+        <section class="sub-menus">
+            <a href="#">사이트 소개</a>
+            <a href="#">이용 가이드</a>
+            <a href="#">FAQ</a>
+            <a href="#">게임콘택스 구매</a>
+            <a href="#">내 게임 콘텐츠 구매</a>
+            <a href="#">학습 그룹 가입신청</a>
+            <a href="#">교육자마당</a>
+            <a href="#">학습그룹 등록</a>
+            <a href="#">학습그룹 조회</a>
+        </section>
+    </main>
 
-<main layout:fragment="content" class="layout_width">
-사용자 메인페이지
-<a th:href="@{/admin}">관리자 메인</a>
-<a th:href="@{/homework}">교육자 숙제</a>
-<a th:href="@{/homework/list}">학습자 숙제</a>
-<a th:href="@{/studyGroup}">스터디 그룹</a>
-<a th:href="@{/JoinStudyGroup}">스터디그룹 가입 신청</a>
-<a th:href="@{/JoinStudyGroup/accept}">스터디그룹 가입 승인</a>
+    <div class="info-container flex_center">
+        <div class="info-content layout_1440  flex_center">
+            <div class="store-search">
+                <h3>Search</h3>
+                <input type="text" placeholder="검색어를 입력해주세요">
 
-</main>
+                <div class="bar"></div>
 
-<div class="info-container flex_center">
-    <div class="info-content layout_1440  flex_center">
-        <div class="store-search">
-            <h3>Search</h3>
-            <input type="text" placeholder="검색어를 입력해주세요">
+                <div class="search">
+                    <span></span>
+                    <a href="#"></a>
+                    <a href="#"></a>
+                    <address>
 
-            <div class="bar"></div>
+                    </address>
 
-            <div class="search">
-                <span></span>
-                <a href="#"></a>
-                <a href="#"></a>
-                <address>
-
-                </address>
+                </div>
 
             </div>
-
-        </div>
-        <div class="happy-box">
-            <h3>NEWS</h3>
-            <ul class="flex_center">
-                <li>
-                    <a href="#" class="flex_center">
-                        <img src="" alt="">
-                    </a>
-                    <span>Event</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="" alt="">
-                    </a>
-                    <span>Event</span>
-                </li>
-            </ul>
+            <div class="happy-box">
+                <h3>NEWS</h3>
+                <ul class="flex_center">
+                    <li>
+                        <a href="#" class="flex_center">
+                            <img src="" alt="">
+                        </a>
+                        <span>Event</span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="" alt="">
+                        </a>
+                        <span>Event</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
-<aside class="slide_menu">
-    <i class="xi-close-thin close dn"></i>
-    더보기 메뉴...
-</aside>
-<div class="layer_dim dn"></div>
+    <aside class="slide_menu">
+        <i class="xi-close-thin close dn"></i>
+        더보기 메뉴...
+    </aside>
+    <div class="layer_dim dn"></div>
 
-
-<div class="open-container flex_center">
-    <h2>바둑은 왜 배워야 할까요?</h2>
-    <h3></h3>
-
-
-    <div class="open-list layout_1440">
-        <ul class="flex_between">
-            <li><a href="#"><span>승부에 몰입하며<br>자연스러운 집중력 향상</span></a></li>
-            <li><a href="#"><span>바둑에서 배우는 인생<br>승패를 통해 배우는 인성교육</span></a></li>
-            <li><a href="#"><span>복잡한 두뇌사용과<br> 전략적인 수 계산을 통한 수리력 향상</span></a></li>
-
-        </ul>
-    </div>
-</div>
+    <footer>
+        <div class="open-container flex_center">
+            <h2>바둑은 왜 배워야 할까요?</h2>
+            <h3></h3>
 
 
-</main>
+            <div class="open-list layout_1440">
+                <ul class="flex_between">
+                    <li><a href="#"><span>승부에 몰입하며<br>자연스러운 집중력 향상</span></a></li>
+                    <li><a href="#"><span>바둑에서 배우는 인생<br>승패를 통해 배우는 인성교육</span></a></li>
+                    <li><a href="#"><span>복잡한 두뇌사용과<br> 전략적인 수 계산을 통한 수리력 향상</span></a></li>
+
+                </ul>
+            </div>
+        </div>
+    </footer>
 
 </html>
