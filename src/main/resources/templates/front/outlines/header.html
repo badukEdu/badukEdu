@@ -57,8 +57,8 @@
                 </li>
                 <li><a href="#">구독서비스</a>
                     <ul class="subMenu">
-                        <li><a href="#">게임콘텐츠구매</a></li>
-                        <li><a href="#">내 게임 콘텐츠 조회</a></li>
+                        <li><a th:href="@{/gamecontent/subscribe}">게임콘텐츠구매</a></li>
+                        <li><a th:href="@{/gamecontent/list}">내 게임 콘텐츠 조회</a></li>
                     </ul>
                 </li>
                 <li><a href="#">학습서비스</a>
@@ -78,9 +78,10 @@
                 </li>
                 <li><a href="#">운영마당</a>
                     <ul class="subMenu">
-                        <li><a href="#">게임콘텐츠 등록</a></li>
-                        <li><a href="#">교육자료 등록</a></li>
-                        <li><a href="#">게시물 등록</a></li>
+                        <li><a th:href="@{/admin/gamecontent/add}">게임콘텐츠 등록</a></li>
+                        <li><a th:href="@{/admin/gamecontent/list}">게임콘텐츠 조회</a></li>
+                        <li><a th:href="@{/admin/edu/add}">교육자료 등록</a></li>
+                        <li><a th:href="@{/admin/edu/list}">교육자료 조회</a></li>
                         <li><a href="#">매출조회</a></li>
                         <li><a href="#">회원조회</a></li>
                     </ul>
