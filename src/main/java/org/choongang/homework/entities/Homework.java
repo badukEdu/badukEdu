@@ -24,7 +24,7 @@ public class Homework extends Base {
     private String content; // 숙제내용
 
     @Column()
-    private int studyLevel; // 숙제레벨
+    private Long studyLevel; // 숙제레벨
 
     @Column
     private LocalDate deadLine; // 제출기한
@@ -37,6 +37,8 @@ public class Homework extends Base {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberNum")
     private Member member; //교육자 회원번호
+
+
 
     @OneToMany(mappedBy = "homework", fetch = FetchType.LAZY)
     private List<TrainingData> trainingDatas;

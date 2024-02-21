@@ -2,10 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <header th:fragment="common">
+
     <!--로고 -->
     <section class = "logo_area">
         <a th:href="@{/admin}">로고</a>
     </section>
+
     <!--우측 상단 버튼-->
     <section class="btn_area">
         <th:block sec:authorize="isAuthenticated()">
@@ -18,28 +20,28 @@
             <a th:href="@{/member/login}">로그인</a>
         </th:block>
     </section>
-    <body>
-    <header>
-        <div class="layout">
 
-            <section class="leftLink">
-                <a class="more-menu"><i class="xi-bars"></i></a>
-                <!--
-                <a href="#"><i class="xi-search"></i></a>
-                -->
-            </section>
-            <a href="index.html" class="logo">
-                <!--  <img src="" alt="메인로고"> -->
-                <h1>바둑</h1>
-            </a>
+    <div class="layout">
 
-            <section class="rightLink">
-                <a href="#"><i class="xi-profile"></i></a>
-                <a href="#"><i class="xi-bell"></i></a>
-                <button class="btnLogin">Login</button>
-            </section>
+        <section class="leftLink">
+            <a class="more-menu"><i class="xi-bars"></i></a>
+            <!--
+            <a href="#"><i class="xi-search"></i></a>
+            -->
+        </section>
+        <a href="index.html" class="logo">
+            <!--  <img src="" alt="메인로고"> -->
+            <h1>바둑</h1>
+        </a>
 
-    </header>
+        <section class="rightLink">
+            <a href="#"><i class="xi-profile"></i></a>
+            <a href="#"><i class="xi-bell"></i></a>
+            <button class="btnLogin">Login</button>
+        </section>
+    </div>
+
+
 
 
     <div class="all-menus">
@@ -87,12 +89,9 @@
                         <li><a href="#">회원조회</a></li>
                     </ul>
                 </li>
-
             </ul>
-
-
-
         </nav>
     </div>
-    </body>
+
+</header>
 </html>

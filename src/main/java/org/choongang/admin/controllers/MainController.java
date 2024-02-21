@@ -15,11 +15,10 @@ public class MainController {
     @ModelAttribute("addScript")
     public String[] addScript() { return new String[] { "main/view" };}
 
-    @GetMapping("/")
+    @GetMapping
     public String index() {
 
-        return "front/main/index";
-
+        return "admin/main/index";
 
     }
 }

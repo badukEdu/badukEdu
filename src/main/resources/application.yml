@@ -38,10 +38,6 @@ spring:
     username: baduk
     password: _aA123456
 
-    username: cbmja
-    password: cbm007512
-
-
   # JPA 설정
   jpa:
     properties:
