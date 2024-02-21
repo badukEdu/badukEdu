@@ -4,12 +4,12 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.choongang.commons.ListData;
 import org.choongang.homework.entities.Homework;
-import org.choongang.homework.entities.TrainingData;
 import org.choongang.homework.service.HomeworkInfoService;
 import org.choongang.homework.service.HomeworkSaveService;
 import org.choongang.homework.service.TrainingDataSaveService;
 import org.choongang.member.MemberUtil;
 import org.choongang.member.entities.Member;
+import org.choongang.member.repositories.MemberRepository;
 import org.choongang.teacher.stGrooup.controllers.StGroupSearch;
 import org.choongang.teacher.stGrooup.entities.StudyGroup;
 import org.choongang.teacher.stGrooup.services.stGroup.SGInfoService;
@@ -28,6 +28,7 @@ public class HomeworkController {
     private final HomeworkInfoService homeworkInfoService;
     private final SGInfoService sgInfoService;
     private final TrainingDataSaveService trainingDataSaveService;
+    private final MemberRepository memberRepository;
     private final MemberUtil memberUtil;
 
     /** 교육자 index 페이지
@@ -109,7 +110,7 @@ public class HomeworkController {
         return "redirect:/homework";
     }
 
-    /** 교육자 - 숙제 전송 페이지 (작업중)
+    /** 교육자 - 숙제 전송 페이지
      *
      * @return
      */
@@ -141,9 +142,22 @@ public class HomeworkController {
      * @return
      */
     @PostMapping("/post")
-    public String postPs( TrainingData form, Long num) {
+    public String postPs(@RequestParam("chk") List<Integer> chks, @ModelAttribute Homework homework, Long num) {
+        // 선택한 학생들에게 선택한 숙제를 연결..
+        // 학생들이 homework를 조회하려면
+        // trainingdata 숙제 생성일,
+/*
+        for (int chk : chks) {
+            Member member = memberRepository.findById(Long.valueOf(chk)).orElseThrow();
 
-        trainingDataSaveService.save(form, num);
+            homework.setMember(member);
+
+            TrainingData trainingData = new TrainingData();
+            trainingData.setHomework(homework);
+            trainingDataSaveService.save(homework);
+        }
+*/
+
         return "redirect:/homework/post";
     }
 
@@ -153,6 +167,7 @@ public class HomeworkController {
      */
     @GetMapping("/assess/{num}")
     public String assess() {
+        // trainigdata 점수, 평가일
 
 
         return "front/teacher/homework/assess";
@@ -171,7 +186,7 @@ public class HomeworkController {
 
 
 
-    /** 학습자 - 학습그룹에 주어진 숙제 리스트 (작업중)
+    /** 학습자 - 학습그룹 x / 학습자에게 주어진 숙제 리스트 (작업중)
      *
      * @return
      */
@@ -212,7 +227,6 @@ public class HomeworkController {
     @ResponseBody
     public String getTableData(@RequestParam("option") String selectedOption) {
 
-        System.out.println("///////////////////" + selectedOption);
         // 선택된 학습 그룹의 데이터를 조회
         List<Member> members = sgInfoService.getJoinMember(Long.valueOf(selectedOption));
 
@@ -224,7 +238,7 @@ public class HomeworkController {
 
         for (Member member : members) {
             tableData.append("<tr>");
-            tableData.append("<td><input type='checkbox' th:id='*{'member' + num}>").append("</td>"); // 체크박스
+            tableData.append("<td><input type='checkbox' name='chk' th:id='*{'chk_' + num}>").append("</td>"); // 체크박스
             tableData.append("<td>").append(member.getName()).append("</td>"); // 학습자명
             tableData.append("<td>").append(member.getTel()).append("</td>"); // 전화번호
             tableData.append("<td>").append(member.getLevels()).append("</td>"); // 현재 레벨
