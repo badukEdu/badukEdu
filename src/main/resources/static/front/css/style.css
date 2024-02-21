@@ -1,6 +1,6 @@
 *{ box-sizing: border-box;
-    color: #000;
-    outline: none; /*input*/
+color: #000;
+outline: none; /*input*/
 }
 
 
@@ -8,46 +8,45 @@ html { font-size: 13px; /* 1rem - 13px*/}
 
 
 /*공통 초기화*/
-    body{ margin: 0;}
+body{ margin: 0;}
 
-    ul, ol{ list-style: none; margin: 0; padding: 0;}
-    dl, dt, dd{ margin: 0; padding: 0;}
-    a { text-decoration: none; color:black}
+ul, ol{ list-style: none; margin: 0; padding: 0;}
+dl, dt, dd{ margin: 0; padding: 0;}
+a { text-decoration: none; color:black}
 
 
 
-   .layout{
-    width: 100%;
-        margin: auto;
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
+.layout{
+width: 1600px;
+margin: auto;
+position: relative;
+display: flex;
+justify-content: space-between;
+align-items: center;
 
 
 }
 
 header{ width:100%;
-        margin: auto;
-        position: relative;
-    }
+margin: auto;
+position: relative;
+}
 
 
 .all-menus{
-        position: absolute;
-        width: 100%;
-        justify-content: space-around;
-        z-index: 99;
-        height: 430px;
-        transition: .5s;
+position: absolute;
+width: 100%;
+justify-content: space-around;
+z-index: 99;
+height: 430px;
+transition: .5s;
 
 
 }
 
-.all-menus li a:hover{
-    background-color: #fff;
-    z-index: 99;
+.all-menus:hover{
+background-color: #fff;
+z-index: 99;
 
 
 }
@@ -57,55 +56,59 @@ header{ width:100%;
 
 
 .subMenu{
-    display:none;
-    height: 300px;
-    width: 100%;
-    border-top: 1px solid #ededed;
-    border-right: 1px solid #e6e6e6;
+display:none;
+height: 300px;
+width: 100%;
+border-top: 1px solid #ededed;
+border-right: 1px solid #e6e6e6;
 
-    flex-wrap: wrap;
-    border-left: 0;
-    border-right: 0;
-    z-index: 99;
-    outline: 1px black;
-    transition: .5s;
+flex-wrap: wrap;
+border-left: 0;
+border-right: 0;
+z-index: 99;
+outline: 1px black;
+transition: .5s;
 
 
 }
 
-.subMenu a{
-    text-align: center;
-    height: 50px;
-    line-height: 50px;
-    font-weight: 500;
-    font-size: 1.2rem;
-    z-index: 99;
+.sub-menus a{
+text-align: center;
+height: 50px;
+line-height: 50px;
+border-left: 1px solid #ededed ;
+border-top: 1px solid #ededed;
+font-weight: 500;
+font-size: 1.2rem;
+z-index: 99;
 
- }
+}
 
 
 
- .lnb{ position: absolute;
-        top:60px;
-        width:100%;
-        justify-content: center;
-        z-index: 99;
-        height: 300px;
+.lnb{ position: absolute;
+top:60px;
+width:100%;
+justify-content: center;
+z-index: 99;
+height: 300px;
 
-    }
+}
+
+
 
 
 
 
 
 .lnb>ul{
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    width: 100%;
-    justify-content: center;
-     text-align: center;
-
+display: flex;
+justify-content: center;
+position: absolute;
+width: 1600px;
+justify-content: center;
+text-align: center;
+margin-left: 100px;
 
 }
 
@@ -113,23 +116,19 @@ header{ width:100%;
 
 .lnb a{ height:40px; line-height: 40px;}
 
-.lnb>:hover .subMenu{ display: block; }
+.lnb>ul:hover .subMenu{ display: block; }
 
 
 
-.lnb>a:hover .subMenu{ display: block;}
+.lnb>ul:hover .subMenu{ display: block;}
 
 
-.subMenu li a:hover{  color:#fff; text-decoration: underline;}
+.subMenu a:hover{  color:#fff; text-decoration: underline;}
 
 
 
 .subMenu:hover{ height: 200px; background-color: tomato; height: 330px;
 }
-
-
-
-
 
 *{ box-sizing: border-box;
 color: #000;
@@ -149,8 +148,8 @@ outline: none; /*input*/
 
 
 header i {font-size: 2.3rem;}
- header  h1 {height: 54px; text-align: center;}
- header .logo img {height: 34px; } */
+header  h1 {height: 54px; text-align: center;}
+header .logo img {height: 34px; } */
 /* 헤더 영역 E */
 
 
@@ -162,42 +161,42 @@ header .rightLink a { margin-left: 18px;}
 
 
 .btnLogin{
-    width: 100px;
-    height: 40px;
-    background: transparent;
-    border: 2px solid #f2e0a0;
-    outline: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1.1em;
-    color: black;
-    font-weight: 500;
-    margin-left: 40px;
-    transition: .5s;
+width: 100px;
+height: 40px;
+background: transparent;
+border: 2px solid #f2e0a0;
+outline: none;
+border-radius: 6px;
+cursor: pointer;
+font-size: 1.1em;
+color: black;
+font-weight: 500;
+margin-left: 40px;
+transition: .5s;
 
 
 }
 
 .btnLogin:hover{
-    background: orange;
-    color: #162938;
+background: orange;
+color: #162938;
 }
 
 
 
 
 .menu{
-    border: 1px solid #ededed;
-    padding: 5px 20px;
-    color: black;
-    transition: 1 ease;
-    font-size: 18px;
+border: 1px solid #ededed;
+padding: 5px 20px;
+color: black;
+transition: 1 ease;
+font-size: 18px;
 
 }
 
 .menu:hover{
-    background-color: rgb(255, 187, 0);
-    color: black;
+background-color: rgb(255, 187, 0);
+color: black;
 
 }
 
@@ -206,30 +205,30 @@ header .rightLink a { margin-left: 18px;}
 /*-------------------- footer design----------
 ----------------------------------------------------*/
 .footer-container{
-    border-top:1px solid #efefef;
-    padding: 60px 0;
-    width: 100%;
+border-top:1px solid #efefef;
+padding: 60px 0;
+width: 100%;
 }
 .footer-info,
 .footer-ico{ margin-bottom: 20px;}
 .footer-container address{ text-align: center;}
 
 .footer-info{
-    font-size: 12px;
-    gap: 10px;
+font-size: 12px;
+gap: 10px;
 }
 .footer-ico{
-    align-items: center;
-    /* gap: 20px;
-        배경의 세로 바를 넣을 수 없음
-    */
+align-items: center;
+/* gap: 20px;
+배경의 세로 바를 넣을 수 없음
+*/
 }
 .footer-ico li{ padding: 0 15px;}
 .footer-ico li:first-child,
 .footer-ico li:nth-child(5){
-    background-image: url();
-    background-repeat: no-repeat;
-    background-position: right center;
+background-image: url();
+background-repeat: no-repeat;
+background-position: right center;
 }
 
 
