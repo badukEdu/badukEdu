@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2>QnA 조회</h2>
-<form th:action="@{/board/qnaList}" method="post" autocomplete="off">
+<form th:action="@{/qna/list}" method="post" autocomplete="off">
     <table border="1">
         <tr>
             <th>번호</th>
@@ -21,7 +21,7 @@
         <tr th:each="qnaList : ${qnaList}" th:object="${qnaList}">
             <td th:text="*{num}"></td>
             <td th:text="*{type}"></td>
-            <td th:text="*{title}"></td>
+            <td><a th:href="@{'/qna/qnaDetail/' + ${qnaList.num}}" th:text="*{title}"></a></td>
             <td th:text="*{answerAlert}"></td>
             <td th:text="*{content}"></td>
             <td th:text="*{fileName}"></td>

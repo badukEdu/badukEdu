@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>QnADetail</title>
+</head>
+<body>
+<h2>QnA 상세 조회</h2>
+<div th:if="${qnaDetail}">
+<table>
+    <tr>
+        <th>번호</th>
+        <td th:text="${qnaDetail.num}"></td>
+    </tr>
+    <tr>
+        <th>문의 유형</th>
+        <td th:text="${qnaDetail.type}"></td>
+    </tr>
+    <tr th:if="${qnaDetail.membet != null}">
+        <th>작성자</th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>제목</th>
+        <td th:text="${qnaDetail.title}"></td>
+    </tr>
+    <tr>
+        <th>내용</th>
+        <td th:textarea="${qnaDetail.content}"></td>
+    </tr>
+    <tr>
+        <th></th>
+        <td></td>
+    </tr>
+</table>
+</div>
+
+<div>
+    <form th:action="@{/qna/qnaEdit/{num}(num=${qnaDetail.num})}" method="get">
+        <input type="submit" value="수정하기">
+    </form>
+    <a th:href="@{/qna/qnaDelete/{num}(num=*{num})}" onclick="return confirm('정말 삭제하시겠습니까?');">
+        <i class="xi-trash"></i> 삭제하기
+    </a>
+</div>
+</body>
+</html>

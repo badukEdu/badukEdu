@@ -29,7 +29,7 @@ public class BoardSaveService {
        Notice_ notice;
 
        if (mode.equals("edit") && num != null) {
-           // 수정 모드일 때 이미 존재하는 게시글을 불러옴
+           // 수정 모드이고 게시물의 번호가 있을 때 이미 존재하는 게시글을 불러옴
            notice = boardRepository.findById(num).orElseThrow(BoardNotFoundException::new);
        } else {
            // 등록 모드일 때 새로운 게시글 생성
