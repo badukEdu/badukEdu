@@ -12,15 +12,15 @@ import org.choongang.admin.gamecontent.service.GameContentInfoService;
 import org.choongang.commons.ListData;
 import org.choongang.commons.Pagination;
 import org.choongang.commons.Utils;
+import org.choongang.education.stgroup.entities.JoinStudyGroup;
+import org.choongang.education.stgroup.services.joinStG.JoinSTGInfoService;
 import org.choongang.member.constants.Authority;
 import org.choongang.member.entities.Member;
 import org.choongang.teacher.stGrooup.controllers.RequestStGroup;
 import org.choongang.teacher.stGrooup.controllers.StGroupSearch;
-import org.choongang.education.stgroup.entities.JoinStudyGroup;
 import org.choongang.teacher.stGrooup.entities.QStudyGroup;
 import org.choongang.teacher.stGrooup.entities.StudyGroup;
 import org.choongang.teacher.stGrooup.repositories.StGroupRepository;
-import org.choongang.education.stgroup.services.joinStG.JoinSTGInfoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -33,11 +33,12 @@ import java.util.List;
 public class SGInfoService {
 
     private final StGroupRepository stGroupRepository;
+    public final JoinSTGInfoService joinSTGInfoService;
     private final EntityManager em;
     private final HttpServletRequest request;
     private final HttpSession session;
-    private final GameContentInfoService gameContentInfoService;
-    public final JoinSTGInfoService joinSTGInfoService;
+    private final GameContentInfoService gameContentInfoService ;
+
 
 
     public ListData<StudyGroup> getList(StGroupSearch search){
@@ -49,7 +50,7 @@ public class SGInfoService {
 
 
         QStudyGroup studyGroup = QStudyGroup.studyGroup;
-       // QGameContent gameTitle = QGameContent.gameTitle;
+        // QGameContent gameTitle = QGameContent.gameTitle;
         BooleanBuilder andBuilder = new BooleanBuilder();
 
         //교육자는 본인 스터디그룹만 볼 수 있음
@@ -85,15 +86,15 @@ public class SGInfoService {
                 .limit(limit)
                 .where(andBuilder)
                 .fetch();
-            long total = stGroupRepository.count(andBuilder);
-            Pagination pagination = new Pagination(page, (int)total, 5, limit, request);
+        long total = stGroupRepository.count(andBuilder);
+        Pagination pagination = new Pagination(page, (int)total, 5, limit, request);
 
-            for(StudyGroup s : items){
-                gameContentInfoService.addInfo(s.getGameContent());
-            }
+        for(StudyGroup s : items){
+            gameContentInfoService.addInfo(s.getGameContent());
+        }
 
 
-            return new ListData <> (items , pagination);
+        return new ListData <> (items , pagination);
     }
 
     public StudyGroup getById(Long num){

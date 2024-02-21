@@ -1,10 +1,12 @@
-package org.choongang.education.stgroup.services.joinStG;
+
+package org.choongang.teacher.stGrooup.services.joinStG;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.choongang.member.entities.Member;
 import org.choongang.education.stgroup.entities.JoinStudyGroup;
 import org.choongang.education.stgroup.repositories.JoinStGroupRepository;
+import org.choongang.education.stgroup.services.joinStG.JoinSTGInfoService;
+import org.choongang.member.entities.Member;
 import org.choongang.teacher.stGrooup.services.stGroup.SGInfoService;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,12 @@ public class JoinSTGSaveService {
     private final HttpSession session;
 
 
-    public void save(List<Long> chks , Long userNum){
+    /**
+     * (학생)
+     * 여러 스터디그룹 동시 가입 신청
+     * @param chks
+     */
+    public void save(List<Long> chks){
 
         for(Long num : chks){
             JoinStudyGroup jsg = new JoinStudyGroup();
