@@ -14,13 +14,16 @@ import org.choongang.admin.gamecontent.service.GameContentInfoService;
 import org.choongang.commons.ListData;
 import org.choongang.commons.Pagination;
 import org.choongang.commons.Utils;
+import org.choongang.member.MemberUtil;
 import org.choongang.member.constants.Authority;
 import org.choongang.member.entities.Member;
 import org.choongang.teacher.stGrooup.controllers.RequestStGroup;
 import org.choongang.teacher.stGrooup.controllers.StGroupSearch;
-import org.choongang.teacher.stGrooup.entities.QStudyGroup;
+import org.choongang.teacher.stGrooup.entities.JoinStudyGroup;
+import org.choongang.teacher.stGrooup.entities.QJoinStudyGroup;
 import org.choongang.teacher.stGrooup.entities.QStudyGroup;
 import org.choongang.teacher.stGrooup.entities.StudyGroup;
+import org.choongang.teacher.stGrooup.repositories.JoinStGroupRepository;
 import org.choongang.teacher.stGrooup.repositories.StGroupRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -37,7 +40,8 @@ public class SGInfoService {
     private final HttpServletRequest request;
     private final HttpSession session;
     private final GameContentInfoService gameContentInfoService;
-
+    private final MemberUtil memberUtil;
+    private final JoinStGroupRepository joinStGroupRepository;
 
     public ListData<StudyGroup> getList(StGroupSearch search){
 
@@ -106,5 +110,18 @@ public class SGInfoService {
         form.setNum(data.getNum());
         return form;
     }
+
+    public boolean isJoinMember() {
+        if(!memberUtil.isLogin()) return false;
+
+        QJoinStudyGroup joinStudyGroup = QJoinStudyGroup.joinStudyGroup;
+        BooleanBuilder builder = new BooleanBuilder();
+        builder.and(joinStudyGroup.member.eq(memberUtil.getMember()))
+            .and(joinStudyGroup.accept.eq(true));
+
+        return joinStGroupRepository.exists(builder);
+
+    }
+
 
 }

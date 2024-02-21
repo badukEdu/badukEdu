@@ -1,5 +1,6 @@
 package org.choongang.member.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,16 +41,17 @@ public class MemberController implements ExceptionProcessor {
     return new RequestJoin();
   }
 
-  @RequestMapping(value = "/confirmation", method = RequestMethod.GET)
+  @GetMapping("/confirmation")
   public String confirmation( RequestJoin form, Model model) {
     commonProcess("confirmation", model);
     model.addAttribute("requestJoin", new RequestJoin());
-
+    // 이메일 인증 여부 false로 초기화
+    model.addAttribute("EmailAuthVerified", false);
     return "front/member/confirmation";
   }
 
-  @RequestMapping(value = "/confirmation", method = RequestMethod.POST)
-  public String confirmationPs(@ModelAttribute("requestJoin") RequestJoin form, Errors errors,Model model) {
+  @PostMapping( "/confirmation")
+  public String confirmationPs(@ModelAttribute("requestJoin") RequestJoin form, HttpSession session, Errors errors, Model model) {
     commonProcess("confirmation", model);
 
     // 필수 필드가 비어 있는지 확인
@@ -66,6 +68,12 @@ public class MemberController implements ExceptionProcessor {
       errors.rejectValue("email", "required", "이메일을 입력하세요.");
     }
 
+    // 4. 이메일 인증 여부 체크
+    Boolean verified = (Boolean) session.getAttribute("EmailAuthVerified");
+    if (verified == null || !verified) {  //이메일 인증 실패시
+      errors.rejectValue("email", "NotVerified");
+    }
+
     if (errors.hasErrors()) {
       System.out.println(errors + "////////////////");
       return "front/member/confirmation";
@@ -77,9 +85,6 @@ public class MemberController implements ExceptionProcessor {
   @GetMapping("/join")
   public String join(@ModelAttribute RequestJoin form, Model model) {
     commonProcess("join", model);
-
-    // 이메일 인증 여부 false로 초기화
-    model.addAttribute("EmailAuthVerified", false);
 
     return "front/member/join";
   }

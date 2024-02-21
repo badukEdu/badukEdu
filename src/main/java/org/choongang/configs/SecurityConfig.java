@@ -2,6 +2,8 @@ package org.choongang.configs;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.choongang.member.MemberUtil;
+import org.choongang.member.constants.Authority;
 import org.choongang.member.service.LoginFailureHandler;
 import org.choongang.member.service.LoginSuccessHandler;
 import org.choongang.member.service.MemberInfoService;
@@ -20,6 +22,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
     private final MemberInfoService memberInfoService;
+    private final MemberUtil memberUtil;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -41,6 +44,47 @@ public class SecurityConfig {
         /* 인증 설정 E - 로그인, 로그아웃 */
 
         /* 인가 설정 S - 접근 통제 */
+        http.authorizeHttpRequests(c -> {
+            c.requestMatchers("/member/**", "/admin/**").permitAll() // "/admin/**" 작업 후 삭제
+//               .requestMatchers("/admin").hasAuthority("ADMIN") //작업 후 활성화
+               .requestMatchers("/teacher").hasAnyAuthority("TEACHER", "ADMIN")
+               .requestMatchers("/student").hasAnyAuthority("STUDENT", "ADMIN")
+               .anyRequest().authenticated(); //나머지는 회원 전용
+        });
+
+        http.exceptionHandling(c->
+            // 미로그인시
+            c.authenticationEntryPoint((req,res,e) -> {
+                String URL = req.getRequestURI();
+                if (URL.indexOf("/admin") != -1) { // 관리자 페이지
+                    res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                } else { // 회원전용 페이지
+                    res.sendRedirect(req.getContextPath() + "/member/login");
+                }
+            })
+            // 로그인 후 권한 X
+                .accessDeniedHandler((req, res, e) -> {
+                    String requestURL = req.getRequestURI();
+                    if (requestURL.indexOf("/admin") != -1) {
+                        res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                    } else {
+                        String redirectURL =  "/";
+                        if (memberUtil.isLogin()) {
+                            Authority authority = memberUtil.getMember().getAuthority();
+                            if (authority == Authority.TEACHER) {
+                                redirectURL =  "/teacher";
+                            } else if (authority == Authority.STUDENT) {
+                                redirectURL = "/student";
+                            }
+
+                        }
+
+                        res.sendRedirect(req.getContextPath() + redirectURL);
+                    }
+                })
+        );
+
+
 
 //        http.authorizeHttpRequests(c -> {
 //            c.requestMatchers("/").authenticated() // 회원 전용

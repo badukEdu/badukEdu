@@ -3,7 +3,7 @@ package org.choongang.member;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.choongang.member.constants.Authority;
-import org.choongang.member.entities.Authorities;
+//import org.choongang.member.entities.Authorities;
 import org.choongang.member.entities.Member;
 import org.springframework.stereotype.Component;
 
@@ -15,46 +15,46 @@ public class MemberUtil {
 
     public boolean isAdmin() {
 
-        if (isLogin()) {
-            return getMember().getAuthorities()
-                .stream().map(Authorities::getAuthority)
-                .anyMatch(a -> a == Authority.ADMIN);
-        }
+//        if (isLogin()) {
+//            return getMember().getAuthorities()
+//                .stream().map(Authorities::getAuthority)
+//                .anyMatch(a -> a == Authority.ADMIN);
+//        }
 
-        return false;
+        return isLogin() && getMember().getAuthority() == Authority.ADMIN;
     }
 
     public boolean isTeacher() {
 
-        if (isLogin()) {
-            return getMember().getAuthorities()
-                .stream().map(Authorities::getAuthority)
-                .anyMatch(a -> a == Authority.TEACHER);
-        }
+//        if (isLogin()) {
+//            return getMember().getAuthorities()
+//                .stream().map(Authorities::getAuthority)
+//                .anyMatch(a -> a == Authority.TEACHER);
+//        }
 
-        return false;
+        return isLogin() && getMember().getAuthority() == Authority.TEACHER;
     }
 
     public boolean isStudent() {
 
-        if (isLogin()) {
-            return getMember().getAuthorities()
-                .stream().map(Authorities::getAuthority)
-                .anyMatch(a -> a == Authority.STUDENT);
-        }
+//        if (isLogin()) {
+//            return getMember().getAuthorities()
+//                .stream().map(Authorities::getAuthority)
+//                .anyMatch(a -> a == Authority.STUDENT);
+//        }
 
-        return false;
+        return isLogin() && getMember().getAuthority() == Authority.STUDENT;
     }
 
     public boolean isUser() {
 
-        if (isLogin()) {
-            return getMember().getAuthorities()
-                .stream().map(Authorities::getAuthority)
-                .anyMatch(a -> a == Authority.USER);
-        }
+//        if (isLogin()) {
+//            return getMember().getAuthorities()
+//                .stream().map(Authorities::getAuthority)
+//                .anyMatch(a -> a == Authority.USER);
+//        }
 
-        return false;
+        return isLogin() && getMember().getAuthority() == Authority.USER;
     }
 
     public boolean isLogin() {

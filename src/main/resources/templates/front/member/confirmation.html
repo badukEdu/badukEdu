@@ -54,7 +54,7 @@
       </div>
       <div class="auth_box">
         <th:block th:if="${session.EmailAuthVerified == null || !session.EmailAuthVerified}">
-          <input type="text" id="auth_num" th:placeholder="#{인증코드_입력}" required>
+          <input type="text" id="auth_num" th:placeholder="#{인증코드_입력}">
           <span id="auth_count">03:00</span>
           <button type="button" id="email_confirm" th:text="#{확인}" disabled></button>
           <button type="button" id="email_re_verify" th:text="#{재전송}" disabled></button>
