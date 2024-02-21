@@ -35,7 +35,7 @@ html { font-size: 13px; /* 1rem - 13px*/}
                             width: 100%;
                             justify-content: space-around;
                             z-index: 99;
-                            height: 430px;
+                            height: 40px;
                             transition: .5s;
 
 
