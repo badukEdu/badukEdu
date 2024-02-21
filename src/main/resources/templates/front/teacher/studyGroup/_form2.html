@@ -13,33 +13,33 @@
     </div>
 
 
-<div th:if="${session.game != null}" th:object="${session.game}">
-    <input type="hidden" name="gameContentNum" th:value="${session.game.num}">
-    <input type="hidden" name="gameTitle" th:value="${session.game.gameTitle}">
-    <fieldset>
-        <legend>게임</legend>
-        <table >
-            <tr>
-                <td>게임 컨텐츠 :</td>
-                <td th:text="*{gameTitle}">
+    <div th:if="${session.game != null}" th:object="${session.game}">
+        <input type="hidden" name="gameContentNum" th:value="${session.game.num}">
+        <input type="hidden" name="gameTitle" th:value="${session.game.gameTitle}">
+        <fieldset>
+            <legend>게임</legend>
+            <table >
+                <tr>
+                    <td>게임 컨텐츠 :</td>
+                    <td th:text="*{gameTitle}">
 
-                </td>
-            </tr>
-            <tr>
-                <td>최대 인원 :</td>
-                <td th:text="*{maxSubscriber}"></td>
-            </tr>
-            <tr>
-                <td>기간 : </td>
-                <td th:text="*{startDate + ' ~'  +endDate}"></td>
-            </tr>
-            <tr>
-                <td>달성 레벨 : </td>
-                <td th:text="*{totalGameLevels}"></td>
-            </tr>
-        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>최대 인원 :</td>
+                    <td th:text="*{maxSubscriber}"></td>
+                </tr>
+                <tr>
+                    <td>기간 : </td>
+                    <td th:text="*{startDate + ' ~'  +endDate}"></td>
+                </tr>
+                <tr>
+                    <td>달성 레벨 : </td>
+                    <td th:text="*{totalGameLevels}"></td>
+                </tr>
+            </table>
 
-    </fieldset>
+        </fieldset>
     </div>
     <hr>
     <table>
