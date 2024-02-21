@@ -1,3 +1,4 @@
+
 package org.choongang.education.stgroup.controllers;
 
 
@@ -6,15 +7,16 @@ import lombok.RequiredArgsConstructor;
 import org.choongang.commons.ListData;
 import org.choongang.education.stgroup.entities.JoinStudyGroup;
 import org.choongang.education.stgroup.services.joinStG.JoinSTGInfoService;
-import org.choongang.education.stgroup.services.joinStG.JoinSTGSaveService;
 import org.choongang.member.entities.Member;
 import org.choongang.teacher.stGrooup.controllers.StGroupSearch;
 import org.choongang.teacher.stGrooup.entities.StudyGroup;
+import org.choongang.teacher.stGrooup.services.joinStG.JoinSTGSaveService;
 import org.choongang.teacher.stGrooup.services.stGroup.SGInfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -28,7 +30,8 @@ public class JoinStGroupController {
     private final HttpSession session;
 
     /**
-     * 스터디그룹 목록
+     * ( 학생이 가입 신청 하는)
+     * 가입 가능한 스터디그룹 목록
      * @param model
      * @param search
      * @return
@@ -37,37 +40,33 @@ public class JoinStGroupController {
     public String list(Model model , @ModelAttribute StGroupSearch search){
         search.setType("joinstg");
         ListData<StudyGroup> data = sgInfoService.getList(search);
-       // model.addAttribute("list" , data.getItems());
-        model.addAttribute("list" , validstg(data.getItems()));
-        for(StudyGroup s : data.getItems()){
-        }
 
-        model.addAttribute("pagination", data.getPagination());
+        //validstg -> 이미 가입 한 스터디그룹은 목록에서 제외 / andBuilder로 처리한 것이 아니라 pagination 사용 불가
+        model.addAttribute("list" , validstg(data.getItems()));
+        //model.addAttribute("pagination", data.getPagination());
         return "front/user/studyGroup/join";
     }
 
     /**
-     * 가임신청
+     * 가입신청
      * @param model
      * @param search
      * @return
      */
     @PostMapping("/join")
     public String join(Model model , @ModelAttribute StGroupSearch search ,
-                       @RequestParam(name = "chk" ) List<Long> chks ,
-                       @RequestParam(name = "userNum" ) Long userNum){
+                       @RequestParam(name = "chk" ) List<Long> chks ){
 
-        joinSTGSaveService.save(chks,userNum);
+        //가입 신청 내역 저장(칼럼 : accept -> (미승인)false == 0)
+        joinSTGSaveService.save(chks);
 
-        ListData<StudyGroup> data = sgInfoService.getList(search);
-        model.addAttribute("list" , data.getItems());
-        model.addAttribute("pagination", data.getPagination());
         return "redirect:/JoinStudyGroup";
 
     }
 
     /**
-     * 가임신청
+     * ( 교육자가 가입 승인하는 )
+     * 가입 신청 목록
      * @param model
      * @param search
      * @return
@@ -75,30 +74,22 @@ public class JoinStGroupController {
     @GetMapping("/accept")
     public String accept(Model model , @ModelAttribute JoinStGroupSearch search){
 
-        //joinSTGInfoService.getList();
-        model.addAttribute("num" , 1);
+        //가입 승인 대기 / 완료 목록
         ListData<JoinStudyGroup> data = joinSTGInfoService.getList(search);
-        //System.out.println(data.getItems()+"dddddddddddddddddddddddddddddddddddddddddd"+search);
         model.addAttribute("list" , data.getItems());
-        //System.out.println("dddddddddddddddddddddddddddddddddddddddddd"+data.getItems());
         model.addAttribute("pagination" , data.getPagination());
-        //model.addAttribute("pagination", data.getPagination());
+
         return "front/teacher/studyGroup/acceptStudyGroup";
 
     }
 
 
     @PostMapping("/accept")
-    public String accept1(Model model , @ModelAttribute StGroupSearch search ,
-                       @RequestParam(name = "chk" ) List<Long> chks){
+    public String accept1(Model model ,  @RequestParam(name = "chk" ) List<Long> chks){
 
-        System.out.println(chks);
-
+        //가입 승인 처리
         joinSTGSaveService.accept(chks);
 
-        ListData<StudyGroup> data = sgInfoService.getList(search);
-        model.addAttribute("list" , data.getItems());
-        model.addAttribute("pagination", data.getPagination());
         return "redirect:/JoinStudyGroup/accept";
 
 
@@ -106,16 +97,19 @@ public class JoinStGroupController {
 
 
     /**
-     * 이미 신청한 스터디그룹 제외
+     * 현재 로그인 회원이 이미 가입 신청한 스터디그룹은 목록에서 제외 처리해주는 메서드
      * @param list
      * @return
      */
-    public List<StudyGroup> validstg(List<StudyGroup> list){    //신청 가능한 스터디그룹 목록
+    public List<StudyGroup> validstg(List<StudyGroup> list){
 
-        //신청 한 스터디그룹
+        //가입 승인 대기 / 완료 목록
         List<JoinStudyGroup> joinList = joinSTGInfoService.getAll();
+
         //로그인 회원 정보
         Member member = (Member)session.getAttribute("member");
+
+
         for(JoinStudyGroup jsg : joinList){
             if(member.getNum().equals(jsg.getMember().getNum())) {
                 for(int k=list.size()-1; k>=0; k--){
@@ -128,9 +122,5 @@ public class JoinStGroupController {
         return list;
     }
 
-
-    public int count(int num){
-        return num++;
-    }
 
 }

@@ -17,3 +17,4 @@ public class RequestJoinStGroup {
     private Long memberNum; //구독회원 회원번호
 
 }
+
