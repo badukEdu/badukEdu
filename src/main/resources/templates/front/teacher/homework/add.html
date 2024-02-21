@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <h2>숙제 등록</h2>
-    <form method="post" th:action="@{/homework/add}" autocomplete="off" th:object="${requestHomework}">
+    <form method="post" th:action="@{/teacher/homework/add}" autocomplete="off" th:object="${requestHomework}">
 
         <th:block th:replace="~{front/teacher/homework/_form2::save}"></th:block>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <h2>숙제 전송</h2>
-<form method="post" th:action="@{/homework/post}" autocomplete="off">
+<form method="post" th:action="@{/teacher/homework/post}" autocomplete="off">
 
 
     <th:block th:replace="~{front/teacher/homework/_form::homeworkList}"></th:block>
@@ -37,14 +37,22 @@
 </form>
 <script>
     window.addEventListener("DOMContentLoaded", function() {
+        /* 전체 선택 기능 S */
         const checkall = document.getElementById("checkall");
         checkall.addEventListener("change", function() {
             const chks = document.getElementsByName("chk");
+             const checkedNums = [];
             for (const chk of chks) {
                 chk.checked = checkall.checked;
+                const num = chk.value;
+                console.log(num);
+                checkedNums.push(num);
             }
         });
+        /* 전체 선택 기능 E */
+
     });
+
     function updateTable() {
             const selectedOption = document.getElementById("options").value;
 
@@ -68,7 +76,7 @@
 
             // 선택한 값에 따라 새로운 내용을 생성합니다.
             // 서버로 요청 보내기
-            xhr.open("GET", "/homework/get_table_data?option=" + selectedOption, true);
+            xhr.open("GET", "/teacher/homework/get_table_data?option=" + selectedOption, true);
             xhr.send();
     }
 </script>

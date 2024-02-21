@@ -3,13 +3,14 @@ package org.choongang.teacher.homework.controllers;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.choongang.commons.ListData;
-import org.choongang.teacher.homework.entities.Homework;
-import org.choongang.teacher.homework.service.HomeworkInfoService;
-import org.choongang.teacher.homework.service.HomeworkSaveService;
-import org.choongang.teacher.homework.service.TrainingDataSaveService;
 import org.choongang.member.MemberUtil;
 import org.choongang.member.entities.Member;
 import org.choongang.member.repositories.MemberRepository;
+import org.choongang.teacher.homework.entities.Homework;
+import org.choongang.teacher.homework.entities.TrainingData;
+import org.choongang.teacher.homework.service.HomeworkInfoService;
+import org.choongang.teacher.homework.service.HomeworkSaveService;
+import org.choongang.teacher.homework.service.TrainingDataSaveService;
 import org.choongang.teacher.stGrooup.controllers.StGroupSearch;
 import org.choongang.teacher.stGrooup.entities.StudyGroup;
 import org.choongang.teacher.stGrooup.services.stGroup.SGInfoService;
@@ -76,7 +77,7 @@ public class HomeworkController {
 
         homeworkSaveService.save(form);
 
-        return "redirect:/homework";
+        return "redirect:/teacher/homework";
     }
 
     /** 교육자 - 숙제 수정 페이지
@@ -107,7 +108,7 @@ public class HomeworkController {
         form.setNum(num);
         homeworkSaveService.save(form);
 
-        return "redirect:/homework";
+        return "redirect:/teacher/homework";
     }
 
     /** 교육자 - 숙제 전송 페이지
@@ -146,19 +147,20 @@ public class HomeworkController {
         // 선택한 학생들에게 선택한 숙제를 연결..
         // 학생들이 homework를 조회하려면
         // trainingdata 숙제 생성일,
-/*
+
         for (int chk : chks) {
             Member member = memberRepository.findById(Long.valueOf(chk)).orElseThrow();
 
             homework.setMember(member);
-
+            System.out.println("homeworkmember: " + homework.getMember());
             TrainingData trainingData = new TrainingData();
             trainingData.setHomework(homework);
-            trainingDataSaveService.save(homework);
-        }
-*/
+            trainingDataSaveService.save(trainingData);
 
-        return "redirect:/homework/post";
+        }
+
+
+        return "redirect:/teacher/homework/post";
     }
 
     /** 교육자 - 숙제 평가 페이지 (작업중)
@@ -181,7 +183,7 @@ public class HomeworkController {
     public String assessPs() {
         // 그룹 학습자들이 제출한 내용을 가져갈 수 있도록.
 
-        return "redirect:/homework/assess";
+        return "redirect:/teacher/homework/assess";
     }
 
 
@@ -238,7 +240,7 @@ public class HomeworkController {
 
         for (Member member : members) {
             tableData.append("<tr>");
-            tableData.append("<td><input type='checkbox' name='chk' th:id='*{'chk_' + num}>").append("</td>"); // 체크박스
+            tableData.append("<td><input type='checkbox' name='chk' th:id='*{'chk_' + num} th:value=*{num}>").append("</td>"); // 체크박스
             tableData.append("<td>").append(member.getName()).append("</td>"); // 학습자명
             tableData.append("<td>").append(member.getTel()).append("</td>"); // 전화번호
             tableData.append("<td>").append(member.getLevels()).append("</td>"); // 현재 레벨
