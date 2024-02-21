@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{admin/layouts/main}">
+        layout:decorate="~{commons/layouts/main}">
 <section layout:fragment="content">
 <h2>게임 콘텐츠 수정</h2>
 <form method="post" th:action="@{/admin/gamecontent/save}" autocomplete="off" th:object="${requestGameContentData}">
