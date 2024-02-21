@@ -35,9 +35,9 @@ public class Menu {
                 new MenuDetail("add", "학습 그룹 등록", "/teacher/studyGroup/add"),//
                 new MenuDetail("list", "학습 그룹 조회", "/teacher/studyGroup"),//
                 new MenuDetail("accept", "학습 그룹 가입 승인", "/teacher/studyGroup/accept"),
-                new MenuDetail("", "숙제 생성", "/teacher/"),
-                new MenuDetail("", "숙제 배포", "/teacher/"),
-                new MenuDetail("", "숙제 학습 진도 조회", "/teacher/")
+                new MenuDetail("", "숙제 생성", "/teacher/homework/add"),
+                new MenuDetail("", "숙제 배포", "/teacher/homework/post"),
+                new MenuDetail("", "숙제 학습 진도 조회", "/teacher/homework")
         ));
         // 운영마당 / 권한 - ADMIN
         menus.put("운영마당", Arrays.asList(
