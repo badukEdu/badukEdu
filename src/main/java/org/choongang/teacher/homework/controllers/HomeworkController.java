@@ -3,13 +3,14 @@ package org.choongang.teacher.homework.controllers;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.choongang.commons.ListData;
-import org.choongang.teacher.homework.entities.Homework;
-import org.choongang.teacher.homework.service.HomeworkInfoService;
-import org.choongang.teacher.homework.service.HomeworkSaveService;
-import org.choongang.teacher.homework.service.TrainingDataSaveService;
 import org.choongang.member.MemberUtil;
 import org.choongang.member.entities.Member;
 import org.choongang.member.repositories.MemberRepository;
+import org.choongang.teacher.homework.entities.Homework;
+import org.choongang.teacher.homework.entities.TrainingData;
+import org.choongang.teacher.homework.service.HomeworkInfoService;
+import org.choongang.teacher.homework.service.HomeworkSaveService;
+import org.choongang.teacher.homework.service.TrainingDataSaveService;
 import org.choongang.teacher.stGrooup.controllers.StGroupSearch;
 import org.choongang.teacher.stGrooup.entities.StudyGroup;
 import org.choongang.teacher.stGrooup.services.stGroup.SGInfoService;
@@ -146,7 +147,7 @@ public class HomeworkController {
         // 선택한 학생들에게 선택한 숙제를 연결..
         // 학생들이 homework를 조회하려면
         // trainingdata 숙제 생성일,
-/*
+
         for (int chk : chks) {
             Member member = memberRepository.findById(Long.valueOf(chk)).orElseThrow();
 
@@ -154,11 +155,12 @@ public class HomeworkController {
 
             TrainingData trainingData = new TrainingData();
             trainingData.setHomework(homework);
-            trainingDataSaveService.save(homework);
-        }
-*/
+            trainingDataSaveService.save(trainingData);
 
-        return "redirect:/homework/post";
+        }
+
+
+        return "redirect:/teacher/homework/post";
     }
 
     /** 교육자 - 숙제 평가 페이지 (작업중)

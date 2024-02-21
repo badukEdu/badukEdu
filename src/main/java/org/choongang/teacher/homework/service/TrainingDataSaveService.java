@@ -1,8 +1,8 @@
 package org.choongang.teacher.homework.service;
 
 import lombok.RequiredArgsConstructor;
-import org.choongang.teacher.homework.entities.Homework;
 import org.choongang.teacher.homework.entities.TrainingData;
+import org.choongang.teacher.homework.repositories.TrainingDataRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,13 +10,14 @@ import org.springframework.stereotype.Service;
 public class TrainingDataSaveService {
 
     private final HomeworkInfoService homeworkInfoService;
+    private final TrainingDataRepository trainingDataRepository;
 
     /**
      *
      * @param form - 전송될 숙제 폼
      * @param num - 숙제번호
      */
-    public void save(Homework homework) {
+    public void save(TrainingData trainingData) {
         TrainingData data = null;
 
 /*
@@ -34,6 +35,6 @@ public class TrainingDataSaveService {
 
 */
         // 작성중..
-
+        trainingDataRepository.save(trainingData);
     }
 }
