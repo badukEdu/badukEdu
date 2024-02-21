@@ -77,7 +77,7 @@ public class HomeworkController {
 
         homeworkSaveService.save(form);
 
-        return "redirect:/homework";
+        return "redirect:/teacher/homework";
     }
 
     /** 교육자 - 숙제 수정 페이지
@@ -108,7 +108,7 @@ public class HomeworkController {
         form.setNum(num);
         homeworkSaveService.save(form);
 
-        return "redirect:/homework";
+        return "redirect:/teacher/homework";
     }
 
     /** 교육자 - 숙제 전송 페이지
@@ -152,7 +152,7 @@ public class HomeworkController {
             Member member = memberRepository.findById(Long.valueOf(chk)).orElseThrow();
 
             homework.setMember(member);
-
+            System.out.println("homeworkmember: " + homework.getMember());
             TrainingData trainingData = new TrainingData();
             trainingData.setHomework(homework);
             trainingDataSaveService.save(trainingData);
@@ -183,7 +183,7 @@ public class HomeworkController {
     public String assessPs() {
         // 그룹 학습자들이 제출한 내용을 가져갈 수 있도록.
 
-        return "redirect:/homework/assess";
+        return "redirect:/teacher/homework/assess";
     }
 
 
@@ -240,7 +240,7 @@ public class HomeworkController {
 
         for (Member member : members) {
             tableData.append("<tr>");
-            tableData.append("<td><input type='checkbox' name='chk' th:id='*{'chk_' + num}>").append("</td>"); // 체크박스
+            tableData.append("<td><input type='checkbox' name='chk' th:id='*{'chk_' + num} th:value=*{num}>").append("</td>"); // 체크박스
             tableData.append("<td>").append(member.getName()).append("</td>"); // 학습자명
             tableData.append("<td>").append(member.getTel()).append("</td>"); // 전화번호
             tableData.append("<td>").append(member.getLevels()).append("</td>"); // 현재 레벨

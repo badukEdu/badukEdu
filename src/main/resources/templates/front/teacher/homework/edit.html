@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <h2>숙제 수정</h2>
-<form method="post" th:action="@{/homework/edit/{num}(num=*{num})}" autocomplete="off" th:object="${requestForm}">
+<form method="post" th:action="@{/teacher/homework/edit/{num}(num=*{num})}" autocomplete="off" th:object="${requestForm}">
 
     <th:block th:replace="~{front/teacher/homework/_form2::save}"></th:block>
 
