@@ -46,7 +46,18 @@
 
     <div class="all-menus">
         <nav class="lnb">
-            <ul>
+            <ul class="subMenu">
+                <li th:each="menu : ${menus}">
+                    <a href="#" th:text="${menu.key}"></a>
+                    <ul class="subMenu">
+                        <li th:each="item : ${menu.value}" th:object="${item}">
+                            <a th:href="*{url}" th:text="*{name}"></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+  <!--          <ul>
                 <li><a href="#">이용안내</a>
                     <ul class="subMenu">
                         <li><a href="#">사이트 소개</a></li>
@@ -59,8 +70,8 @@
                 </li>
                 <li><a href="#">구독서비스</a>
                     <ul class="subMenu">
-                        <li><a th:href="@{/gamecontent/subscribe}">게임콘텐츠구매</a></li>
-                        <li><a th:href="@{/gamecontent/list}">내 게임 콘텐츠 조회</a></li>
+                        <li><a th:href="@{/subscription/gamecontent/subscribe}">게임콘텐츠구매</a></li>
+                        <li><a th:href="@{/subscription/gamecontent/list}">내 게임 콘텐츠 조회</a></li>
                     </ul>
                 </li>
                 <li><a href="#">학습서비스</a>
@@ -88,7 +99,7 @@
                         <li><a href="#">회원조회</a></li>
                     </ul>
                 </li>
-            </ul>
+            </ul>-->
         </nav>
     </div>
 </header>

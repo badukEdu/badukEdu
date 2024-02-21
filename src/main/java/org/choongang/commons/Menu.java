@@ -45,7 +45,9 @@ public class Menu {
 
         menus.put("admin", Arrays.asList(
                 Arrays.asList("운영마당" , "게임 컨텐츠 등록" , "") ,
+                Arrays.asList("운영마당" , "게임 컨텐츠 조회" , "") ,
                 Arrays.asList("운영마당" , "교육자료 등록" , "") ,
+                Arrays.asList("운영마당" , "교육자료 조회" , "") ,
                 Arrays.asList("운영마당" , "게시물 등록" , "") ,
                 Arrays.asList("운영마당" , "매출 조회" , "") ,
                 Arrays.asList("운영마당" , "회원 조회" , "")
