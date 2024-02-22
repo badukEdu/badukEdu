@@ -2,6 +2,7 @@ package org.choongang.admin.board.controllers;
 
 import jakarta.persistence.Column;
 import lombok.Data;
+import org.choongang.admin.board.entities.Qna;
 
 @Data
 public class RequestQnaAdd {
@@ -10,7 +11,7 @@ public class RequestQnaAdd {
 
     private String type;
 
-    private String mode = "add"; // 등록 및 수정 분리
+    private String mode = "edit"; // 등록 및 수정 분리
 
     private String title;
 
@@ -23,4 +24,12 @@ public class RequestQnaAdd {
 
     @Column
     private String fileAddress; // 파일경로 (파일 경로)
+
+//    public static class FaqRequest {
+//
+//    }
+//
+//    public static class NoticeRequest {
+//
+//    }
 }

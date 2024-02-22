@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/admin/qna")
+@RequestMapping("/guid/qna")
 @RequiredArgsConstructor
 public class QnaController {
 
@@ -34,7 +34,7 @@ public class QnaController {
 
         qnaSaveService.save(form);
 
-        return "redirect:/board/qnaList";
+        return "redirect:/guid/qna/list";
     }
     /* QnA 게시글 등록(이용자, 관리자 권한) E */
 
@@ -95,11 +95,11 @@ public class QnaController {
         if (qnaDetail.isPresent()) {
             model.addAttribute("requestQnaAdd", qnaDetail.get());
 
-            return "admin/board/noticeEdit";
+            return "admin/board/qnaEdit";
         }
 
         // 해당 게시글을 찾을 수 없는 경우에는 admin/board/qnaList로 리다이렉션
-        return "redirect:/admin/board/qnaList";
+        return "redirect:/guid/qna/list";
     }
 
     @PostMapping("/qnaEdit")
@@ -125,7 +125,7 @@ public class QnaController {
 
         }
 
-        return "redirect:/board/qnaList";
+        return "redirect:/guid/qna/list";
     }
 
     /* QnA 게시글 수정 E */
@@ -135,7 +135,7 @@ public class QnaController {
     @GetMapping("/qnaDelete/{num}")
     public String deleteQna(@PathVariable Long num) {
         qnaDeleteService.deleteById(num);
-        return "redirect:/board/qna/qnaList";
+        return "redirect:/guid/qna/list";
     }
 
     /* QnA 게시글 삭제 E */

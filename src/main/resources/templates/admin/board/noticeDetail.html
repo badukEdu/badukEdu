@@ -41,10 +41,10 @@
     </table>
 </div>
 <div>
-    <form th:action="@{/board/edit/{num}(num=${noticeDetail.num})}" method="get">
+    <form th:action="@{/admin/board/edit/{num}(num=${noticeDetail.num})}" method="get">
         <input type="submit" value="수정하기">
     </form>
-    <a th:href="@{/board/delete/{num}(num=*{num})}" onclick="return confirm('정말 삭제하시겠습니까?');">
+    <a th:href="@{/admin/board/delete/{num}(num=*{num})}" onclick="return confirm('정말 삭제하시겠습니까?');">
         <i class="xi-trash"></i> 삭제하기
     </a>
 </div>

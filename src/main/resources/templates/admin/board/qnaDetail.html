@@ -16,7 +16,7 @@
         <th>문의 유형</th>
         <td th:text="${qnaDetail.type}"></td>
     </tr>
-    <tr th:if="${qnaDetail.membet != null}">
+    <tr>
         <th>작성자</th>
         <td></td>
     </tr>
@@ -36,10 +36,10 @@
 </div>
 
 <div>
-    <form th:action="@{/qna/qnaEdit/{num}(num=${qnaDetail.num})}" method="get">
+    <form th:action="@{/guid/qna/qnaEdit/{num}(num=${qnaDetail.num})}" method="get">
         <input type="submit" value="수정하기">
     </form>
-    <a th:href="@{/qna/qnaDelete/{num}(num=*{num})}" onclick="return confirm('정말 삭제하시겠습니까?');">
+    <a th:href="@{/guid/qna/qnaDelete/{num}(num=*{num})}" onclick="return confirm('정말 삭제하시겠습니까?');">
         <i class="xi-trash"></i> 삭제하기
     </a>
 </div>

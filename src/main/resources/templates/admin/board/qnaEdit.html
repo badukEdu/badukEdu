@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2>문의 수정</h2>
-<form th:action="@{/qna/qnaEdit}" method="post" th:object="${requestQnaAdd}" autocomplete="off" enctype="multipart/form-data">
+<form th:action="@{/guid/qna/qnaEdit}" method="post" th:object="${requestQnaAdd}" autocomplete="off" enctype="multipart/form-data">
     <table>
         <tr>
             <td>문의 유형</td>
@@ -26,9 +26,9 @@
         <tr>
             <td>답변 알림</td>
             <td>
-                <input type="radio" id="receive" th:checked="${requestQnaAdd.answerAlert}" value="true" name="Receive">
+                <input type="radio" id="receive" th:checked="${requestQnaAdd.answerAlert != null && requestQnaAdd.answerAlert}" value="true" name="Receive">
                 <label for="receive">받기</label>
-                <input type="radio" id="doNotReceive" th:checked="${!requestQnaAdd.answerAlert}" value="false" name="doNotReceive">
+                <input type="radio" id="doNotReceive" th:checked="${requestQnaAdd.answerAlert != null && !requestQnaAdd.answerAlert}" value="false" name="doNotReceive">
                 <label for="doNotReceive">받지 않기</label>
             </td>
         </tr>

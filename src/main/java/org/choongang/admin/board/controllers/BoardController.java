@@ -21,7 +21,7 @@ public class BoardController {
     private final BoardInfoService boardInfoService;
     private final BoardDeleteService boardDeleteService;
 
-    /* 게시글 등록(공지사항, FAQ등 관리자 권한) S */
+    /* 게시글 등록(공지사항, FAQ 등 관리자 권한) S */
     @GetMapping("/add")
     public String add(Model model) {
         model.addAttribute("RequestBoardAdd", new RequestBoardAdd());
@@ -34,7 +34,7 @@ public class BoardController {
 
         boardSaveService.save(form);
 
-        return "redirect:/board/list";
+        return "redirect:/admin/board/list";
     }
     /* 게시글 등록(공지사항, FAQ등 관리자 권한) S */
 
@@ -118,7 +118,7 @@ public class BoardController {
             boardSaveService.save(form);
         }
 
-        return "redirect:/board/list";
+        return "redirect:/admin/board/list";
     }
 
     /* 공지사항 및 FAQ 게시글 수정 E */
@@ -128,8 +128,7 @@ public class BoardController {
     @GetMapping("/delete/{num}")
     public String deleteBoard(@PathVariable Long num) {
         boardDeleteService.deleteById(num);
-        return "front/board/list";
+        return "redirect:/admin/board/list";
     }
     /* 공지사항 및 FAQ 게시글 삭제 E */
 }
-

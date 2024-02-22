@@ -15,8 +15,7 @@ public class Menu {
                 new MenuDetail("", "사이트 소개", "/guid/"),
                 new MenuDetail("", "이용 가이드", "/guid/"),
                 new MenuDetail("", "상품 소개", "/guid/"),
-                new MenuDetail("", "FaQ", "/guid/") ,
-                new MenuDetail("", "Q&A", "/guid/")
+                new MenuDetail("add", "Q&A", "/guid/qna/add")
         ));
 
         // 구독서비스 / 권한 - TEACHER , USER
@@ -43,7 +42,7 @@ public class Menu {
         menus.put("운영마당", Arrays.asList(
                 new MenuDetail("", "게임콘텐츠 등록", "/admin/"),
                 new MenuDetail("", "교육 자료 등록", "/admin/"),
-                new MenuDetail("", "게시물 등록", "/admin/"),
+                new MenuDetail("add", "공지사항 등록", "/admin/board/add"), // NOTICE, FAQ 같이 등록
                 new MenuDetail("", "매출 조회", "/admin/"),
                 new MenuDetail("", "회원 조회", "/admin/")
         ));
